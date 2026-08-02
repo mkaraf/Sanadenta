@@ -1,0 +1,148 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import OurTeam from '~/components/widgets/OurTeam.astro';
+import Services from '~/components/widgets/Services.astro';
+import Pricing from '~/components/widgets/Pricing.astro';
+import BookingModal from '~/components/widgets/BookingModal.astro';
+import Contact from '~/components/Contact.astro';
+
+const metadata = {
+  title: 'SanaDenta — Ordinace dentální hygieny ve Zlíně-Malenovicích.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Objednat se',
+        href: '#contact',
+      },
+      {
+        variant: 'secondary',
+        text: 'Naše služby',
+        href: '#services',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Dentální hygiena<br /><span>Zlín-Malenovice</span>
+    </Fragment>
+    <Fragment slot="subtitle"> Profesionální péče pro Váš krásný úsměv. </Fragment>
+  </Hero>
+
+  <!-- <About /> -->
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    id="aboutUs"
+    eyebrow="O nás"
+    title={'Naší prioritou je <span class="italic text-primary-deep">Váš komfort</span>'}
+    subtitle="SanaDenta je nová ordinace dentální hygieny v Malenovicích. Vznikla s jasnou vizí — věnovat každému pacientovi čas, péči a klidné prostředí, které si zaslouží."
+    items={[
+      {
+        title: 'Zářivý úsměv v nové ordinaci dentální hygieny',
+        description:
+          'Zakládáme si na tom, abychom pro vás byli snadno dostupní. Vytvořili jsme moderní a útulnou ordinaci, která je jednoduše dostupná a kam se budete rádi vracet.',
+      },
+      {
+        title: 'Šetrný a bezbolestný přístup bez stresu',
+        description:
+          'Víme, že křeslo v zubní ordinaci může vyvolávat obavy. Naším cílem je ukázat vám, že dentální hygiena může být naprosto pohodová, jemná a bez zbytečné bolesti. Vaše pohodlí je u nás vždy na prvním místě.',
+      },
+      {
+        title: 'Individuální péče přesně na míru',
+        description:
+          'Každý pacient je jiný a vyžaduje jinou péči. Nenasazujeme univerzální postupy. Vyslechneme si vás, zhodnotíme stav vašich zubů a dásní a navrhneme plán i pomůcky, které budou vyhovovat přesně vašim potřebám.',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/person.png',
+      alt: 'Colorful Image',
+    }}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'Moderní technologie a odbornost',
+        description: `Neustále se vzděláváme a sledujeme nejnovější trendy v oboru. Pracujeme s moderními a šetrnými přístroji, díky kterým je ošetření rychlejší, preciznější a maximálně bezpečné pro vaši sklovinu.`,
+      },
+      {
+        title: 'Prevence je pro nás základem',
+        description:
+          'Věříme, že nejlepší zubní kaz je ten, který vůbec nevznikne. Nejde nám jen o to zuby jednorázově vyčistit. Naučíme vás, jak se o ně správně starat doma, abyste předešli problémům.',
+      },
+      {
+        title: 'Přátelská a uvolněná atmosféra',
+        description: 'Úsměv, dobrá nálada a dostatek času na každého pacienta jsou u nás naprostou samozřejmostí.',
+      },
+      {
+        title: 'Zdravé zuby jsou naší vášní',
+        description:
+          'Děláme svou práci s láskou a nadšením. Naší největší odměnou je, když z naší ordinace odcházíte se zdravými zuby, svěžím dechem a nově nabytým sebevědomím ukázat svůj krásný úsměv světu.',
+      },
+    ]}
+    image={{
+      src: '~/assets/images/lab.png',
+      alt: 'Blueprint Image',
+    }}
+  />
+
+  <!-- OurTeam Widget **************** -->
+
+  <!-- <OurTeam /> -->
+
+  <!-- Services Widget **************** -->
+
+  <Services />
+
+  <!-- Pricing Widget **************** -->
+
+  <Pricing />
+
+  <!-- <section id="reservation" >
+    <div class="mt-10 flex justify-center">
+      <a href="#rezervace" class="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground transition hover:bg-primary-deep hover:-translate-y-px" style="box-shadow: 0 18px 40px -18px oklch(0.48 0.07 145 / 0.6);">
+        Objednat se na vyšetření
+      </a>
+    </div>
+  </section> -->
+
+  <!-- CallToAction Widget *********** -->
+
+  <!-- <CallToAction
+    id="reservation"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Vytvořit rezervaci',
+        href: '#',
+        icon: 'tabler:calendar-time',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Rezervace
+    </Fragment>
+
+  </CallToAction> -->
+
+  <BookingModal iframeSrc="https://michal-karafiat.reservio.com" />
+
+
+
+  <Contact />
+</Layout>

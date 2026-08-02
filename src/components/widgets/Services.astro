@@ -1,0 +1,70 @@
+---
+import { Icon } from 'astro-icon/components';
+import SectionHeading from './SectionHeading.astro';
+
+const SERVICES = [
+  {
+    icon: 'tabler:dental',
+    title: 'Vstupní vyšetření',
+    text: 'Komplexní prohlídka stavu chrupu a dásní, individuální plán péče a doporučení.',
+    duration: '60 min',
+  },
+  {
+    icon: 'tabler:sparkles',
+    title: 'Dentální hygiena',
+    text: 'Profesionální odstranění plaku a zubního kamene, leštění a fluoridace.',
+    duration: '60 min',
+  },
+  {
+    icon: 'tabler:calendar-check',
+    title: 'Recall (opakovaná hygiena)',
+    text: 'Pravidelná kontrolní hygiena pro udržení zdravého úsměvu po celý rok.',
+    duration: '45 min',
+  },
+  {
+    icon: 'tabler:wind',
+    title: 'Hloubkové čištění',
+    text: 'Šetrné ošetření subgingiválních prostor metodou AirFlow při zánětech a parodontitidě.',
+    duration: '60–90 min',
+  },
+  {
+    icon: 'tabler:sun',
+    title: 'Bělení zubů',
+    text: 'Profesionální bělení s viditelným výsledkem — šetrně a bez poškození skloviny.',
+    duration: '75 min',
+  },
+  {
+    icon: 'tabler:mood-smile',
+    title: 'Instruktáž domácí péče',
+    text: 'Naučíme Vás, jak o chrup pečovat doma — správná technika a výběr pomůcek.',
+    duration: '30 min',
+  },
+];
+---
+
+<section id="services" class="relative scroll-mt-24 py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <SectionHeading
+      eyebrow="Naše služby"
+      title={'Péče pro Váš <span class="italic text-primary-deep">zdravý úsměv</span>'}
+      intro="Od vstupního vyšetření po profesionální bělení — kompletní spektrum dentální hygieny na jednom místě."
+    />
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        SERVICES.map((s) => (
+          <article class="group flex flex-col rounded-3xl border border-border/70 bg-card p-7 transition hover:-translate-y-1 hover:border-primary/40">
+            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-primary/15 text-primary-deep transition group-hover:bg-primary/25">
+              <Icon name={s.icon} class="h-5 w-5" />
+            </div>
+            <h3 class="mt-5 font-display text-2xl text-foreground">{s.title}</h3>
+            <p class="mt-3 flex-1 text-[15px] leading-relaxed text-muted-foreground">{s.text}</p>
+            <div class="mt-5 flex items-center gap-2 text-xs uppercase tracking-wider text-primary-deep">
+              <Icon name="tabler:clock" class="h-3.5 w-3.5" />
+              {s.duration}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

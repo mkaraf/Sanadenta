@@ -1,0 +1,73 @@
+site:
+  name: SanaDenta
+  site: 'https://sanadenta.cz'
+  base: '/'
+  trailingSlash: false
+
+  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+
+# Default SEO metadata
+metadata:
+  title:
+    default: SanaDenta — Dentální hygiena Zlín-Malenovice
+    template: '%s — SanaDenta'
+  description: 'Ordinace dentální hygieny ve Zlíně-Malenovicích. Šetrná a profesionální péče o Vaše zuby — vstupní vyšetření, dentální hygiena, AirFlow, bělení. Objednejte se online.'
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: SanaDenta
+    images:
+      - url: '~/assets/images/og-image.png'
+        width: 1200
+        height: 628
+    type: website
+  twitter:
+    handle: '@sanadenta'
+    site: '@sanadenta'
+    cardType: summary_large_image
+
+i18n:
+  language: cs
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: false
+    postsPerPage: 6
+
+    post:
+      isEnabled: true
+      permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      robots:
+        index: true
+
+    list:
+      isEnabled: true
+      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      robots:
+        index: true
+
+    category:
+      isEnabled: true
+      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      robots:
+        index: true
+
+    tag:
+      isEnabled: true
+      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      robots:
+        index: false
+
+    isRelatedPostsEnabled: true
+    relatedPostsCount: 4
+
+# NOTE: Theme switch related - Set to light:only to disable dark mode toggle
+ui:
+  theme: 'light:only'
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null # or "G-XXXXXXXXXX"

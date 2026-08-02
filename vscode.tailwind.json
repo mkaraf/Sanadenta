@@ -1,0 +1,45 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@tailwind",
+      "description": "@tailwind — Tailwind v3 directive (legacy)"
+    },
+    {
+      "name": "@layer",
+      "description": "@layer — Insert styles into a Tailwind layer"
+    },
+    {
+      "name": "@apply",
+      "description": "@apply — Apply utility classes inline"
+    },
+    {
+      "name": "@import",
+      "description": "@import 'tailwindcss' — Tailwind v4 entry point"
+    },
+    {
+      "name": "@theme",
+      "description": "@theme — Define design tokens (Tailwind v4)"
+    },
+    {
+      "name": "@plugin",
+      "description": "@plugin — Register a Tailwind plugin (Tailwind v4)"
+    },
+    {
+      "name": "@variant",
+      "description": "@variant — Override or define a variant (Tailwind v4)"
+    },
+    {
+      "name": "@custom-variant",
+      "description": "@custom-variant — Define a custom variant (Tailwind v4)"
+    },
+    {
+      "name": "@utility",
+      "description": "@utility — Define a custom utility (Tailwind v4)"
+    },
+    {
+      "name": "@source",
+      "description": "@source — Explicitly add content sources (Tailwind v4)"
+    }
+  ]
+}

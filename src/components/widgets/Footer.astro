@@ -1,0 +1,108 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const NAV = [
+  { label: 'O nás', href: '#aboutUs' },
+  { label: 'Služby', href: '#services' },
+  { label: 'Ceník', href: '#priceList' },
+  { label: 'Kontakt', href: '#contact' },
+];
+
+const HOURS = [
+  { day: 'Po – Čt', time: '8:00 – 17:00' },
+  { day: 'Pá', time: '8:00 – 14:00' },
+  { day: 'So – Ne', time: 'Zavřeno' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-primary-deep text-white">
+  <div class="mx-auto max-w-7xl px-6 py-16">
+    <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <span class="font-display text-2xl font-semibold tracking-tight text-white">SanaDenta</span>
+        <p class="mt-4 text-sm leading-relaxed text-white/70">Šetrná dentální hygiena a péče o váš úsměv ve Zlíně.</p>
+        <div class="mt-6 flex items-center gap-3">
+          <a
+            href="#"
+            aria-label="Instagram"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:bg-white/10"
+          >
+            <Icon name="tabler:brand-instagram" class="h-4 w-4" />
+          </a>
+          <a
+            href="#"
+            aria-label="Facebook"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:bg-white/10"
+          >
+            <Icon name="tabler:brand-facebook" class="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-medium uppercase tracking-[0.18em] text-white/50">Navigace</h4>
+        <ul class="mt-5 space-y-3">
+          {
+            NAV.map(({ label, href }) => (
+              <li>
+                <a href={href} class="text-sm text-white/80 transition hover:text-white">
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-medium uppercase tracking-[0.18em] text-white/50">Kontakt</h4>
+        <ul class="mt-5 space-y-3 text-sm text-white/80">
+          <li class="flex items-start gap-3">
+            <Icon name="tabler:phone" class="mt-0.5 h-4 w-4 text-white/60" />
+            <a href="tel:+420705233083" class="hover:text-white">+420 705 233 083</a>
+          </li>
+          <li class="flex items-start gap-3">
+            <Icon name="tabler:mail" class="mt-0.5 h-4 w-4 text-white/60" />
+            <a href="mailto:info@sanadenta.cz" class="hover:text-white">info@sanadenta.cz</a>
+          </li>
+          <li class="flex items-start gap-3">
+            <Icon name="tabler:map-pin" class="mt-0.5 h-4 w-4 text-white/60" />
+            <span>Zahradní 973<br />763 02 Zlín 4</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-medium uppercase tracking-[0.18em] text-white/50">Otevírací doba</h4>
+        <ul class="mt-5 space-y-2 text-sm text-white/80">
+          {
+            HOURS.map(({ day, time }) => (
+              <li class="flex items-center justify-between">
+                <span>{day}</span>
+                <span class="text-white/60">{time}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <span
+          class="mt-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs"
+        >
+          <span class="h-2 w-2 rounded-full bg-green-400"></span>
+          Nově přijímáme pacienty
+        </span>
+      </div>
+    </div>
+
+    <div
+      class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white/50 md:flex-row"
+    >
+      <p>© {year} SanaDenta. Všechna práva vyhrazena.</p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-white">Ochrana osobních údajů</a>
+        <a href="#" class="hover:text-white">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>

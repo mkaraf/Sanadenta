@@ -1,0 +1,46 @@
+---
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Dentist',
+  name: 'SanaDenta',
+  url: 'https://sanadenta.cz',
+  description:
+    'Ordinace dentální hygieny ve Zlíně-Malenovicích. Šetrná a profesionální péče o Vaše zuby — vstupní vyšetření, dentální hygiena, AirFlow, bělení.',
+  image: 'https://sanadenta.cz/og-image.png',
+  telephone: '+420705233083',
+  email: 'info@sanadenta.cz',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Zahradní 973',
+    addressLocality: 'Zlín',
+    postalCode: '763 02',
+    addressCountry: 'CZ',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 49.2074,
+    longitude: 17.5932,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+      opens: '07:30',
+      closes: '15:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Friday'],
+      opens: '08:00',
+      closes: '14:00',
+    },
+  ],
+  currenciesAccepted: 'CZK',
+  areaServed: {
+    '@type': 'City',
+    name: 'Zlín',
+  },
+};
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

@@ -1,0 +1,73 @@
+---
+import '@fontsource-variable/inter';
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+/>
+
+<style is:inline>
+  :root {
+    --shadow-soft: 0 30px 80px -40px oklch(0.55 0.12 75 / 0.28);
+    --shadow-blob: 0 40px 100px -30px oklch(0.68 0.14 78 / 0.32);
+
+    --aw-font-sans: 'Inter Variable';
+    --aw-font-serif: 'Inter Variable';
+    --aw-font-heading: 'Inter Variable';
+
+    /* Premium wellness palette — warm white + gold + amber */
+    --color-background: oklch(0.983 0.01 88);
+    --color-foreground: oklch(0.15 0.015 50);
+    --color-card: oklch(0.997 0.006 90);
+    --color-primary: oklch(0.78 0.09 90);
+    --color-primary-foreground: oklch(0.14 0.025 55);
+    --color-primary-deep: oklch(0.62 0.09 83);
+    --color-muted-foreground: oklch(0.46 0.028 70);
+    --color-accent: oklch(0.72 0.1 80);
+    --color-gold: oklch(0.72 0.13 78);
+    --color-gold-deep: oklch(0.54 0.13 70);
+    --color-sage: oklch(0.75 0.09 80);
+    --color-sage-deep: oklch(0.56 0.11 73);
+    --color-border: oklch(0.9 0.018 85);
+    --color-secondary: oklch(0.96 0.022 85);
+
+    --aw-color-primary: oklch(0.68 0.13 78);
+    --aw-color-secondary: oklch(0.82 0.08 82);
+    --aw-color-accent: oklch(0.72 0.1 80);
+
+    --aw-color-text-heading: oklch(0.15 0.015 50);
+    --aw-color-text-default: oklch(0.15 0.015 50);
+    --aw-color-text-muted: oklch(0.46 0.028 70);
+    --aw-color-bg-page: oklch(0.983 0.01 88);
+
+    --aw-color-bg-page-dark: oklch(0.2 0.025 60);
+
+    ::selection {
+      background-color: oklch(0.88 0.07 80);
+      color: oklch(0.2 0.025 60);
+    }
+  }
+
+  .dark {
+    --aw-font-sans: 'Inter Variable';
+    --aw-font-serif: 'Inter Variable';
+    --aw-font-heading: 'Inter Variable';
+
+    --aw-color-primary: oklch(0.72 0.12 78);
+    --aw-color-secondary: oklch(0.82 0.08 82);
+    --aw-color-accent: oklch(0.7 0.1 80);
+
+    --aw-color-text-heading: oklch(0.97 0.008 90);
+    --aw-color-text-default: oklch(0.92 0.012 88);
+    --aw-color-text-muted: oklch(0.8 0.02 85 / 0.75);
+    --aw-color-bg-page: oklch(0.2 0.025 60);
+
+    ::selection {
+      background-color: oklch(0.68 0.13 78);
+      color: oklch(0.14 0.025 55);
+    }
+  }
+</style>

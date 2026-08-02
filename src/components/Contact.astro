@@ -1,0 +1,127 @@
+---
+import SectionHeading from '~/components/widgets/SectionHeading.astro';
+import { Icon } from 'astro-icon/components';
+
+const CONTACT = {
+  phone: '+420 705 233 083',
+  phoneHref: 'tel:+420705233083',
+  email: 'info@sanadenta.cz',
+  address: 'Zahradní 973, 763 02 Zlín 4',
+  mapsQuery: 'Zahradní 973, 763 02 Zlín 4',
+};
+
+const HOURS = [
+  { day: 'Pondělí – Čtvrtek', time: '7:30 – 15:00' },
+  { day: 'Pátek', time: '7:30 – 14:00' },
+  { day: 'Sobota – Neděle', time: 'Zavřeno' },
+];
+---
+
+<section id="contact" class="relative py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6">
+    <SectionHeading
+      eyebrow="Kontakt"
+      title="Objednejte se na <em class='font-serif italic text-primary'>vyšetření</em>"
+      intro="Rezervujte si svůj termín prostřednictvím našeho rezervačního systému níže."
+    />
+
+    <div class="mt-16 grid gap-10 lg:grid-cols-2">
+      <div class="space-y-8">
+        <div class="rounded-2xl border border-border bg-card p-6">
+          <div class="flex items-center gap-3">
+            <Icon name="tabler:clock" class="h-5 w-5 text-primary-deep" />
+            <h3 class="font-serif text-xl text-foreground">Otevírací doba</h3>
+          </div>
+          <ul class="mt-4 divide-y divide-border">
+            {
+              HOURS.map(({ day, time }) => (
+                <li class="flex items-center justify-between py-3 text-sm">
+                  <span class="text-foreground">{day}</span>
+                  <span class="font-medium text-muted-foreground">{time}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <a
+            href="#"
+            data-open-booking
+            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-deep"
+          >
+            Rezervovat si termín
+            <Icon name="tabler:arrow-right" class="h-4 w-4" />
+          </a>
+        </div>
+
+        <div class="space-y-4">
+          <a
+            href={CONTACT.phoneHref}
+            class="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-primary/40 hover:shadow-md"
+          >
+            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-deep">
+              <Icon name="tabler:phone" class="h-5 w-5" />
+            </span>
+            <span class="flex-1">
+              <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">Telefon</span>
+              <span class="block text-lg font-medium text-foreground">{CONTACT.phone}</span>
+            </span>
+            <Icon
+              name="tabler:arrow-right"
+              class="h-4 w-4 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary-deep"
+            />
+          </a>
+
+          <a
+            href={`mailto:${CONTACT.email}`}
+            class="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-primary/40 hover:shadow-md"
+          >
+            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-deep">
+              <Icon name="tabler:mail" class="h-5 w-5" />
+            </span>
+            <span class="flex-1">
+              <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">E-mail</span>
+              <span class="block text-lg font-medium text-foreground">{CONTACT.email}</span>
+            </span>
+            <Icon
+              name="tabler:arrow-right"
+              class="h-4 w-4 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary-deep"
+            />
+          </a>
+
+          <a
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT.mapsQuery)}`}
+            target="_blank"
+            rel="noopener"
+            class="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-primary/40 hover:shadow-md"
+          >
+            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-deep">
+              <Icon name="tabler:map-pin" class="h-5 w-5" />
+            </span>
+            <span class="flex-1">
+              <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">Adresa</span>
+              <span class="block text-lg font-medium text-foreground">{CONTACT.address}</span>
+            </span>
+            <Icon
+              name="tabler:arrow-right"
+              class="h-4 w-4 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary-deep"
+            />
+          </a>
+        </div>
+
+        <p class="text-center text-sm text-muted-foreground">
+          Bezbariérový přístup · Parkování zdarma · MHD 5 minut pěšky
+        </p>
+      </div>
+
+      <div class="overflow-hidden rounded-3xl border border-border bg-card shadow-sm min-h-[480px]">
+        <iframe
+          title="Mapa SanaDenta"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7372.862011777183!2d17.592249233921855!3d49.20624351067441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47130cfc0fa07aa9%3A0x5aa3be5e69f618a7!2zWmRyYXZvdG7DrSBaYcWZw616ZW7DrSBQb2xpbWFs!5e0!3m2!1scs!2scz!4v1780695250267!5m2!1scs!2scz"
+          loading="lazy"
+          allowfullscreen
+          class="h-full w-full"
+          style="border:0; min-height:480px;"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>

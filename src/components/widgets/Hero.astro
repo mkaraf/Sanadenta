@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets';
+import type { Hero as Props } from '~/types';
+import heroDefaultImg from '~/assets/images/landing_page.png';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  actions,
+  id,
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+
+const VALUES = [
+  { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', label: 'Profesionální péče' },
+  { icon: 'M13 10V3L4 14h7v7l9-11h-7z', label: 'Moderní prostředí' },
+  {
+    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+    label: 'Citlivý přístup',
+  },
+];
+---
+
+<section class="relative overflow-hidden not-prose" {...id ? { id } : {}}>
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+  </div>
+
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-32 -left-32 h-[520px] w-[520px] rounded-full opacity-50 blur-3xl"
+    style="background: radial-gradient(closest-side, oklch(0.88 0.08 82 / 0.50), transparent);"
+  >
+  </div>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -bottom-40 right-0 h-[480px] w-[480px] rounded-full opacity-60 blur-3xl"
+    style="background: radial-gradient(closest-side, oklch(0.88 0.05 85 / 0.55), transparent);"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 md:px-8 md:py-24 lg:grid-cols-2 lg:gap-16 lg:py-28"
+  >
+    <div class="relative">
+      <div
+        class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-[12px] font-medium uppercase tracking-[0.18em] text-primary-deep"
+      >
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-amber-400"></span>
+        </span>
+        Přijímáme nové pacienty
+      </div>
+
+      {
+        title && (
+          <h1
+            class="mt-6 font-display text-5xl leading-[1.02] tracking-tight text-(--color-foreground) [&_span]:italic [&_span]:text-(--color-primary-deep) md:text-6xl lg:text-7xl"
+            set:html={title}
+          />
+        )
+      }
+
+      <div class="mt-8 flex items-center gap-3 sm:mt-10">
+        <span class="h-px w-16 bg-(--color-accent)"></span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="shrink-0 text-(--color-accent)">
+          <path d="M12 2 L13.8 9.2 L21 12 L13.8 14.8 L12 22 L10.2 14.8 L3 12 L10.2 9.2 Z"></path>
+        </svg>
+        <span class="h-px w-16 bg-(--color-accent)"></span>
+      </div>
+
+      {
+        subtitle && (
+          <p
+            class="mt-6 max-w-xl text-lg leading-relaxed text-(--color-muted-foreground) md:text-xl"
+            set:html={subtitle}
+          />
+        )
+      }
+
+      {
+        Array.isArray(actions) && actions.length > 0 && (
+          <div class="mt-9 flex flex-wrap items-center gap-3">
+            {actions.map((action) =>
+              action?.variant === 'primary' ? (
+                <a
+                  href={action.href}
+                  {...(action.target ? { target: action.target, rel: 'noopener noreferrer' } : {})}
+                  class="inline-flex items-center gap-2 rounded-full bg-(--color-primary) px-7 py-3.5 text-base font-semibold text-(--color-primary-foreground) transition hover:bg-(--color-primary-deep) hover:-translate-y-px"
+                  style="box-shadow: 0 18px 40px -18px oklch(0.52 0.13 70 / 0.55);"
+                >
+                  {action.text}
+                </a>
+              ) : (
+                <a
+                  href={action.href}
+                  class="inline-flex items-center gap-2 rounded-full border border-(--color-foreground)/15 bg-(--color-background)/60 px-6 py-3.5 text-base font-semibold text-(--color-foreground) transition hover:border-(--color-foreground)/30 hover:bg-(--color-secondary)"
+                >
+                  {action.text}
+                </a>
+              )
+            )}
+          </div>
+        )
+      }
+
+      <ul class="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-(--color-border)/70 pt-8">
+        {
+          VALUES.map((v) => (
+            <li class="flex items-center gap-2 text-sm font-medium text-(--color-foreground)/80">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="shrink-0 text-(--color-primary-deep)"
+              >
+                <path d={v.icon} />
+              </svg>
+              {v.label}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-[560px]">
+      <div
+        aria-hidden="true"
+        class="absolute -inset-6 bg-(--color-primary)/15"
+        style="border-radius: 58% 42% 60% 40% / 52% 48% 52% 48%; box-shadow: var(--shadow-blob);"
+      >
+      </div>
+      <div class="hero-blob relative overflow-hidden bg-(--color-card)">
+        <Image
+          src={heroDefaultImg}
+          alt="Klidná atmosféra dentálního studia SanaDenta ve Zlíně-Malenovicích"
+          width={1024}
+          height={1024}
+          loading="eager"
+          class="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+</section>

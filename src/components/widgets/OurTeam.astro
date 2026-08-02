@@ -1,0 +1,46 @@
+---
+import { Icon } from 'astro-icon/components';
+import SectionHeading from './SectionHeading.astro';
+
+const certs = ['Certifikace AirFlow / GBT', 'Dentální hygienistka', 'Individuální plán péče', 'Šetrné ošetření'];
+---
+
+<section id="ourTeam" class="relative scroll-mt-24 py-20 md:py-28">
+  <div class="mx-auto max-w-7xl px-5 md:px-8">
+    <SectionHeading
+      eyebrow="Náš tým"
+      title={'Váš partner pro <span class="italic text-primary-deep">zdravý chrup</span>'}
+      intro="Odborná péče s individuálním přístupem — od prvního vyšetření až po dlouhodobou prevenci."
+    />
+
+    <div
+      class="mt-16 grid items-center gap-10 rounded-3xl border border-border/70 bg-card/80 p-8 md:p-12 lg:grid-cols-[280px_1fr]"
+    >
+      <div
+        class="mx-auto h-64 w-64 overflow-hidden rounded-full bg-gradient-to-br from-primary/30 to-accent/40 ring-8 ring-background lg:mx-0"
+      >
+        <div class="flex h-full w-full items-center justify-center text-primary-deep">
+          <Icon name="tabler:mood-smile" class="h-24 w-24 opacity-60" />
+        </div>
+      </div>
+      <div>
+        <span class="text-xs uppercase tracking-[0.22em] text-muted-foreground">Vaše hygienistka</span>
+        <h3 class="mt-3 font-serif text-3xl text-foreground md:text-4xl">Ing. Zuzana Saňáková, Dis.</h3>
+        <p class="mt-4 text-[15px] leading-relaxed text-muted-foreground md:text-base">
+          Krátké představení — vzdělání, certifikace, přístup k pacientům a co Vás na práci nejvíc baví. Tento text
+          doplníme podle Vašich podkladů.
+        </p>
+        <ul class="mt-5 grid gap-2 text-sm text-foreground/80 sm:grid-cols-2">
+          {
+            certs.map((b) => (
+              <li class="flex items-center gap-2">
+                <Icon name="tabler:check" class="h-4 w-4 text-primary-deep" />
+                {b}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
