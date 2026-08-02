@@ -66,8 +66,3 @@ apps:
 # NOTE: Theme switch related - Set to light:only to disable dark mode toggle
 ui:
   theme: 'light:only'
-
-analytics:
-  vendors:
-    googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
