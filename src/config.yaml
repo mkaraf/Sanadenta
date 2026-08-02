@@ -18,7 +18,7 @@ metadata:
   openGraph:
     site_name: SanaDenta
     images:
-      - url: '/og-image.png'
+      - url: '~/assets/images/og-image.png'
         width: 1200
         height: 628
     type: website
