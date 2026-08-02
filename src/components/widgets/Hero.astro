@@ -64,7 +64,7 @@ const VALUES = [
         )
       }
 
-      <div class="mt-8 flex items-center gap-3 sm:mt-10">
+      <div class="mt-8 flex items-center gap-3 sm:mt-10" aria-hidden="true">
         <span class="h-px w-16 bg-(--color-accent)"></span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="shrink-0 text-(--color-accent)">
           <path d="M12 2 L13.8 9.2 L21 12 L13.8 14.8 L12 22 L10.2 14.8 L3 12 L10.2 9.2 Z"></path>
@@ -112,6 +112,7 @@ const VALUES = [
           VALUES.map((v) => (
             <li class="flex items-center gap-2 text-sm font-medium text-(--color-foreground)/80">
               <svg
+                aria-hidden="true"
                 width="16"
                 height="16"
                 viewBox="0 0 24 24"

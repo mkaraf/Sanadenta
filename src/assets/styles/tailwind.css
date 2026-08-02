@@ -85,6 +85,12 @@
 }
 
 @layer utilities {
+  /* Global keyboard focus indicator — WCAG 2.4.7 */
+  :focus-visible {
+    @apply outline-2 outline-offset-2;
+    outline-color: var(--color-primary-deep);
+  }
+
   .hero-blob {
     border-radius: 62% 38% 55% 45% / 48% 55% 45% 52%;
     box-shadow: var(--shadow-blob);

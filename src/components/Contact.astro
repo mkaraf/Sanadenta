@@ -29,7 +29,7 @@ const HOURS = [
       <div class="space-y-8">
         <div class="rounded-2xl border border-border bg-card p-6">
           <div class="flex items-center gap-3">
-            <Icon name="tabler:clock" class="h-5 w-5 text-primary-deep" />
+            <Icon name="tabler:clock" aria-hidden="true" class="h-5 w-5 text-primary-deep" />
             <h3 class="font-serif text-xl text-foreground">Otevírací doba</h3>
           </div>
           <ul class="mt-4 divide-y divide-border">
@@ -42,14 +42,14 @@ const HOURS = [
               ))
             }
           </ul>
-          <a
-            href="#"
-            data-open-booking
-            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-deep"
+          <button
+            type="button"
+            disabled
+            class="mt-6 inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-primary/50 px-6 py-3 text-sm font-medium text-primary-foreground"
           >
-            Rezervovat si termín
-            <Icon name="tabler:arrow-right" class="h-4 w-4" />
-          </a>
+            Rezervace bude brzy dostupná
+            <Icon name="tabler:clock" class="h-4 w-4" />
+          </button>
         </div>
 
         <div class="space-y-4">
@@ -90,7 +90,7 @@ const HOURS = [
           <a
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT.mapsQuery)}`}
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
             class="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-primary/40 hover:shadow-md"
           >
             <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-deep">

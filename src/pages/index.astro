@@ -6,7 +6,6 @@ import Content from '~/components/widgets/Content.astro';
 import OurTeam from '~/components/widgets/OurTeam.astro';
 import Services from '~/components/widgets/Services.astro';
 import Pricing from '~/components/widgets/Pricing.astro';
-import BookingModal from '~/components/widgets/BookingModal.astro';
 import Contact from '~/components/Contact.astro';
 
 const metadata = {
@@ -97,11 +96,13 @@ const metadata = {
     ]}
     image={{
       src: '~/assets/images/lab.png',
-      alt: 'Moderní vybavení ordinace SanaDenta ve Zlíně','
+      alt: 'Moderní vybavení ordinace SanaDenta ve Zlíně',
     }}
   />
 
   <!-- OurTeam Widget **************** -->
+
+  <!-- <OurTeam /> -->
 
   <!-- <OurTeam /> -->
 
@@ -139,9 +140,6 @@ const metadata = {
     </Fragment>
 
   </CallToAction> -->
-
-  <BookingModal iframeSrc="https://michal-karafiat.reservio.com" />
-
 
 
   <Contact />
