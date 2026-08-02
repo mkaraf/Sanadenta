@@ -7,6 +7,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
+import cloudflare from '@astrojs/cloudflare';
 
 import astrowind from './vendor/integration';
 
@@ -17,6 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   site: 'https://sanadenta.cz',
   output: 'static',
+  adapter: cloudflare({ imageService: 'compile' }),
 
   integrations: [
     sitemap(),
