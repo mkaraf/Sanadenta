@@ -5,9 +5,12 @@ import interLatinExt from '@fontsource-variable/inter/files/inter-latin-ext-wght
 ---
 
 <!-- Preload Inter (Latin + Latin Extended, for Czech diacritics) so it's ready before first paint,
-     avoiding the layout shift caused by the font-display: swap fallback -> webfont swap -->
-<link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
-<link rel="preload" href={interLatinExt} as="font" type="font/woff2" crossorigin />
+     avoiding the layout shift caused by the font-display: swap fallback -> webfont swap.
+     fetchpriority="low" keeps this from competing with the hero image (the LCP element) for
+     bandwidth on the initial connection — the fonts still start loading early, just not at the
+     same priority tier as the actual LCP resource. -->
+<link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin fetchpriority="low" />
+<link rel="preload" href={interLatinExt} as="font" type="font/woff2" crossorigin fetchpriority="low" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
