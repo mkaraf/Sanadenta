@@ -17,6 +17,10 @@ export default defineConfig({
   site: 'https://sanadenta.cz',
   output: 'static',
 
+  build: {
+    inlineStylesheets: 'always',
+  },
+
   integrations: [
     sitemap(),
     icon({

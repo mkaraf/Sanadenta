@@ -248,14 +248,14 @@ import { UI } from 'astrowind:config';
       // Safety-net: if the IntersectionObserver still hasn't revealed
       // viewport-visible elements after 800ms, force-show them.
       setTimeout(() => {
-        this.elements.forEach((el) => {
-          if (el.hasAttribute('no-intersect')) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >= 0) {
-              el.removeAttribute('no-intersect');
-            }
-          }
+        const pending = this.elements.filter((el) => el.hasAttribute('no-intersect'));
+        // Read phase: batch all layout reads before any writes to avoid forced reflow.
+        const toReveal = pending.filter((el) => {
+          const rect = el.getBoundingClientRect();
+          return rect.top < window.innerHeight && rect.bottom >= 0;
         });
+        // Write phase.
+        toReveal.forEach((el) => el.removeAttribute('no-intersect'));
       }, 800);
     },
 
