@@ -2,31 +2,31 @@
 import '@fontsource-variable/inter';
 import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import interLatinExt from '@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2?url';
+
+import '@fontsource-variable/playfair-display';
+import '@fontsource-variable/playfair-display/wght-italic.css';
+import playfairLatin from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url';
+import playfairLatinExt from '@fontsource-variable/playfair-display/files/playfair-display-latin-ext-wght-normal.woff2?url';
+import playfairLatinItalic from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-italic.woff2?url';
+import playfairLatinExtItalic from '@fontsource-variable/playfair-display/files/playfair-display-latin-ext-wght-italic.woff2?url';
 ---
+
+<!-- Playfair Display (headline font, self-hosted) preloaded at high priority: it's the LCP
+     element's font. Previously loaded from Google Fonts, which required two sequential
+     cross-origin round trips (CSS stylesheet, then the actual font file) — fine on desktop,
+     but that chain badly compounds under mobile network throttling. Self-hosting collapses it
+     to same-origin requests we can preload directly, in parallel with everything else. -->
+<link rel="preload" href={playfairLatin} as="font" type="font/woff2" crossorigin fetchpriority="high" />
+<link rel="preload" href={playfairLatinExt} as="font" type="font/woff2" crossorigin fetchpriority="high" />
+<link rel="preload" href={playfairLatinItalic} as="font" type="font/woff2" crossorigin fetchpriority="high" />
+<link rel="preload" href={playfairLatinExtItalic} as="font" type="font/woff2" crossorigin fetchpriority="high" />
 
 <!-- Preload Inter (Latin + Latin Extended, for Czech diacritics) so it's ready before first paint,
      avoiding the layout shift caused by the font-display: swap fallback -> webfont swap.
-     fetchpriority="low" keeps this from competing with the hero image (the LCP element) for
-     bandwidth on the initial connection — the fonts still start loading early, just not at the
-     same priority tier as the actual LCP resource. -->
+     fetchpriority="low" keeps this from competing with the hero image and Playfair Display
+     (both higher-priority for the LCP element) on the initial connection. -->
 <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin fetchpriority="low" />
 <link rel="preload" href={interLatinExt} as="font" type="font/woff2" crossorigin fetchpriority="low" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- Non-blocking font load to avoid render-blocking and improve FCP -->
-<link
-  rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=optional"
-  as="style"
-  onload="this.onload=null;this.rel='stylesheet'"
-/>
-<noscript
-  ><link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=optional"
-  /></noscript
->
 
 <style is:inline>
   :root {
