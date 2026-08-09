@@ -6,8 +6,9 @@ const CONTACT = {
   phone: '+420 705 233 083',
   phoneHref: 'tel:+420705233083',
   email: 'info@sanadenta.cz',
+  building: 'Zdravotní středisko POLIMAL',
   address: 'Zahradní 973, 763 02 Zlín 4',
-  mapsQuery: 'Zahradní 973, 763 02 Zlín 4',
+  mapsQuery: 'Zdravotní středisko POLIMAL, Zahradní 973, 763 02 Zlín 4',
 };
 
 const HOURS = [
@@ -100,7 +101,10 @@ const HOURS = [
             </span>
             <span class="flex-1">
               <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">Adresa</span>
-              <span class="block text-lg font-medium text-foreground">{CONTACT.address}</span>
+              <span class="block text-lg font-medium text-foreground">
+                {CONTACT.building}<br />
+                {CONTACT.address}
+              </span>
             </span>
             <Icon
               name="tabler:arrow-right"
