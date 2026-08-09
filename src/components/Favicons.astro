@@ -1,7 +1,17 @@
 ---
 import favIconSvg from '~/assets/favicons/favicon.svg';
 import appleTouchIcon from '~/assets/favicons/apple-touch-icon.png';
+import favicon96 from '~/assets/favicons/favicon-96x96.png';
+import siteWebmanifest from '~/assets/favicons/site.webmanifest';
 ---
 
-<link rel="icon" type="image/png" href={favIconSvg.src} />
 <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon.src} />
+<link rel="icon" type="image/png" sizes="96x96" href={favicon96.src} />
+<link rel="icon" type="image/svg+xml" href={favIconSvg.src} />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="manifest" href={siteWebmanifest} />
+
+<meta name="apple-mobile-web-app-title" content="SanaDenta" />
+<meta name="application-name" content="SanaDenta" />
+<meta name="msapplication-TileColor" content="#826423" />
+<meta name="theme-color" content="#ffffff" />
