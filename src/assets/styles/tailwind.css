@@ -15,7 +15,7 @@
 
   /* Design-system tokens (mirrors CustomStyles.astro :root) */
   --color-foreground: oklch(0.15 0.015 50);
-  --color-background: oklch(0.983 0.01 88);
+  --color-background: oklch(0.991 0.008 88);
   --color-card: oklch(0.997 0.006 90);
   --color-primary-deep: oklch(0.62 0.09 83);
   --color-primary-foreground: oklch(0.99 0.005 90);
