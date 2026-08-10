@@ -30,13 +30,13 @@ const VALUES = [
 
   <div
     aria-hidden="true"
-    class="pointer-events-none absolute -top-32 -left-32 h-[520px] w-[520px] rounded-full opacity-50 blur-3xl"
+    class="pointer-events-none absolute -top-32 -left-32 h-130 w-130 rounded-full opacity-50 blur-3xl"
     style="background: radial-gradient(closest-side, oklch(0.88 0.08 82 / 0.50), transparent);"
   >
   </div>
   <div
     aria-hidden="true"
-    class="pointer-events-none absolute top-72 right-0 h-[480px] w-[480px] rounded-full opacity-60 blur-3xl md:top-56"
+    class="pointer-events-none absolute top-72 right-0 h-120 w-120 rounded-full opacity-60 blur-3xl md:top-56"
     style="background: radial-gradient(closest-side, oklch(0.88 0.05 85 / 0.55), transparent);"
   >
   </div>
@@ -58,24 +58,24 @@ const VALUES = [
       {
         title && (
           <h1
-            class="mt-6 font-display text-5xl leading-[1.02] tracking-tight text-(--color-foreground) [&_span]:italic [&_span]:text-(--color-primary-deep) md:text-6xl lg:text-7xl"
+            class="mt-6 font-display text-5xl leading-[1.02] tracking-tight text-foreground [&_span]:italic [&_span]:text-primary-deep md:text-6xl lg:text-7xl"
             set:html={title}
           />
         )
       }
 
       <div class="mt-8 flex items-center gap-3 sm:mt-10" aria-hidden="true">
-        <span class="h-px w-16 bg-(--color-accent)"></span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="shrink-0 text-(--color-accent)">
+        <span class="h-px w-16 bg-accent"></span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="shrink-0 text-accent">
           <path d="M12 2 L13.8 9.2 L21 12 L13.8 14.8 L12 22 L10.2 14.8 L3 12 L10.2 9.2 Z"></path>
         </svg>
-        <span class="h-px w-16 bg-(--color-accent)"></span>
+        <span class="h-px w-16 bg-accent"></span>
       </div>
 
       {
         subtitle && (
           <p
-            class="mt-6 max-w-xl text-lg leading-relaxed text-(--color-muted-foreground) md:text-xl"
+            class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl"
             set:html={subtitle}
           />
         )
@@ -89,7 +89,7 @@ const VALUES = [
                 <a
                   href={action.href}
                   {...(action.target ? { target: action.target, rel: 'noopener noreferrer' } : {})}
-                  class="inline-flex items-center gap-2 rounded-full bg-(--color-primary) px-7 py-3.5 text-base font-semibold text-(--color-primary-foreground) transition hover:bg-(--color-primary-deep) hover:-translate-y-px"
+                  class="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground transition hover:bg-primary-deep hover:-translate-y-px"
                   style="box-shadow: 0 18px 40px -18px oklch(0.52 0.13 70 / 0.55);"
                 >
                   {action.text}
@@ -97,7 +97,7 @@ const VALUES = [
               ) : (
                 <a
                   href={action.href}
-                  class="inline-flex items-center gap-2 rounded-full border border-(--color-foreground)/15 bg-(--color-background)/60 px-6 py-3.5 text-base font-semibold text-(--color-foreground) transition hover:border-(--color-foreground)/30 hover:bg-(--color-secondary)"
+                  class="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-background/60 px-6 py-3.5 text-base font-semibold text-foreground transition hover:border-foreground/30 hover:bg-secondary"
                 >
                   {action.text}
                 </a>
@@ -107,10 +107,10 @@ const VALUES = [
         )
       }
 
-      <ul class="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-(--color-border)/70 pt-8">
+      <ul class="mt-12 flex flex-wrap gap-x-6 gap-y-3 border-t border-border/70 pt-8">
         {
           VALUES.map((v) => (
-            <li class="flex items-center gap-2 text-sm font-medium text-(--color-foreground)/80">
+            <li class="flex items-center gap-2 text-sm font-medium text-foreground/80">
               <svg
                 aria-hidden="true"
                 width="16"
@@ -121,7 +121,7 @@ const VALUES = [
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                class="shrink-0 text-(--color-primary-deep)"
+                class="shrink-0 text-primary-deep"
               >
                 <path d={v.icon} />
               </svg>
@@ -132,14 +132,14 @@ const VALUES = [
       </ul>
     </div>
 
-    <div class="relative mx-auto w-full max-w-[560px]">
+    <div class="relative mx-auto w-full max-w-140">
       <div
         aria-hidden="true"
-        class="absolute -inset-6 bg-(--color-primary)/15"
+        class="absolute -inset-6 bg-primary/15"
         style="border-radius: 58% 42% 60% 40% / 52% 48% 52% 48%; box-shadow: var(--shadow-blob);"
       >
       </div>
-      <div class="hero-blob relative overflow-hidden bg-(--color-card)">
+      <div class="hero-blob relative overflow-hidden bg-card">
         <Image
           src={heroDefaultImg}
           alt="Klidná atmosféra dentálního studia SanaDenta ve Zlíně-Malenovicích"
