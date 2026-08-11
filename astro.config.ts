@@ -14,7 +14,7 @@ import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehype
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  site: 'https://sanadenta.cz',
+  site: 'https://www.sanadenta.cz',
   output: 'static',
 
   build: {
