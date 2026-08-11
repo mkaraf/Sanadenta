@@ -19,12 +19,7 @@ export interface Props {
 const { links = [], socialLinks = [], isSticky = false } = Astro.props;
 ---
 
-<header
-  class:list={[
-    { sticky: isSticky },
-    'top-0 z-40 border-b border-(--color-border)/60 bg-(--color-background)/90 backdrop-blur-md',
-  ]}
->
+<header class:list={[{ sticky: isSticky }, 'top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md']}>
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 md:px-8 md:py-5">
     <a href={getHomePermalink()}>
       <Logo />
@@ -35,7 +30,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
         links.map((link) => (
           <a
             href={link.href}
-            class="px-3.5 py-2 text-[15px] font-medium text-(--color-foreground)/80 transition-colors hover:text-(--color-primary-deep)"
+            class="px-3.5 py-2 text-[15px] font-medium text-foreground/80 transition-colors hover:text-primary-deep"
           >
             {link.text}
           </a>
@@ -51,9 +46,9 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
               <a
                 href={href}
                 aria-label={ariaLabel}
-                class="grid h-10 w-10 place-items-center rounded-full text-(--color-foreground)/70 transition hover:bg-(--color-secondary) hover:text-(--color-primary-deep)"
+                class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep"
               >
-                <Icon name={icon as string} class="w-[18px] h-[18px]" />
+                <Icon name={icon as string} class="w-4.5 h-4.5" />
               </a>
             ))}
           </div>
@@ -62,14 +57,14 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
 
       <a
         href="#contact"
-        class="hidden md:inline-flex items-center gap-2 rounded-full bg-(--color-primary) px-5 py-2.5 text-sm font-semibold text-(--color-primary-foreground) shadow-sm transition hover:bg-(--color-primary-deep)"
+        class="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary-deep"
       >
         Objednat se
       </a>
 
       <button
         id="menu-toggle"
-        class="lg:hidden grid h-10 w-10 place-items-center rounded-full text-(--color-foreground)/80 transition hover:bg-(--color-secondary)"
+        class="lg:hidden grid h-10 w-10 place-items-center rounded-full text-foreground/80 transition hover:bg-secondary"
         aria-label="Menu"
         aria-expanded="false"
       >
@@ -92,13 +87,13 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
     </div>
   </div>
 
-  <div id="mobile-nav" class="hidden lg:hidden border-t border-(--color-border)/60 bg-(--color-background)">
+  <div id="mobile-nav" class="hidden lg:hidden border-t border-border/60 bg-background">
     <nav class="mx-auto flex max-w-7xl flex-col px-5 py-3">
       {
         links.map((link) => (
           <a
             href={link.href}
-            class="py-3 text-base font-medium text-(--color-foreground)/85 transition-colors hover:text-(--color-primary-deep)"
+            class="py-3 text-base font-medium text-foreground/85 transition-colors hover:text-primary-deep"
           >
             {link.text}
           </a>

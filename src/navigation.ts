@@ -4,10 +4,10 @@ export const headerData = {
       text: 'O nás',
       href: '#aboutUs',
     },
-    // {
-    //   text: 'Náš tým',
-    //   href: '#ourTeam',
-    // },
+    {
+      text: 'Náš tým',
+      href: '#ourTeam',
+    },
     {
       text: 'Služby',
       href: '#services',
