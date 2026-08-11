@@ -1,12 +1,14 @@
 ---
+import { METADATA } from 'astrowind:config';
+import { getCanonical } from '~/utils/permalinks';
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Dentist',
   name: 'SanaDenta',
-  url: 'https://sanadenta.cz',
-  description:
-    'Ordinace dentální hygieny ve Zlíně-Malenovicích. Šetrná a profesionální péče o Vaše zuby — vstupní vyšetření, dentální hygiena, AirFlow, bělení.',
-  image: 'https://sanadenta.cz/og-image.png',
+  url: getCanonical('/'),
+  description: METADATA?.description,
+  image: getCanonical('/og-image.png'),
   telephone: '+420705233083',
   email: 'info@sanadenta.cz',
   address: {
