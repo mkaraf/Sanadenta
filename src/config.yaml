@@ -5,7 +5,7 @@ site:
   trailingSlash: false
 
   googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
-  seznamSiteVerificationId: FNHny5esrmyPWAY4znxHHk7Rr4nEylPI
+  seznamSiteVerificationId: 9k7x5u4TExzFXUB0ixFA8tBFzzwuzrhc
 
 # Default SEO metadata
 metadata:
@@ -23,10 +23,6 @@ metadata:
         width: 1200
         height: 628
     type: website
-  twitter:
-    handle: '@sanadenta'
-    site: '@sanadenta'
-    cardType: summary_large_image
 
 i18n:
   language: cs
