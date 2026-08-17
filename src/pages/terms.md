@@ -62,7 +62,7 @@ Na osoby, které se podílejí na zpracování těchto údajů, se vedle GDPR vz
 
 | Kategorie údajů                       | Doba uchování                                                                        |
 | ------------------------------------- | ------------------------------------------------------------------------------------ |
-| Zdravotnická dokumentace              | Po dobu stanovenou přílohou č. 3 vyhlášky č. 98/2012 Sb. — [DOPLNIT KONKRÉTNÍ LHŮTU] |
+| Zdravotnická dokumentace              | Po dobu stanovenou přílohou č. 3 vyhlášky č. 444/2024 Sb., o zdravotnické dokumentaci — minimálně 5 let od posledního poskytnutí zdravotních služeb|
 | E-mailová a telefonická komunikace    | 1 rok od vyřízení dotazu, pokud nedojde k zahájení poskytování zdravotní služby      |
 | Kontaktní údaje v rezervačním systému | Po dobu trvání péče, poté v souladu s lhůtou pro zdravotnickou dokumentaci           |
 | Účetní doklady                        | 5 let podle zákona o účetnictví, resp. 10 let u dokladů podléhajících zákonu o DPH   |
