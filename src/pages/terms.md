@@ -89,8 +89,7 @@ Pro zajištění chodu ordinace a webových stránek využíváme prověřené z
 | ------------------------------------------ | --------------------------------------------------------------- |
 | Cloudflare, Inc.                           | Provoz a zabezpečení webové infrastruktury, měření návštěvnosti |
 | Seznam.cz, a.s.                            | Poskytovatel e-mailové schránky                                 |
-| [DOPLNIT — dodavatel rezervačního systému] | Provoz online rezervačního systému                              |
-| [DOPLNIT — účetní / daňový poradce]        | Vedení účetnictví a daňové agendy                               |
+| ILICO Europe s.r.o.                        | Provoz online rezervačního systému                              |
 
 Vaše údaje dále předáváme orgánům veřejné moci, pokud nám to ukládá zákon — zejména zdravotním pojišťovnám v souvislosti s vykazováním hrazených služeb, Krajskému úřadu Zlínského kraje jako správnímu orgánu a orgánům ochrany veřejného zdraví.
 
