@@ -9,6 +9,7 @@ const CONTACT = {
   building: 'Zdravotní středisko POLIMAL',
   address: 'Zahradní 973, 763 02 Zlín 4',
   mapsQuery: 'Zdravotní středisko POLIMAL, Zahradní 973, 763 02 Zlín 4',
+  bookingUrl: 'https://hygessa.cz/booking/sanadenta',
 };
 
 const HOURS = [
@@ -18,13 +19,13 @@ const HOURS = [
 ];
 ---
 
-<section id="contact" class="relative py-24 md:py-32">
+<section id="contact" class="relative py-16 md:py-20">
   <div
     class="mx-auto max-w-7xl px-6 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
   >
     <SectionHeading
       eyebrow="Kontakt"
-      title="Objednejte se na <em class='font-serif italic text-foreground'>vyšetření</em>"
+      title="Objednejte se na <em class='font-serif italic text-primary-deep'>vyšetření</em>"
       intro="Zavolejte nebo nám napište a rezervujte si svůj termín."
     />
 
@@ -50,7 +51,7 @@ const HOURS = [
             disabled
             class="mt-6 inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-primary/50 px-6 py-3 text-sm font-medium text-primary-foreground"
           >
-            Online rezervační systém bude brzy spuštěn
+            Rezervační systém bude brzy spuštěn
             <Icon name="tabler:clock" class="h-4 w-4" />
           </button>
         </div>
