@@ -1,12 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { getHomePermalink } from '~/utils/permalinks';
 
 const NAV = [
-  { label: 'O nás', href: '#aboutUs' },
-  { label: 'Náš tým', href: '#ourTeam' },
-  { label: 'Služby', href: '#services' },
-  { label: 'Ceník', href: '#priceList' },
-  { label: 'Kontakt', href: '#contact' },
+  { label: 'O nás', href: `${getHomePermalink()}#aboutUs` },
+  { label: 'Náš tým', href: `${getHomePermalink()}#ourTeam` },
+  { label: 'Služby', href: `${getHomePermalink()}#services` },
+  { label: 'Ceník', href: `${getHomePermalink()}#priceList` },
+  { label: 'Kontakt', href: `${getHomePermalink()}#contact` },
 ];
 
 const HOURS = [

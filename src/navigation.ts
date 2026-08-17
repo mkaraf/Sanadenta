@@ -1,24 +1,26 @@
+import { getHomePermalink } from '~/utils/permalinks';
+
 export const headerData = {
   links: [
     {
       text: 'O nás',
-      href: '#aboutUs',
+      href: `${getHomePermalink()}#aboutUs`,
     },
     {
       text: 'Náš tým',
-      href: '#ourTeam',
+      href: `${getHomePermalink()}#ourTeam`,
     },
     {
       text: 'Služby',
-      href: '#services',
+      href: `${getHomePermalink()}#services`,
     },
     {
       text: 'Ceník',
-      href: '#priceList',
+      href: `${getHomePermalink()}#priceList`,
     },
     {
       text: 'Kontakt',
-      href: '#contact',
+      href: `${getHomePermalink()}#contact`,
     },
   ],
   socialLinks: [
