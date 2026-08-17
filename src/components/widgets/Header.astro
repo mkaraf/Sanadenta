@@ -100,6 +100,22 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
         ))
       }
     </nav>
+
+    {
+      socialLinks?.length ? (
+        <div class="mx-auto flex max-w-7xl items-center gap-1 border-t border-border/60 px-5 py-3">
+          {socialLinks.map(({ ariaLabel, icon, href }) => (
+            <a
+              href={href}
+              aria-label={ariaLabel}
+              class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep"
+            >
+              <Icon name={icon as string} class="w-4.5 h-4.5" />
+            </a>
+          ))}
+        </div>
+      ) : null
+    }
   </div>
 </header>
 
