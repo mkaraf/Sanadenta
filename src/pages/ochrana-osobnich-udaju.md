@@ -1,5 +1,6 @@
 ---
 title: 'Zásady ochrany osobních údajů'
+description: 'Zásady ochrany osobních údajů SanaDenta — jak zpracováváme vaše osobní údaje v souladu s GDPR při provozu webu a poskytování dentální hygieny.'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
