@@ -24,6 +24,10 @@ const {
   twitter = {},
 } = Astro.props;
 
+// og:locale needs `language_TERRITORY` (e.g. cs_CZ), unlike the hyphenated BCP-47 tag <html lang> uses (e.g. cs)
+const OG_LOCALES: Record<string, string> = { cs: 'cs_CZ' };
+const ogLocale = OG_LOCALES[I18N?.language] ?? I18N?.language ?? 'en';
+
 const seoProps: AstroSeoProps = merge(
   {
     title: '',
@@ -36,7 +40,7 @@ const seoProps: AstroSeoProps = merge(
       url: canonical,
       site_name: SITE?.name,
       images: [],
-      locale: I18N?.language || 'en',
+      locale: ogLocale,
       type: 'website',
     },
     twitter: {
