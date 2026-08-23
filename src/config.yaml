@@ -2,7 +2,7 @@ site:
   name: SanaDenta
   site: 'https://www.sanadenta.cz'
   base: '/'
-  trailingSlash: false
+  trailingSlash: true
 
   googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
   seznamSiteVerificationId: B7H9Vd8X7q7zLhZYGTdRvIKDh1BLIEz0
@@ -12,7 +12,7 @@ metadata:
   title:
     default: SanaDenta — Dentální hygiena Zlín-Malenovice
     template: '%s — SanaDenta'
-  description: 'Šetrná dentální hygiena SanaDenta ve Zlíně-Malenovicích. Přijímáme nové pacienty od října 2026. Zajistěte si svůj termín online již dnes!'
+  description: 'Nová ordinace dentální hygieny ve Zlíně-Malenovicích. Otevíráme v říjnu 2026 — rezervujte si termín online. Parkování zdarma, bezbariérový přístup.'
   robots:
     index: true
     follow: true
