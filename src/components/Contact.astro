@@ -46,14 +46,15 @@ const HOURS = [
               ))
             }
           </ul>
-          <button
-            type="button"
-            disabled
-            class="mt-6 inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-full bg-primary/50 px-6 py-3 text-sm font-medium text-primary-foreground"
+          <a
+            href={CONTACT.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-deep"
           >
-            Rezervační systém bude brzy spuštěn
-            <Icon name="tabler:clock" class="h-4 w-4" />
-          </button>
+            Rezervovat termín online
+            <Icon name="tabler:calendar-time" class="h-4 w-4" />
+          </a>
         </div>
 
         <div class="space-y-4">
