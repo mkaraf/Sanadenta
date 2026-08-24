@@ -21,24 +21,22 @@ const VALUES = [
 ];
 ---
 
-<section class="relative overflow-hidden not-prose" {...id ? { id } : {}}>
-  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+<section class="relative not-prose" {...id ? { id } : {}}>
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
     <slot name="bg">
       {bg ? <Fragment set:html={bg} /> : null}
     </slot>
-  </div>
 
-  <div
-    aria-hidden="true"
-    class="pointer-events-none absolute -top-32 -left-32 h-130 w-130 rounded-full opacity-50 blur-3xl"
-    style="background: radial-gradient(closest-side, oklch(0.88 0.08 82 / 0.50), transparent);"
-  >
-  </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none absolute top-72 right-0 h-120 w-120 rounded-full opacity-60 blur-3xl md:top-56"
-    style="background: radial-gradient(closest-side, oklch(0.88 0.05 85 / 0.55), transparent);"
-  >
+    <div
+      class="absolute -top-32 -left-32 h-130 w-130 rounded-full opacity-50 blur-3xl"
+      style="background: radial-gradient(closest-side, oklch(0.88 0.08 82 / 0.50), transparent);"
+    >
+    </div>
+    <div
+      class="absolute top-72 right-0 h-120 w-120 rounded-full opacity-60 blur-3xl md:top-56"
+      style="background: radial-gradient(closest-side, oklch(0.88 0.05 85 / 0.55), transparent);"
+    >
+    </div>
   </div>
 
   <div
@@ -46,11 +44,11 @@ const VALUES = [
   >
     <div class="relative">
       <div
-        class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-[12px] font-medium uppercase tracking-[0.18em] text-primary-deep"
+        class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-white px-4 py-1.5 text-[12px] font-medium uppercase tracking-[0.18em] text-primary-deep"
       >
         <span class="relative flex h-2 w-2">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-amber-400"></span>
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#d4af37] opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-[#d4af37]"></span>
         </span>
         Přijímáme nové pacienty
       </div>
@@ -161,7 +159,7 @@ const VALUES = [
     <div class="relative mx-auto w-full max-w-140">
       <div
         aria-hidden="true"
-        class="absolute -inset-6 bg-primary/15"
+        class="absolute -inset-4 bg-primary/15 md:-inset-6"
         style="border-radius: 58% 42% 60% 40% / 52% 48% 52% 48%; box-shadow: var(--shadow-blob);"
       >
       </div>
