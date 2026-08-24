@@ -18,8 +18,12 @@ import playfairLatinExtItalic from '@fontsource-variable/playfair-display/files/
      to same-origin requests we can preload directly, in parallel with everything else. -->
 <link rel="preload" href={playfairLatin} as="font" type="font/woff2" crossorigin fetchpriority="high" />
 <link rel="preload" href={playfairLatinExt} as="font" type="font/woff2" crossorigin fetchpriority="high" />
-<link rel="preload" href={playfairLatinItalic} as="font" type="font/woff2" crossorigin fetchpriority="high" />
-<link rel="preload" href={playfairLatinExtItalic} as="font" type="font/woff2" crossorigin fetchpriority="high" />
+
+<!-- Italic Playfair is only used for a handful of decorative spans, never the LCP heading
+     itself — lower priority so it doesn't compete with the normal weight above for bandwidth
+     on throttled mobile connections. -->
+<link rel="preload" href={playfairLatinItalic} as="font" type="font/woff2" crossorigin fetchpriority="low" />
+<link rel="preload" href={playfairLatinExtItalic} as="font" type="font/woff2" crossorigin fetchpriority="low" />
 
 <!-- Preload Inter (Latin + Latin Extended, for Czech diacritics) so it's ready before first paint,
      avoiding the layout shift caused by the font-display: swap fallback -> webfont swap.
