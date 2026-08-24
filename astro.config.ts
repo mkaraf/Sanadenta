@@ -60,6 +60,14 @@ export default defineConfig({
 
   image: {
     domains: [],
+    // trailingSlash: true (below) makes Astro require a trailing slash on every
+    // route. <Image>/<Picture> build their src from this route value, so giving
+    // it a trailing slash keeps the generated URLs matching that policy —
+    // otherwise the dev-only image endpoint 404s on every request.
+    endpoint: {
+      route: '/_image/',
+      entrypoint: undefined,
+    },
   },
 
   markdown: {
