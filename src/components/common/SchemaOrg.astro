@@ -1,14 +1,24 @@
 ---
 import { METADATA } from 'astrowind:config';
 import { getCanonical } from '~/utils/permalinks';
+import { adaptOpenGraphImages } from '~/utils/images';
+
+const BASE = getCanonical('/');
+const ID = `${BASE}#ordinace`;
+
+// Reuses the same resolver Metadata.astro feeds og:image through, so JSON-LD
+// and the OG meta tag resolve to the exact same built file.
+const { images: ogImages } = await adaptOpenGraphImages(METADATA?.openGraph, Astro.site);
+const ogImageUrl = ogImages?.[0]?.url;
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Dentist',
+  '@id': ID,
   name: 'SanaDenta',
-  url: getCanonical('/'),
+  url: BASE,
   description: METADATA?.description,
-  image: getCanonical('/og-image.png'),
+  image: ogImageUrl,
   telephone: '+420705233083',
   email: 'info@sanadenta.cz',
   priceRange: '$$',
@@ -30,12 +40,14 @@ const schema = {
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
       opens: '07:30',
       closes: '15:00',
+      validFrom: '2026-10-01',
     },
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Friday'],
       opens: '07:30',
       closes: '14:00',
+      validFrom: '2026-10-01',
     },
   ],
   currenciesAccepted: 'CZK',
@@ -43,6 +55,16 @@ const schema = {
     '@type': 'City',
     name: 'Zlín',
   },
+    founder: {
+    '@type': 'Person',
+    name: 'Ing. Zuzana Saňáková, DiS.',
+    jobTitle: 'Dentální hygienistka',
+    worksFor: { '@id': ID },
+  },
+  // sameAs: [
+  //   'https://www.google.com/maps/place/...',   // Google Business Profile
+  //   'https://www.firmy.cz/detail/...',
+  // ],
 };
 ---
 
