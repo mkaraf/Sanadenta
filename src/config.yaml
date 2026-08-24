@@ -21,7 +21,7 @@ metadata:
     images:
       - url: '~/assets/images/og-image.png'
         width: 1200
-        height: 628
+        height: 630
         alt: 'SanaDenta — ordinace dentální hygieny ve Zlíně-Malenovicích'
     type: website
 
