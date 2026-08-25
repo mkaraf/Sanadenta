@@ -1,0 +1,160 @@
+---
+const references = [
+  {
+    name: 'Petra Nováková',
+    meta: 'Zlín · dentální hygiena',
+    text: 'Poprvé jsem u hygieny neměla žádné nepříjemné pocity a výsledek je vidět na první pohled.',
+    initials: 'PN',
+  },
+  {
+    name: 'Martin Doležal',
+    meta: 'Malenovice · pravidelná péče',
+    text: 'Moderní ordinace, milý personál a vše pečlivě vysvětlené. Péči doporučuji celé rodině.',
+    initials: 'MD',
+  },
+  {
+    name: 'Lucie Havlíková',
+    meta: 'Zlín · péče o děti',
+    text: 'S dcerkou jsme přišly poprvé a odcházela s úsměvem. Citlivý přístup k dětem je tady znát.',
+    initials: 'LH',
+  },
+];
+---
+
+<div
+  class="relative max-w-md rounded-3xl border border-border/70 bg-card/80 p-6 shadow-[var(--shadow-soft)] backdrop-blur-sm"
+  data-testimonial
+  aria-live="polite"
+>
+  <svg
+    class="absolute -top-3 left-6 size-6 rounded-full bg-card p-1 text-primary-deep"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path
+      d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2h-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h1a6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"
+    />
+    <path
+      d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h1a6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"
+    />
+  </svg>
+
+  <div class="translate-y-0 opacity-100 transition-all duration-500 ease-out" data-testimonial-body>
+    <div class="flex gap-1" aria-label="Hodnocení 5 z 5">
+      {
+        Array.from({ length: 5 }).map(() => (
+          <svg
+            class="size-3.5 fill-primary text-primary"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+          </svg>
+        ))
+      }
+    </div>
+
+    <blockquote class="mt-4 text-[0.95rem] leading-relaxed text-foreground/85" data-testimonial-text>
+      {references[0].text}
+    </blockquote>
+
+    <figcaption class="mt-5 flex items-center gap-3">
+      <span
+        class="flex size-10 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-linear-to-br from-primary to-primary-deep text-xs font-medium text-primary-foreground"
+        data-testimonial-initials
+      >
+        {references[0].initials}
+      </span>
+      <span class="min-w-0">
+        <span class="block truncate text-sm font-medium text-foreground" data-testimonial-name>
+          {references[0].name}
+        </span>
+        <span class="block truncate text-xs text-muted-foreground" data-testimonial-meta>
+          {references[0].meta}
+        </span>
+      </span>
+    </figcaption>
+  </div>
+
+  <div class="mt-5 flex items-center gap-2">
+    {
+      references.map((r, i) => (
+        <button
+          type="button"
+          data-testimonial-dot={i}
+          aria-label={`Zobrazit referenci: ${r.name}`}
+          class:list={[
+            'h-1 rounded-full transition-all duration-500',
+            i === 0 ? 'w-7 bg-primary' : 'w-3 bg-primary/25 hover:bg-primary/50',
+          ]}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<script is:inline define:vars={{ references }}>
+  document.querySelectorAll('[data-testimonial]').forEach((root) => {
+    const body = root.querySelector('[data-testimonial-body]');
+    const text = root.querySelector('[data-testimonial-text]');
+    const name = root.querySelector('[data-testimonial-name]');
+    const meta = root.querySelector('[data-testimonial-meta]');
+    const initials = root.querySelector('[data-testimonial-initials]');
+    const dots = Array.from(root.querySelectorAll('[data-testimonial-dot]'));
+
+    let index = 0;
+    let timer;
+
+    const paint = () => {
+      const r = references[index];
+      text.textContent = r.text;
+      name.textContent = r.name;
+      meta.textContent = r.meta;
+      initials.textContent = r.initials;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('w-7', i === index);
+        dot.classList.toggle('bg-primary', i === index);
+        dot.classList.toggle('w-3', i !== index);
+        dot.classList.toggle('bg-primary/25', i !== index);
+        dot.classList.toggle('hover:bg-primary/50', i !== index);
+      });
+    };
+
+    const show = (next, delay) => {
+      if (next === index) return;
+      body.classList.add('translate-y-1.5', 'opacity-0');
+      body.classList.remove('translate-y-0', 'opacity-100');
+      window.setTimeout(() => {
+        index = next;
+        paint();
+        body.classList.remove('translate-y-1.5', 'opacity-0');
+        body.classList.add('translate-y-0', 'opacity-100');
+      }, delay);
+    };
+
+    const start = () => {
+      timer = window.setInterval(() => {
+        show((index + 1) % references.length, 450);
+      }, 6000);
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        window.clearInterval(timer);
+        show(i, 250);
+        start();
+      });
+    });
+
+    start();
+  });
+</script>
