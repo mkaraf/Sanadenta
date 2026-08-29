@@ -29,8 +29,7 @@
   --color-dh-soft-brown: #a18260;
   --color-dh-text-brown: #5a4232;
 
-  /* Fonts */
-  --font-sans: var(--aw-font-sans, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
+  /* --font-sans: var(--aw-font-sans, ui-sans-serif), ui-sans-serif, system-ui, sans-serif; */
   --font-serif: var(--aw-font-serif, ui-serif), ui-serif, Georgia, serif;
   --font-heading: var(--aw-font-heading, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Playfair Display Variable', Georgia, serif;
