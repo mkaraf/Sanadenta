@@ -46,6 +46,8 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
               <a
                 href={href}
                 aria-label={ariaLabel}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep"
               >
                 <Icon name={icon as string} class="w-4.5 h-4.5" />
@@ -108,6 +110,8 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
             <a
               href={href}
               aria-label={ariaLabel}
+              target="_blank"
+              rel="noopener noreferrer"
               class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep"
             >
               <Icon name={icon as string} class="w-4.5 h-4.5" />
