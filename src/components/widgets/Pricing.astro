@@ -43,7 +43,7 @@ const PRICES = [
     specification: 'Interval každé 3 měsíce.',
     duration: 'Do 30 min',
     price: '1 050 Kč',
-  }
+  },
 ];
 
 const CATEGORIES = [...new Set(PRICES.map((p) => p.category))];
@@ -51,7 +51,7 @@ const CATEGORIES = [...new Set(PRICES.map((p) => p.category))];
 
 <section id="priceList" class="relative scroll-mt-24 py-14 md:py-20">
   <div
-    class="mx-auto max-w-7xl px-5 md:px-8 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+    class="mx-auto max-w-7xl px-5 md:px-8 intersect-once intersect-quarter intersect-no-queue motion-safe:md:intersect:animate-fade"
   >
     <SectionHeading
       eyebrow="Ceník"
@@ -61,7 +61,10 @@ const CATEGORIES = [...new Set(PRICES.map((p) => p.category))];
     <div class="mx-auto mt-14 max-w-3xl space-y-6">
       {
         CATEGORIES.map((cat) => (
-          <div class="overflow-hidden rounded-2xl border border-border/70 bg-card" style="box-shadow: var(--shadow-soft);">
+          <div
+            class="overflow-hidden rounded-2xl border border-border/70 bg-card"
+            style="box-shadow: var(--shadow-soft);"
+          >
             <div class="border-b border-border/70 bg-primary/10 px-6 py-5 md:px-8">
               <h3 class="font-serif text-xl text-primary-deep">{cat}</h3>
             </div>
@@ -70,12 +73,8 @@ const CATEGORIES = [...new Set(PRICES.map((p) => p.category))];
                 <li class="flex flex-wrap items-center justify-between gap-3 px-6 py-5 transition hover:bg-secondary/40 md:px-8 md:py-6">
                   <div>
                     <div class="font-display text-xl text-foreground md:text-2xl">{p.name}</div>
-                    <div class="mt-1 text-sm text-muted-foreground">
-                      {p.specification}
-                    </div>
-                    <div class="mt-1 text-sm text-muted-foreground">
-                      {p.duration}
-                    </div>
+                    <div class="mt-1 text-sm text-muted-foreground">{p.specification}</div>
+                    <div class="mt-1 text-sm text-muted-foreground">{p.duration}</div>
                   </div>
                   <div class="font-display text-2xl text-primary-deep md:text-3xl">{p.price}</div>
                 </li>

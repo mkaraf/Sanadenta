@@ -34,6 +34,20 @@ const schema = {
     latitude: 49.2074,
     longitude: 17.5932,
   },
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'Zlín',
+    },
+    {
+      '@type': 'City',
+      name: 'Zlín-Malenovice',
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Zlínský kraj',
+    },
+  ],
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -51,20 +65,22 @@ const schema = {
     },
   ],
   currenciesAccepted: 'CZK',
-  areaServed: {
-    '@type': 'City',
-    name: 'Zlín',
+  containedInPlace: {
+    '@type': 'MedicalClinic',
+    name: 'Poliklinika Malenovice',
+    url: 'https://www.poliklinika-malenovice.cz/',
   },
-    founder: {
+  founder: {
     '@type': 'Person',
     name: 'Ing. Zuzana Saňáková, DiS.',
     jobTitle: 'Dentální hygienistka',
     worksFor: { '@id': ID },
   },
-  // sameAs: [
-  //   'https://www.google.com/maps/place/...',   // Google Business Profile
-  //   'https://www.firmy.cz/detail/...',
-  // ],
+  sameAs: [
+    'https://www.instagram.com/sanadenta_zlin/',
+    'https://www.firmy.cz/detail/14063186-dentalni-hygiena-sanadenta-zlin-malenovice.html',
+    // 'https://www.google.com/maps/place/...',   // Google Business Profile
+  ],
 };
 ---
 

@@ -7,6 +7,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
 import compress from 'astro-compress';
+
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
@@ -16,13 +17,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   site: 'https://www.sanadenta.cz',
   output: 'static',
-
-  build: {
-    inlineStylesheets: 'auto',
-  },
+  trailingSlash: 'always',
 
   integrations: [
-    sitemap(),
+    sitemap({
+      filter: (page) => new URL(page).pathname !== '/404/',
+    }),
     icon({
       include: {
         tabler: ['*'],
@@ -60,14 +60,6 @@ export default defineConfig({
 
   image: {
     domains: [],
-    // trailingSlash: true (below) makes Astro require a trailing slash on every
-    // route. <Image>/<Picture> build their src from this route value, so giving
-    // it a trailing slash keeps the generated URLs matching that policy —
-    // otherwise the dev-only image endpoint 404s on every request.
-    endpoint: {
-      route: '/_image/',
-      entrypoint: undefined,
-    },
   },
 
   markdown: {

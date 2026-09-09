@@ -75,7 +75,16 @@ const year = new Date().getFullYear();
           </li>
           <li class="flex items-start gap-3">
             <Icon name="tabler:map-pin" class="mt-0.5 h-4 w-4 text-white" />
-            <span>Zdravotní středisko POLIMAL<br />Zahradní 973<br />763 02 Zlín-Malenovice</span>
+            <span>
+              <a
+                href="https://www.poliklinika-malenovice.cz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="transition hover:underline underline-offset-4"
+              >
+                Zdravotní středisko POLIMAL
+              </a><br />Zahradní 973<br />763 02 Zlín-Malenovice
+            </span>
           </li>
         </ul>
       </div>
@@ -100,7 +109,9 @@ const year = new Date().getFullYear();
     >
       <p>© {year} SanaDenta. Všechna práva vyhrazena.</p>
       <div class="flex items-center gap-6">
-        <a href="/ochrana-osobnich-udaju/" class="transition hover:underline underline-offset-4">Ochrana osobních údajů</a>
+        <a href="/ochrana-osobnich-udaju/" class="transition hover:underline underline-offset-4"
+          >Ochrana osobních údajů</a
+        >
       </div>
     </div>
   </div>

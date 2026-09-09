@@ -188,6 +188,11 @@ import { UI } from 'astrowind:config';
         return 0;
       };
 
+      // The reveal animation only moves elements (translateY), it never
+      // touches opacity, so hiding an element pre-reveal never makes its
+      // content invisible to renderers/crawlers that don't scroll — it's
+      // just not yet in its final position. Safe to arm every element the
+      // same way regardless of how far down the page it is.
       this.elements.forEach((el) => {
         el.setAttribute('no-intersect', '');
         el._intersectionThreshold = getThreshold(el);
@@ -239,7 +244,12 @@ import { UI } from 'astrowind:config';
         });
       };
 
-      this.observer = new IntersectionObserver(callback.bind(this), { threshold: [0, 0.25, 0.5, 0.99] });
+      this.observer = new IntersectionObserver(callback.bind(this), {
+        threshold: [0, 0.25, 0.5, 0.99],
+        // Start revealing shortly before elements actually reach the viewport
+        // so content isn't still mid-fade when the user scrolls to it.
+        rootMargin: '0px 0px 300px 0px',
+      });
 
       this.elements.forEach((el) => {
         this.observer.observe(el);

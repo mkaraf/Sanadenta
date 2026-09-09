@@ -1,7 +1,7 @@
 {
   "name": "sanadenta",
-  "version": "1.0.0-beta.52",
-  "description": "AstroWind: A free template using Astro 5.0 and Tailwind CSS. Astro starter theme.",
+  "version": "1.0.0",
+  "description": "Website for SanaDenta, a dental hygiene clinic in Zlín-Malenovice.",
   "type": "module",
   "private": true,
   "engines": {

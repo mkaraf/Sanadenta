@@ -1,3 +1,7 @@
+This project is built on the [AstroWind](https://github.com/arthelokyo/astrowind) template, whose original code remains under the MIT license below. The SanaDenta-specific content built on top of it — site copy, business information, images, and custom components — is not covered by this license and is proprietary to SanaDenta.
+
+---
+
 MIT License
 
 Copyright (c) 2023 onWidget
