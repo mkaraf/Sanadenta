@@ -1,22 +1,7 @@
 ---
 import SectionHeading from '~/components/widgets/SectionHeading.astro';
 import { Icon } from 'astro-icon/components';
-
-const CONTACT = {
-  phone: '+420 705 233 083',
-  phoneHref: 'tel:+420705233083',
-  email: 'info@sanadenta.cz',
-  building: 'Zdravotní středisko POLIMAL',
-  address: 'Zahradní 973, 763 02 Zlín-Malenovice',
-  mapsQuery: 'Zdravotní středisko POLIMAL, Zahradní 973, 763 02 Zlín 4',
-  bookingUrl: 'https://hygessa.cz/booking/sanadenta',
-};
-
-const HOURS = [
-  { day: 'Pondělí – Čtvrtek', time: '7:30 – 15:00' },
-  { day: 'Pátek', time: '7:30 – 14:00' },
-  { day: 'Sobota – Neděle', time: 'Zavřeno' },
-];
+import { CONTACT, HOURS } from '~/data/contact';
 ---
 
 <section id="contact" class="relative py-16 md:py-20">
@@ -38,10 +23,10 @@ const HOURS = [
           </div>
           <ul class="mt-4 divide-y divide-border">
             {
-              HOURS.map(({ day, time }) => (
+              HOURS.map(({ label, opens, closes }) => (
                 <li class="flex items-center justify-between py-3 text-sm">
-                  <span class="text-foreground">{day}</span>
-                  <span class="font-medium text-muted-foreground">{time}</span>
+                  <span class="text-foreground">{label}</span>
+                  <span class="font-medium text-muted-foreground">{opens ? `${opens} – ${closes}` : 'Zavřeno'}</span>
                 </li>
               ))
             }
@@ -105,7 +90,8 @@ const HOURS = [
               <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">Adresa</span>
               <span class="block text-lg font-medium text-foreground">
                 {CONTACT.building}<br />
-                {CONTACT.address}
+                {CONTACT.street}, {CONTACT.postalCode}
+                {CONTACT.cityDistrict}
               </span>
             </span>
             <Icon

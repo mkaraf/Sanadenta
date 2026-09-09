@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { getHomePermalink } from '~/utils/permalinks';
+import { CONTACT, HOURS } from '~/data/contact';
 
 const NAV = [
   { label: 'O nás', href: `${getHomePermalink()}#aboutUs` },
@@ -8,12 +9,6 @@ const NAV = [
   { label: 'Služby', href: `${getHomePermalink()}#services` },
   { label: 'Ceník', href: `${getHomePermalink()}#priceList` },
   { label: 'Kontakt', href: `${getHomePermalink()}#contact` },
-];
-
-const HOURS = [
-  { day: 'Po – Čt', time: '7:30 – 15:00' },
-  { day: 'Pá', time: '7:30 – 14:00' },
-  { day: 'So – Ne', time: 'Zavřeno' },
 ];
 
 const year = new Date().getFullYear();
@@ -65,25 +60,25 @@ const year = new Date().getFullYear();
         <ul class="mt-5 space-y-3 text-sm text-white">
           <li class="flex items-start gap-3">
             <Icon name="tabler:phone" class="mt-0.5 h-4 w-4 text-white" />
-            <a href="tel:+420705233083" class="transition hover:underline underline-offset-4">+420 705 233 083</a>
+            <a href={CONTACT.phoneHref} class="transition hover:underline underline-offset-4">{CONTACT.phone}</a>
           </li>
           <li class="flex items-start gap-3">
             <Icon name="tabler:mail" class="mt-0.5 h-4 w-4 text-white" />
-            <a href="mailto:info@sanadenta.cz" class="transition hover:underline underline-offset-4"
-              >info@sanadenta.cz</a
+            <a href={`mailto:${CONTACT.email}`} class="transition hover:underline underline-offset-4">{CONTACT.email}</a
             >
           </li>
           <li class="flex items-start gap-3">
             <Icon name="tabler:map-pin" class="mt-0.5 h-4 w-4 text-white" />
             <span>
               <a
-                href="https://www.poliklinika-malenovice.cz/"
+                href={CONTACT.buildingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="transition hover:underline underline-offset-4"
               >
-                Zdravotní středisko POLIMAL
-              </a><br />Zahradní 973<br />763 02 Zlín-Malenovice
+                {CONTACT.building}
+              </a><br />{CONTACT.street}<br />{CONTACT.postalCode}
+              {CONTACT.cityDistrict}
             </span>
           </li>
         </ul>
@@ -93,10 +88,10 @@ const year = new Date().getFullYear();
         <h4 class="text-xs font-medium uppercase tracking-[0.18em] text-white">Ordinační doba</h4>
         <ul class="mt-5 space-y-2 text-sm text-white">
           {
-            HOURS.map(({ day, time }) => (
+            HOURS.map(({ shortLabel, opens, closes }) => (
               <li class="flex items-center justify-between">
-                <span>{day}</span>
-                <span class="text-white">{time}</span>
+                <span>{shortLabel}</span>
+                <span class="text-white">{opens ? `${opens} – ${closes}` : 'Zavřeno'}</span>
               </li>
             ))
           }

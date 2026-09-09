@@ -2,6 +2,8 @@
 import { METADATA } from 'astrowind:config';
 import { getCanonical } from '~/utils/permalinks';
 import { adaptOpenGraphImages } from '~/utils/images';
+import { PRICES } from '~/data/pricing';
+import { CONTACT, HOURS } from '~/data/contact';
 
 const BASE = getCanonical('/');
 const ID = `${BASE}#ordinace`;
@@ -19,14 +21,14 @@ const schema = {
   url: BASE,
   description: METADATA?.description,
   image: ogImageUrl,
-  telephone: '+420705233083',
-  email: 'info@sanadenta.cz',
+  telephone: CONTACT.phoneHref.replace('tel:', ''),
+  email: CONTACT.email,
   priceRange: '$$',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Zahradní 973',
-    addressLocality: 'Zlín',
-    postalCode: '763 02',
+    streetAddress: CONTACT.street,
+    addressLocality: CONTACT.city,
+    postalCode: CONTACT.postalCode,
     addressCountry: 'CZ',
   },
   geo: {
@@ -48,27 +50,33 @@ const schema = {
       name: 'Zlínský kraj',
     },
   ],
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
-      opens: '07:30',
-      closes: '15:00',
-      validFrom: '2026-10-01',
-    },
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Friday'],
-      opens: '07:30',
-      closes: '14:00',
-      validFrom: '2026-10-01',
-    },
-  ],
+  openingHoursSpecification: HOURS.filter((h) => h.opens).map((h) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.dayOfWeek,
+    opens: h.opens,
+    closes: h.closes,
+    validFrom: '2026-10-01',
+  })),
   currenciesAccepted: 'CZK',
+  paymentAccepted: 'Hotovost, QR platba',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Ceník dentální hygieny',
+    itemListElement: PRICES.map((p) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: p.name,
+        description: p.specification,
+      },
+      price: Number(p.price.replace(/[^\d]/g, '')),
+      priceCurrency: 'CZK',
+    })),
+  },
   containedInPlace: {
     '@type': 'MedicalClinic',
     name: 'Poliklinika Malenovice',
-    url: 'https://www.poliklinika-malenovice.cz/',
+    url: CONTACT.buildingUrl,
   },
   founder: {
     '@type': 'Person',
