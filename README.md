@@ -31,7 +31,7 @@ npm run dev       # http://localhost:4321
 │   ├── assets/               # Images, logo, and tailwind.css (design tokens, keyframes)
 │   ├── components/
 │   │   ├── common/            # Metadata, SchemaOrg, BasicScripts (smooth scroll + scroll-reveal JS), etc.
-│   │   ├── ui/                # Generic building blocks (WidgetWrapper, ItemGrid, Button)
+│   │   ├── ui/                # Generic building blocks (WidgetWrapper, ItemGrid)
 │   │   ├── widgets/            # Page sections (Hero, Content, OurTeam, Services, Pricing, Footer, ...)
 │   │   ├── Contact.astro       # Contact section (hours, phone/email, map)
 │   │   └── Fonts.astro         # Self-hosted font imports + preloads

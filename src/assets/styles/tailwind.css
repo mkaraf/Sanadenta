@@ -3,9 +3,6 @@
 
 @custom-variant intersect (&:not([no-intersect]));
 
-/* The site is light-only: `dark:` utilities left over from the template never match. */
-@custom-variant dark (&:is(.dark *));
-
 /* Single source of truth for design tokens. `static` emits every variable, including
    ones only referenced via var() in inline styles (e.g. --shadow-soft, --shadow-blob). */
 @theme static {
@@ -102,7 +99,7 @@
   --tw-prose-td-borders: var(--color-border);
 }
 
-/* Base button — applied alongside variant class via Button.astro */
+/* Outlined button (used by the 404 page) */
 .btn {
   @apply inline-flex items-center justify-center rounded-full border border-gray-400 bg-transparent font-medium text-center text-base leading-snug transition py-3.5 px-6 ease-in duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-200 hover:bg-gray-100 hover:border-gray-600 cursor-pointer;
   color: var(--color-foreground);
@@ -112,17 +109,4 @@
   .btn {
     padding-inline: 2rem;
   }
-}
-
-.btn-primary {
-  @apply font-semibold bg-primary border-primary shadow-[0_10px_30px_-10px_oklch(0.52_0.13_70/0.5)] hover:-translate-y-0.5 hover:bg-primary hover:border-primary hover:shadow-[0_15px_40px_-10px_oklch(0.52_0.13_70/0.7)];
-}
-
-.btn-secondary {
-  @apply hover:bg-secondary hover:border-primary-deep;
-}
-
-.btn-tertiary {
-  @apply border-none shadow-none hover:text-gray-900;
-  color: var(--color-muted-foreground);
 }
