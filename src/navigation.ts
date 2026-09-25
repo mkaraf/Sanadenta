@@ -1,4 +1,5 @@
 import { getHomePermalink } from '~/utils/permalinks';
+import { CONTACT } from '~/data/contact';
 
 export const headerData = {
   links: [
@@ -27,63 +28,8 @@ export const headerData = {
     {
       ariaLabel: 'Instagram',
       icon: 'tabler:brand-instagram',
-      href: 'https://www.instagram.com/sanadenta_zlin/',
+      href: CONTACT.instagramUrl,
     },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
   ],
-};
-
-export const footerData = {
-  links: [
-    // {
-    //   title: 'Product',
-    //   links: [
-    //     { text: 'Features', href: '#' },
-    //     { text: 'Security', href: '#' },
-    //     { text: 'Team', href: '#' },
-    //     { text: 'Enterprise', href: '#' },
-    //     { text: 'Customer stories', href: '#' },
-    //     { text: 'Pricing', href: '#' },
-    //     { text: 'Resources', href: '#' },
-    //   ],
-    // },
-    // {
-    //   title: 'Platform',
-    //   links: [
-    //     { text: 'Developer API', href: '#' },
-    //     { text: 'Partners', href: '#' },
-    //     { text: 'Atom', href: '#' },
-    //     { text: 'Electron', href: '#' },
-    //     { text: 'AstroWind Desktop', href: '#' },
-    //   ],
-    // },
-    // {
-    //   title: 'Support',
-    //   links: [
-    //     { text: 'Docs', href: '#' },
-    //     { text: 'Community Forum', href: '#' },
-    //     { text: 'Professional Services', href: '#' },
-    //     { text: 'Skills', href: '#' },
-    //     { text: 'Status', href: '#' },
-    //   ],
-    // },
-    // {
-    //   title: 'Company',
-    //   links: [
-    //     { text: 'About', href: '#' },
-    //     { text: 'Blog', href: '#' },
-    //     { text: 'Careers', href: '#' },
-    //     { text: 'Press', href: '#' },
-    //     { text: 'Inclusion', href: '#' },
-    //     { text: 'Social Impact', href: '#' },
-    //     { text: 'Shop', href: '#' },
-    //   ],
-    // },
-  ],
-  secondaryLinks: [
-    // { text: 'Terms', href: getPermalink('/terms') },
-  ],
-  footNote: `
-    © 2026 SanaDenta
-  `,
 };

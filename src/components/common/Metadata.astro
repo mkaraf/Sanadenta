@@ -44,7 +44,7 @@ const seoProps: AstroSeoProps = merge(
       type: 'website',
     },
     twitter: {
-      cardType: openGraph?.images?.length ? 'summary_large_image' : 'summary',
+      cardType: openGraph?.images?.length || METADATA?.openGraph?.images?.length ? 'summary_large_image' : 'summary',
     },
   },
   {

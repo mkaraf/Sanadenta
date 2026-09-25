@@ -10,6 +10,7 @@ export const CONTACT = {
   cityDistrict: 'Zlín-Malenovice',
   mapsQuery: 'Zdravotní středisko POLIMAL, Zahradní 973, 763 02 Zlín 4',
   bookingUrl: 'https://hygessa.cz/booking/sanadenta',
+  instagramUrl: 'https://www.instagram.com/sanadenta_zlin/',
 };
 
 export interface OpeningHoursEntry {

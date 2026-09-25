@@ -10,7 +10,7 @@ import { CONTACT, HOURS } from '~/data/contact';
   >
     <SectionHeading
       eyebrow="Kontakt"
-      title="Objednejte se na <em class='font-serif italic text-gradient-gold'>vyšetření</em>"
+      title={'Objednejte se na <span class="italic text-gradient-gold">vyšetření</span>'}
       intro="Zavolejte nebo nám napište a rezervujte si svůj termín."
     />
 
@@ -19,7 +19,7 @@ import { CONTACT, HOURS } from '~/data/contact';
         <div class="rounded-2xl border border-border bg-card p-6">
           <div class="flex items-center gap-3">
             <Icon name="tabler:clock" aria-hidden="true" class="h-5 w-5 text-primary-deep" />
-            <h3 class="font-serif text-xl text-foreground">Ordinační doba</h3>
+            <h3 class="font-display text-xl text-foreground">Ordinační doba</h3>
           </div>
           <ul class="mt-4 divide-y divide-border">
             {
@@ -35,7 +35,7 @@ import { CONTACT, HOURS } from '~/data/contact';
             href={CONTACT.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-deep"
+            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
           >
             Rezervovat termín online
             <Icon name="tabler:calendar-time" class="h-4 w-4" />

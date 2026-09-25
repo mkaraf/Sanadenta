@@ -1,8 +1,8 @@
 ---
-import Layout from '~/layouts/Layout.astro';
+import Layout from '~/layouts/PageLayout.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 
-const title = `Error 404`;
+const title = 'Stránka nenalezena';
 const description = 'Tato stránka neexistuje nebo byla přesunuta.';
 ---
 
@@ -11,12 +11,12 @@ const description = 'Tato stránka neexistuje nebo byla přesunuta.';
     <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
       <div class="max-w-md text-center">
         <h1 class="mb-8 font-bold text-9xl">
-          <span class="sr-only">Error</span>
+          <span class="sr-only">Chyba</span>
           <span class="text-primary">404</span>
         </h1>
         <p class="text-3xl font-semibold md:text-3xl">Ups, tato stránka u nás v ordinaci neexistuje.</p>
-        <p class="mt-4 mb-8 text-lg text-muted dark:text-slate-400">Ale rádi vás uvidíme na té správné.</p>
-        <a rel="noopener noreferrer" href={getHomePermalink()} class="btn ml-4">Zpět na úvodní stránku</a>
+        <p class="mt-4 mb-8 text-lg text-muted-foreground">Ale rádi vás uvidíme na té správné.</p>
+        <a href={getHomePermalink()} class="btn">Zpět na úvodní stránku</a>
       </div>
     </div>
   </section>

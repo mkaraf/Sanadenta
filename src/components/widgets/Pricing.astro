@@ -1,6 +1,6 @@
 ---
 import SectionHeading from './SectionHeading.astro';
-import { PRICES } from '~/data/pricing';
+import { PRICES, formatPrice } from '~/data/pricing';
 
 const CATEGORIES = [...new Set(PRICES.map((p) => p.category))];
 ---
@@ -22,7 +22,7 @@ const CATEGORIES = [...new Set(PRICES.map((p) => p.category))];
             style="box-shadow: var(--shadow-soft);"
           >
             <div class="border-b border-border/70 bg-primary/10 px-6 py-5 md:px-8">
-              <h3 class="font-serif text-xl text-primary-deep">{cat}</h3>
+              <h3 class="font-display text-xl text-primary-deep">{cat}</h3>
             </div>
             <ul class="divide-y divide-border/70">
               {PRICES.filter((p) => p.category === cat).map((p) => (
@@ -32,7 +32,7 @@ const CATEGORIES = [...new Set(PRICES.map((p) => p.category))];
                     <div class="mt-1 text-sm text-muted-foreground">{p.specification}</div>
                     <div class="mt-1 text-sm text-muted-foreground">{p.duration}</div>
                   </div>
-                  <div class="font-display text-2xl text-primary-deep md:text-3xl">{p.price}</div>
+                  <div class="font-display text-2xl text-primary-deep md:text-3xl">{formatPrice(p.price)}</div>
                 </li>
               ))}
             </ul>

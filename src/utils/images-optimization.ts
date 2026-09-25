@@ -327,12 +327,21 @@ export async function getImagesOptimized(
   let breakpoints = getBreakpoints({ width: width, breakpoints: widths, layout: layout });
   breakpoints = [...new Set(breakpoints)].sort((a, b) => a - b);
 
-  const srcset = (await transform(image, breakpoints, Number(width) || undefined, Number(height) || undefined, format))
-    .map(({ src, width }) => `${src} ${width}w`)
-    .join(', ');
+  const optimized = await transform(
+    image,
+    breakpoints,
+    Number(width) || undefined,
+    Number(height) || undefined,
+    format
+  );
+  const srcset = optimized.map(({ src, width }) => `${src} ${width}w`).join(', ');
+
+  // Fall back to an optimized variant instead of the original file, so clients that
+  // ignore srcset (crawlers, image search) don't download the full-size source image.
+  const fallback = optimized.find((o) => width && o.width >= width) ?? optimized[optimized.length - 1];
 
   return {
-    src: typeof image === 'string' ? image : image.src,
+    src: fallback?.src ?? (typeof image === 'string' ? image : image.src),
     attributes: {
       width: width,
       height: height,

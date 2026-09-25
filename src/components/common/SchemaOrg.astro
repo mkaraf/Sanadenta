@@ -55,7 +55,6 @@ const schema = {
     dayOfWeek: h.dayOfWeek,
     opens: h.opens,
     closes: h.closes,
-    validFrom: '2026-10-01',
   })),
   currenciesAccepted: 'CZK',
   paymentAccepted: 'Hotovost, QR platba',
@@ -69,13 +68,13 @@ const schema = {
         name: p.name,
         description: p.specification,
       },
-      price: Number(p.price.replace(/[^\d]/g, '')),
+      price: p.price,
       priceCurrency: 'CZK',
     })),
   },
   containedInPlace: {
     '@type': 'MedicalClinic',
-    name: 'Poliklinika Malenovice',
+    name: CONTACT.building,
     url: CONTACT.buildingUrl,
   },
   founder: {
@@ -86,7 +85,7 @@ const schema = {
     sameAs: ['https://nrpzs.uzis.cz/detail-182791-ing-zuzana-sanakova-dis.html'],
   },
   sameAs: [
-    'https://www.instagram.com/sanadenta_zlin/',
+    CONTACT.instagramUrl,
     'https://www.firmy.cz/detail/14063186-dentalni-hygiena-sanadenta-zlin-malenovice.html',
     // 'https://www.google.com/maps/place/...',   // Google Business Profile
   ],

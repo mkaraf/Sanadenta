@@ -1,15 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { getHomePermalink } from '~/utils/permalinks';
 import { CONTACT, HOURS } from '~/data/contact';
+import { headerData } from '~/navigation';
 
-const NAV = [
-  { label: 'O nás', href: `${getHomePermalink()}#aboutUs` },
-  { label: 'Náš tým', href: `${getHomePermalink()}#ourTeam` },
-  { label: 'Služby', href: `${getHomePermalink()}#services` },
-  { label: 'Ceník', href: `${getHomePermalink()}#priceList` },
-  { label: 'Kontakt', href: `${getHomePermalink()}#contact` },
-];
+const { links, socialLinks } = headerData;
 
 const year = new Date().getFullYear();
 ---
@@ -21,22 +15,19 @@ const year = new Date().getFullYear();
         <span class="font-display text-2xl font-semibold tracking-tight text-white">SanaDenta</span>
         <p class="mt-4 text-sm leading-relaxed text-white">Šetrná dentální hygiena a péče o Váš úsměv ve Zlíně.</p>
         <div class="mt-6 flex items-center gap-3">
-          <a
-            href="https://www.instagram.com/sanadenta_zlin/"
-            aria-label="Instagram"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:bg-white/10"
-          >
-            <Icon name="tabler:brand-instagram" class="h-4 w-4" />
-          </a>
-          <a
-            href="#"
-            aria-label="Facebook"
-            class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:bg-white/10"
-          >
-            <Icon name="tabler:brand-facebook" class="h-4 w-4" />
-          </a>
+          {
+            socialLinks.map(({ ariaLabel, icon, href }) => (
+              <a
+                href={href}
+                aria-label={ariaLabel}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:bg-white/10"
+              >
+                <Icon name={icon} class="h-4 w-4" />
+              </a>
+            ))
+          }
         </div>
       </div>
 
@@ -44,10 +35,10 @@ const year = new Date().getFullYear();
         <h4 class="text-xs font-medium uppercase tracking-[0.18em] text-white">Navigace</h4>
         <ul class="mt-5 space-y-3">
           {
-            NAV.map(({ label, href }) => (
+            links.map(({ text, href }) => (
               <li>
                 <a href={href} class="text-sm text-white transition hover:underline underline-offset-4">
-                  {label}
+                  {text}
                 </a>
               </li>
             ))

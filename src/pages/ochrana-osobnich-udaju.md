@@ -4,7 +4,7 @@ description: 'Zásady ochrany osobních údajů SanaDenta — jak zpracováváme
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-_Poslední aktualizace_: 11. srpna 2026
+_Poslední aktualizace_: 25. září 2026
 
 V těchto zásadách se dozvíte, jakým způsobem zpracováváme vaše osobní údaje v souvislosti s provozem webových stránek a poskytováním služeb dentální hygieny. Zpracování probíhá v souladu s nařízením Evropského parlamentu a Rady (EU) 2016/679 (GDPR) a zákonem č. 110/2019 Sb., o zpracování osobních údajů.
 
@@ -44,7 +44,7 @@ Pokud nám v rámci komunikace sami sdělíte údaje o svém zdravotním stavu, 
 
 **Právní základ:**
 
-- čl. 6 odst. 1 písm. c) GDPR — plnění právní povinnosti, která se na nás vztahuje. Konkrétně jde o povinnost vést zdravotnickou dokumentaci podle zákona č. 372/2011 Sb., o zdravotních službách, a vyhlášky č. 98/2012 Sb., o zdravotnické dokumentaci.
+- čl. 6 odst. 1 písm. c) GDPR — plnění právní povinnosti, která se na nás vztahuje. Konkrétně jde o povinnost vést zdravotnickou dokumentaci podle zákona č. 372/2011 Sb., o zdravotních službách, a vyhlášky č. 444/2024 Sb., o zdravotnické dokumentaci.
 - čl. 9 odst. 2 písm. h) GDPR — zpracování je nezbytné pro účely preventivního lékařství, lékařské diagnostiky a poskytování zdravotní péče. Údaje o zdravotním stavu patří do zvláštní kategorie osobních údajů a věnujeme jim odpovídající ochranu.
 
 Poskytnutí těchto údajů je zákonným požadavkem. Bez nich vám bohužel nemůžeme zdravotní službu poskytnout.
