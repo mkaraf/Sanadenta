@@ -90,8 +90,7 @@ import { CONTACT, HOURS } from '~/data/contact';
               <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">Adresa</span>
               <span class="block text-lg font-medium text-foreground">
                 {CONTACT.building}<br />
-                {CONTACT.street}, {CONTACT.postalCode}
-                {CONTACT.cityDistrict}
+                {`${CONTACT.street}, ${CONTACT.postalCode} ${CONTACT.cityDistrict}`}
               </span>
             </span>
             <Icon

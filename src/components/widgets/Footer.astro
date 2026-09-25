@@ -68,8 +68,7 @@ const year = new Date().getFullYear();
                 class="transition hover:underline underline-offset-4"
               >
                 {CONTACT.building}
-              </a><br />{CONTACT.street}<br />{CONTACT.postalCode}
-              {CONTACT.cityDistrict}
+              </a><br />{CONTACT.street}<br />{`${CONTACT.postalCode} ${CONTACT.cityDistrict}`}
             </span>
           </li>
         </ul>
