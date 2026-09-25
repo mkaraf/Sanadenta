@@ -4,7 +4,6 @@
   const enableSmoothScroll = () => document.documentElement.classList.add('motion-safe:scroll-smooth');
 
   window.addEventListener('pageshow', enableSmoothScroll);
-  document.addEventListener('astro:after-swap', enableSmoothScroll);
 </script>
 
 <script is:inline>
@@ -16,13 +15,6 @@
     elements: null,
 
     start() {
-      // Disconnect old observer so multiple navigations don't stack observers
-      if (this.observer) {
-        this.observer.disconnect();
-        this.observer = null;
-      }
-      this.animationCounter = 0;
-
       const selectors = [
         '[class*=" intersect:"]',
         '[class*=":intersect:"]',
@@ -125,8 +117,4 @@
   };
 
   Observer.start();
-
-  document.addEventListener('astro:after-swap', () => {
-    Observer.start();
-  });
 </script>
