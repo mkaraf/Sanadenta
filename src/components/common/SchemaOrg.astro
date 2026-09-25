@@ -21,13 +21,17 @@ const schema = {
   url: BASE,
   description: METADATA?.description,
   image: ogImageUrl,
+  logo: getCanonical('/web-app-manifest-512x512.png').toString().replace(/\/$/, ''),
   telephone: CONTACT.phoneHref.replace('tel:', ''),
   email: CONTACT.email,
   priceRange: '$$',
+  isAcceptingNewPatients: true,
+  hasMap: CONTACT.mapsUrl,
   address: {
     '@type': 'PostalAddress',
     streetAddress: CONTACT.street,
     addressLocality: CONTACT.city,
+    addressRegion: CONTACT.region,
     postalCode: CONTACT.postalCode,
     addressCountry: 'CZ',
   },
@@ -47,7 +51,7 @@ const schema = {
     },
     {
       '@type': 'AdministrativeArea',
-      name: 'Zlínský kraj',
+      name: CONTACT.region,
     },
   ],
   openingHoursSpecification: HOURS.filter((h) => h.opens).map((h) => ({

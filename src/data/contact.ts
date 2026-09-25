@@ -8,7 +8,9 @@ export const CONTACT = {
   postalCode: '763 02',
   city: 'Zlín',
   cityDistrict: 'Zlín-Malenovice',
-  mapsQuery: 'Zdravotní středisko POLIMAL, Zahradní 973, 763 02 Zlín 4',
+  region: 'Zlínský kraj',
+  // Replace with the Google Business Profile place URL once the profile is verified.
+  mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Zdravotní středisko POLIMAL, Zahradní 973, 763 02 Zlín 4')}`,
   bookingUrl: 'https://hygessa.cz/booking/sanadenta',
   instagramUrl: 'https://www.instagram.com/sanadenta_zlin/',
 };
