@@ -13,7 +13,7 @@ const { id, containerClass = '', as = 'section' } = Astro.props;
 const WrapperTag = as;
 ---
 
-<WrapperTag class="relative not-prose scroll-mt-18" {...id ? { id } : {}}>
+<WrapperTag class="relative not-prose scroll-mt-24" {...id ? { id } : {}}>
   <div
     class={twMerge(
       'relative mx-auto max-w-7xl px-4 md:px-6 py-10 md:py-12 lg:py-14 text-foreground intersect-once intersect-quarter intersect-no-queue motion-safe:md:intersect:animate-fade',

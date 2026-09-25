@@ -7,19 +7,20 @@ import '@fontsource-variable/playfair-display';
 import '@fontsource-variable/playfair-display/wght-italic.css';
 import playfairLatin from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url';
 import playfairLatinItalic from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-italic.woff2?url';
+
+// Playfair Display (headline font, self-hosted) is preloaded at high priority: the hero <h1>
+// is the LCP element and renders in both normal ("Dentální hygiena") and italic
+// ("Zlín-Malenovice") styles. Its text only needs the Latin subset; the Latin Extended
+// Playfair files (č, ř, š, … in headings further down) load on demand without a preload,
+// so they don't compete with the LCP fonts on throttled mobile connections.
+//
+// Inter (Latin + Latin Extended, for Czech diacritics) is preloaded so it's ready before first
+// paint, avoiding the layout shift of the font-display: swap fallback -> webfont swap.
+// fetchpriority="low" keeps it from competing with the hero image and Playfair Display
+// (both higher-priority for the LCP element) on the initial connection.
 ---
 
-<!-- Playfair Display (headline font, self-hosted) preloaded at high priority: the hero <h1>
-     is the LCP element and renders in both normal ("Dentální hygiena") and italic
-     ("Zlín-Malenovice") styles. Its text only needs the Latin subset; the Latin Extended
-     Playfair files (č, ř, š, … in headings further down) load on demand without a preload,
-     so they don't compete with the LCP fonts on throttled mobile connections. -->
 <link rel="preload" href={playfairLatin} as="font" type="font/woff2" crossorigin fetchpriority="high" />
 <link rel="preload" href={playfairLatinItalic} as="font" type="font/woff2" crossorigin fetchpriority="high" />
-
-<!-- Preload Inter (Latin + Latin Extended, for Czech diacritics) so it's ready before first paint,
-     avoiding the layout shift caused by the font-display: swap fallback -> webfont swap.
-     fetchpriority="low" keeps this from competing with the hero image and Playfair Display
-     (both higher-priority for the LCP element) on the initial connection. -->
 <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin fetchpriority="low" />
 <link rel="preload" href={interLatinExt} as="font" type="font/woff2" crossorigin fetchpriority="low" />
