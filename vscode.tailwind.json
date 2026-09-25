@@ -2,10 +2,6 @@
   "version": 1.1,
   "atDirectives": [
     {
-      "name": "@tailwind",
-      "description": "@tailwind — Tailwind v3 directive (legacy)"
-    },
-    {
       "name": "@layer",
       "description": "@layer — Insert styles into a Tailwind layer"
     },
