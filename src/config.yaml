@@ -12,12 +12,11 @@ metadata:
   title:
     default: SanaDenta — Dentální hygiena Zlín-Malenovice
     template: '%s | Dentální hygiena Zlín-Malenovice | SanaDenta'
-  description: 'Dentální hygiena Zlín-Malenovice v POLIMAL (Zahradní 973). Otevíráme v říjnu 2026. Ceník od 1 050 Kč, online rezervace, parkování zdarma, bezbariérový přístup.'
+  description: 'Dentální hygiena Zlín-Malenovice v POLIMAL (Zahradní 973). Přijímáme nové pacienty. Ceník od 1 050 Kč, online rezervace, parkování zdarma, bezbariérový přístup.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: SanaDenta
     images:
       - url: '~/assets/images/og-image.png'
         width: 1200
