@@ -3,7 +3,7 @@ import { METADATA } from 'astrowind:config';
 import { getCanonical } from '~/utils/permalinks';
 import { adaptOpenGraphImages } from '~/utils/images';
 import { PRICES } from '~/data/pricing';
-import { CONTACT, HOURS } from '~/data/contact';
+import { CONTACT, HOURS, PROVIDER } from '~/data/contact';
 
 const BASE = getCanonical('/');
 const ID = `${BASE}#ordinace`;
@@ -83,7 +83,7 @@ const schema = {
   },
   founder: {
     '@type': 'Person',
-    name: 'Ing. Zuzana Saňáková, DiS.',
+    name: PROVIDER.name,
     jobTitle: 'Dentální hygienistka',
     worksFor: { '@id': ID },
     sameAs: ['https://nrpzs.uzis.cz/detail-182791-ing-zuzana-sanakova-dis.html'],

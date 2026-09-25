@@ -15,6 +15,13 @@ export const CONTACT = {
   instagramUrl: 'https://www.instagram.com/sanadenta_zlin/',
 };
 
+/** Legal operator of the clinic (shown in the footer, as required for a healthcare provider). */
+export const PROVIDER = {
+  name: 'Ing. Zuzana Saňáková, DiS.',
+  ico: '29877083',
+  type: 'Poskytovatel zdravotních služeb',
+};
+
 export interface OpeningHoursEntry {
   dayOfWeek: string[];
   label: string;

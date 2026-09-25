@@ -14,7 +14,7 @@ Správcem vašich osobních údajů je:
 
 Ing. Zuzana Saňáková, DiS., poskytovatel zdravotních služeb v oboru dentální hygieny na základě oprávnění k poskytování zdravotních služeb vydaného Krajským úřadem Zlínského kraje, č. j. 73559/2026, provozující činnost pod obchodním označením SanaDenta.
 
-IČO: 298 77 083
+IČO: 29877083
 
 Sídlo: Zahradní 973, 763 02 Zlín
 
