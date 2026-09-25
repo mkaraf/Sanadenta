@@ -1,72 +1,64 @@
 ---
-import merge from 'lodash.merge';
-import { AstroSeo } from '@astrolib/seo';
-
-import type { Props as AstroSeoProps } from '@astrolib/seo';
-
 import { SITE, METADATA, I18N } from 'astrowind:config';
 import type { MetaData } from '~/types';
 import { getCanonical } from '~/utils/permalinks';
 
 import { adaptOpenGraphImages } from '~/utils/images';
 
-export interface Props extends MetaData {
-  dontUseTitleTemplate?: boolean;
-}
+export type Props = MetaData;
 
+// Page-level props win; anything a page leaves out falls back to the defaults in src/config.yaml.
 const {
-  title,
+  title = METADATA?.title?.default,
   ignoreTitleTemplate = false,
   canonical = String(getCanonical(String(Astro.url.pathname))),
   robots = {},
-  description,
+  description = METADATA?.description,
   openGraph = {},
   twitter = {},
 } = Astro.props;
 
+const titleTemplate = ignoreTitleTemplate ? '%s' : (METADATA?.title?.template ?? '%s');
+const fullTitle = title ? titleTemplate.replace('%s', title) : undefined;
+
+const index = robots.index ?? METADATA?.robots?.index ?? false;
+const follow = robots.follow ?? METADATA?.robots?.follow ?? false;
+
 // og:locale needs `language_TERRITORY` (e.g. cs_CZ), unlike the hyphenated BCP-47 tag <html lang> uses (e.g. cs)
 const OG_LOCALES: Record<string, string> = { cs: 'cs_CZ' };
-const ogLocale = OG_LOCALES[I18N?.language] ?? I18N?.language ?? 'en';
+const ogLocale = openGraph.locale ?? OG_LOCALES[I18N?.language] ?? I18N?.language ?? 'en';
 
-const seoProps: AstroSeoProps = merge(
-  {
-    title: '',
-    titleTemplate: '%s',
-    canonical: canonical,
-    noindex: true,
-    nofollow: true,
-    description: undefined,
-    openGraph: {
-      url: canonical,
-      site_name: SITE?.name,
-      images: [],
-      locale: ogLocale,
-      type: 'website',
-    },
-    twitter: {
-      cardType: openGraph?.images?.length || METADATA?.openGraph?.images?.length ? 'summary_large_image' : 'summary',
-    },
-  },
-  {
-    title: METADATA?.title?.default,
-    titleTemplate: METADATA?.title?.template,
-    noindex: typeof METADATA?.robots?.index !== 'undefined' ? !METADATA.robots.index : undefined,
-    nofollow: typeof METADATA?.robots?.follow !== 'undefined' ? !METADATA.robots.follow : undefined,
-    description: METADATA?.description,
-    openGraph: METADATA?.openGraph,
-    twitter: METADATA?.twitter,
-  },
-  {
-    title: title,
-    titleTemplate: ignoreTitleTemplate ? '%s' : undefined,
-    canonical: canonical,
-    noindex: typeof robots?.index !== 'undefined' ? !robots.index : undefined,
-    nofollow: typeof robots?.follow !== 'undefined' ? !robots.follow : undefined,
-    description: description,
-    openGraph: { url: canonical, ...openGraph },
-    twitter: twitter,
-  }
+const { images: ogImages = [] } = await adaptOpenGraphImages(
+  { images: openGraph.images ?? METADATA?.openGraph?.images ?? [] },
+  Astro.site
 );
+const images = ogImages.filter((image) => image.url);
+
+const cardType = twitter.cardType ?? (images.length ? 'summary_large_image' : 'summary');
 ---
 
-<AstroSeo {...{ ...seoProps, openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site) }} />
+{fullTitle && <title>{fullTitle}</title>}
+{description && <meta name="description" content={description} />}
+<meta name="robots" content={`${index ? 'index' : 'noindex'},${follow ? 'follow' : 'nofollow'}`} />
+<link rel="canonical" href={canonical} />
+
+{title && <meta property="og:title" content={title} />}
+{description && <meta property="og:description" content={description} />}
+<meta property="og:url" content={openGraph.url ?? canonical} />
+<meta property="og:type" content={openGraph.type ?? METADATA?.openGraph?.type ?? 'website'} />
+{
+  images.map((image) => (
+    <>
+      <meta property="og:image" content={image.url} />
+      {image.alt && <meta property="og:image:alt" content={image.alt} />}
+      {image.width && <meta property="og:image:width" content={String(image.width)} />}
+      {image.height && <meta property="og:image:height" content={String(image.height)} />}
+    </>
+  ))
+}
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:site_name" content={openGraph.siteName ?? SITE?.name} />
+
+<meta name="twitter:card" content={cardType} />
+{twitter.site && <meta name="twitter:site" content={twitter.site} />}
+{twitter.handle && <meta name="twitter:creator" content={twitter.handle} />}
