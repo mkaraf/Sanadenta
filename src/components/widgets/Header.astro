@@ -59,7 +59,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
 
       <a
         href={`${getHomePermalink()}#contact`}
-        class="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary-deep"
+        class="hidden md:inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary-hover"
       >
         Objednat se
       </a>
@@ -68,6 +68,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
         id="menu-toggle"
         class="lg:hidden grid h-10 w-10 place-items-center rounded-full text-foreground/80 transition hover:bg-secondary"
         aria-label="Menu"
+        aria-controls="mobile-nav"
         aria-expanded="false"
       >
         <svg
@@ -130,16 +131,25 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
     if (!btn || !nav || btn.dataset.menuInit) return;
     btn.dataset.menuInit = '1';
 
+    const close = () => {
+      nav.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    };
+
     btn.addEventListener('click', () => {
       const isHidden = nav.classList.toggle('hidden');
       btn.setAttribute('aria-expanded', String(!isHidden));
     });
-    nav.querySelectorAll('a').forEach((a) =>
-      a.addEventListener('click', () => {
-        nav.classList.add('hidden');
-        btn.setAttribute('aria-expanded', 'false');
-      })
-    );
+    nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+    nav.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        close();
+        btn.focus();
+      }
+    });
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
   }
 
   document.addEventListener('DOMContentLoaded', initMobileMenu);
