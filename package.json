@@ -33,6 +33,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@emnapi/core": "^1.11.3",
+    "@emnapi/runtime": "^1.11.3",
     "@eslint/js": "^9.33.0",
     "@iconify-json/tabler": "^1.2.20",
     "@tailwindcss/typography": "^0.5.19",
@@ -52,7 +54,6 @@
     "tailwindcss": "^4.3.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.39.0",
-    "@emnapi/core": "^1.11.3",
-    "@emnapi/runtime": "^1.11.3"
+    "wrangler": "^4.140.0"
   }
 }
