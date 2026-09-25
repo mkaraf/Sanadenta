@@ -86,6 +86,22 @@
   color: transparent;
 }
 
+/* Typography plugin colors mapped to the site palette (Markdown pages, e.g. the privacy policy). */
+.prose-sanadenta {
+  --tw-prose-body: var(--color-muted-foreground);
+  --tw-prose-headings: var(--color-foreground);
+  --tw-prose-lead: var(--color-muted-foreground);
+  --tw-prose-links: var(--color-primary-deep);
+  --tw-prose-bold: var(--color-foreground);
+  --tw-prose-counters: var(--color-muted-foreground);
+  --tw-prose-bullets: var(--color-primary-deep);
+  --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-foreground);
+  --tw-prose-quote-borders: var(--color-border);
+  --tw-prose-th-borders: var(--color-border);
+  --tw-prose-td-borders: var(--color-border);
+}
+
 /* Base button — applied alongside variant class via Button.astro */
 .btn {
   @apply inline-flex items-center justify-center rounded-full border border-gray-400 bg-transparent font-medium text-center text-base leading-snug transition py-3.5 px-6 ease-in duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-200 hover:bg-gray-100 hover:border-gray-600 cursor-pointer;
