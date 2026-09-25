@@ -92,7 +92,7 @@ const year = new Date().getFullYear();
     <div
       class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-white md:flex-row"
     >
-      <p>© {year} SanaDenta. Všechna práva vyhrazena.</p>
+      <p>© <span id="copyright-year">{year}</span> SanaDenta. Všechna práva vyhrazena.</p>
       <div class="flex items-center gap-6">
         <a href="/ochrana-osobnich-udaju/" class="transition hover:underline underline-offset-4"
           >Ochrana osobních údajů</a
@@ -101,3 +101,8 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
+
+<script is:inline>
+  // The build-time year above is the fallback; keep it current without needing a redeploy.
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>

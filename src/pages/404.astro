@@ -16,7 +16,12 @@ const description = 'Tato stránka neexistuje nebo byla přesunuta.';
         </h1>
         <p class="text-3xl font-semibold md:text-3xl">Ups, tato stránka u nás v ordinaci neexistuje.</p>
         <p class="mt-4 mb-8 text-lg text-muted-foreground">Ale rádi vás uvidíme na té správné.</p>
-        <a href={getHomePermalink()} class="btn">Zpět na úvodní stránku</a>
+        <a
+          href={getHomePermalink()}
+          class="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-background/60 px-6 py-3.5 text-base font-semibold text-foreground transition hover:border-foreground/30 hover:bg-secondary"
+        >
+          Zpět na úvodní stránku
+        </a>
       </div>
     </div>
   </section>

@@ -54,7 +54,7 @@ export const findImage = async (
 /** */
 export const adaptOpenGraphImages = async (
   openGraph: MetaDataOpenGraph = {},
-  astroSite: URL | undefined = new URL('')
+  astroSite?: URL
 ): Promise<MetaDataOpenGraph> => {
   if (!openGraph?.images?.length) {
     return openGraph;
@@ -98,7 +98,13 @@ export const adaptOpenGraphImages = async (
       }
 
       return {
-        url: 'src' in _image && typeof _image.src === 'string' ? String(new URL(_image.src, astroSite)) : '',
+        // Absolute URL when the site URL is known (required for og:image); otherwise the path as-is.
+        url:
+          'src' in _image && typeof _image.src === 'string'
+            ? astroSite
+              ? String(new URL(_image.src, astroSite))
+              : _image.src
+            : '',
         width: 'width' in _image && typeof _image.width === 'number' ? _image.width : undefined,
         height: 'height' in _image && typeof _image.height === 'number' ? _image.height : undefined,
         alt: image.alt,
