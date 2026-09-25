@@ -6,11 +6,8 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
-import compress from 'astro-compress';
 
 import astrowind from './vendor/integration';
-
-import { responsiveTablesRehypePlugin } from './src/utils/frontmatter';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -29,19 +26,6 @@ export default defineConfig({
       },
     }),
 
-    compress({
-      CSS: true,
-      HTML: {
-        'html-minifier-terser': {
-          removeAttributeQuotes: false,
-        },
-      },
-      Image: false,
-      JavaScript: true,
-      SVG: false,
-      Logger: 1,
-    }),
-
     astrowind({
       config: './src/config.yaml',
     }),
@@ -49,10 +33,6 @@ export default defineConfig({
 
   image: {
     domains: [],
-  },
-
-  markdown: {
-    rehypePlugins: [responsiveTablesRehypePlugin],
   },
 
   vite: {
