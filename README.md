@@ -28,12 +28,14 @@ npm run dev       # http://localhost:4321
 /
 ├── public/                  # Static files served as-is (robots.txt, _headers, favicons)
 ├── src/
-│   ├── assets/               # Images, fonts, and tailwind.css (theme tokens, keyframes)
+│   ├── assets/               # Images, logo, and tailwind.css (design tokens, keyframes)
 │   ├── components/
-│   │   ├── common/            # Metadata, SchemaOrg, BasicScripts (theme + scroll-reveal JS), etc.
-│   │   ├── ui/                # Generic building blocks (WidgetWrapper, ItemGrid, Timeline, ...)
+│   │   ├── common/            # Metadata, SchemaOrg, BasicScripts (smooth scroll + scroll-reveal JS), etc.
+│   │   ├── ui/                # Generic building blocks (WidgetWrapper, ItemGrid, Button)
 │   │   ├── widgets/            # Page sections (Hero, Content, OurTeam, Services, Pricing, Footer, ...)
-│   │   └── Contact.astro       # Contact section (hours, phone/email, map)
+│   │   ├── Contact.astro       # Contact section (hours, phone/email, map)
+│   │   └── Fonts.astro         # Self-hosted font imports + preloads
+│   ├── data/                   # Contact details, opening hours, price list (shared by UI and JSON-LD)
 │   ├── layouts/                # Layout.astro (base HTML shell), PageLayout.astro, MarkdownLayout.astro
 │   ├── pages/
 │   │   ├── index.astro          # Homepage — the only real landing page
@@ -46,16 +48,13 @@ npm run dev       # http://localhost:4321
 └── wrangler.jsonc            # Cloudflare deploy config
 ```
 
-There is no blog on this site — the AstroWind blog/content-collection features that ship with the template are unused.
+There is no blog on this site; the AstroWind blog and extra template components have been removed.
 
 ## Configuration
 
-Site-wide settings (name, default SEO metadata, i18n, theme) live in `src/config.yaml`. Structured data (JSON-LD) is in `src/components/common/SchemaOrg.astro`, and navigation links/social profiles are in `src/navigation.ts`.
+Site-wide settings (name, default SEO metadata, i18n) live in `src/config.yaml`. Contact details, opening hours and prices are in `src/data/` and feed both the page and the structured data (JSON-LD) in `src/components/common/SchemaOrg.astro`. Navigation links and social profiles (used by both header and footer) are in `src/navigation.ts`.
 
-To customize fonts, colors, or design tokens, see:
-
-- `src/components/CustomStyles.astro`
-- `src/assets/styles/tailwind.css`
+Design tokens (colors, shadows, fonts, animations) are defined once in the `@theme` block of `src/assets/styles/tailwind.css`. Font files are loaded and preloaded in `src/components/Fonts.astro`.
 
 ## Deploy
 
