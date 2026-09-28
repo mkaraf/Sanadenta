@@ -1,0 +1,172 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { FAQ } from '~/data/faq';
+import { CONTACT_FORM } from '~/data/contact';
+
+const inputClass =
+  'w-full rounded-xl border border-border bg-background px-4 py-2.5 text-base font-normal text-foreground transition focus:border-primary-deep';
+
+const metadata = {
+  title: 'Časté dotazy k dentální hygieně',
+  description:
+    'Odpovědi na časté dotazy o dentální hygieně v SanaDenta Zlín-Malenovice: jak často chodit, zda hygiena bolí, ceny, objednání, péče o děti a pacienty s rovnátky.',
+};
+
+const toText = (html: string) => html.replace(/<[^>]+>/g, '');
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: { '@type': 'Answer', text: toText(answer) },
+  })),
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="relative py-14 md:py-20">
+    <div class="mx-auto max-w-3xl px-5 md:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-[12px] font-medium uppercase tracking-[0.18em] text-primary-deep"
+        >
+          Dotazy
+        </span>
+        <h1 class="mt-5 font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl">
+          Časté <span class="italic text-gradient-gold">dotazy</span>
+        </h1>
+        <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          Vše, co Vás o dentální hygieně u nás nejčastěji zajímá, na jednom místě.
+        </p>
+      </div>
+
+      <div class="mt-14 space-y-4">
+        {
+          FAQ.map(({ question, answer }) => (
+            <details class="group rounded-2xl border border-border/70 bg-card" style="box-shadow: var(--shadow-soft);">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 md:px-8 [&::-webkit-details-marker]:hidden">
+                <h2 class="font-display text-lg text-foreground md:text-xl">{question}</h2>
+                <Icon
+                  name="tabler:chevron-down"
+                  aria-hidden="true"
+                  class="h-5 w-5 shrink-0 text-primary-deep transition group-open:rotate-180"
+                />
+              </summary>
+              <div
+                class="px-6 pb-6 text-[15px] leading-relaxed text-muted-foreground md:px-8 md:text-base [&_a]:text-primary-deep [&_a]:underline [&_a]:underline-offset-4"
+                set:html={answer}
+              />
+            </details>
+          ))
+        }
+      </div>
+
+      <div class="mt-14 rounded-3xl border border-border/70 bg-card/80 p-8 text-center md:p-10">
+        <h2 class="font-display text-2xl text-foreground">Nenašli jste odpověď?</h2>
+        <p class="mt-3 text-muted-foreground">Napište nám — odpovíme Vám e-mailem co nejdříve.</p>
+
+        <form
+          id="contact-form"
+          action={CONTACT_FORM.endpoint}
+          method="post"
+          class="mt-8 grid gap-5 text-left sm:grid-cols-2"
+          novalidate
+        >
+          <label class="grid gap-1.5 text-sm font-medium text-foreground">
+            Jméno a příjmení
+            <input name="name" required maxlength="100" autocomplete="name" class={inputClass} />
+          </label>
+          <label class="grid gap-1.5 text-sm font-medium text-foreground">
+            E-mail
+            <input name="email" type="email" required maxlength="200" autocomplete="email" class={inputClass} />
+          </label>
+          <label class="grid gap-1.5 text-sm font-medium text-foreground">
+            <span>Telefon <span class="font-normal text-muted-foreground">(nepovinné)</span></span>
+            <input name="phone" type="tel" maxlength="40" autocomplete="tel" class={inputClass} />
+          </label>
+          <label class="grid gap-1.5 text-sm font-medium text-foreground">
+            Předmět
+            <input name="subject" required maxlength="150" class={inputClass} />
+          </label>
+          <label class="grid gap-1.5 text-sm font-medium text-foreground sm:col-span-2">
+            Zpráva
+            <textarea name="message" required maxlength="5000" rows="6" class={inputClass}></textarea>
+          </label>
+
+          <!-- Honeypot: hidden from people, bots tend to fill it in. -->
+          <div class="hidden" aria-hidden="true">
+            <label>Web <input name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <div class="sm:col-span-2">
+            <div class="cf-turnstile" data-sitekey={CONTACT_FORM.turnstileSiteKey} data-language="cs"></div>
+          </div>
+
+          <p class="text-xs leading-relaxed text-muted-foreground sm:col-span-2">
+            Údaje z formuláře použijeme pouze k vyřízení Vašeho dotazu. Více v{' '}
+            <a href="/ochrana-osobnich-udaju/" class="text-primary-deep underline underline-offset-4"
+              >zásadách ochrany osobních údajů</a
+            >.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
+            <button
+              type="submit"
+              class="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover disabled:cursor-wait disabled:opacity-60"
+            >
+              Odeslat zprávu
+            </button>
+            <p id="contact-status" role="status" aria-live="polite" class="text-sm"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script is:inline>
+    (() => {
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('contact-status');
+      if (!form || !status) return;
+      const button = form.querySelector('button[type="submit"]');
+
+      const show = (text, ok) => {
+        status.textContent = text;
+        status.className = 'text-sm ' + (ok ? 'text-primary-deep font-medium' : 'text-red-700');
+      };
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        const data = new FormData(form);
+        if (!data.get('cf-turnstile-response')) {
+          show('Počkejte prosím na dokončení ověření proti spamu.', false);
+          return;
+        }
+        button.disabled = true;
+        show('Odesílám…', true);
+        try {
+          const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+          const json = await res.json().catch(() => ({}));
+          if (res.ok && json.ok) {
+            form.reset();
+            show('Děkujeme, Vaše zpráva byla odeslána. Ozveme se Vám co nejdříve.', true);
+          } else {
+            show(json.error || 'Zprávu se nepodařilo odeslat. Zkuste to prosím znovu.', false);
+          }
+        } catch {
+          show('Zprávu se nepodařilo odeslat. Zkontrolujte připojení a zkuste to znovu.', false);
+        } finally {
+          button.disabled = false;
+          window.turnstile?.reset();
+        }
+      });
+    })();
+  </script>
+</Layout>
