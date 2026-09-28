@@ -23,5 +23,3 @@ pnpm-lock.yaml
 
 .astro
 .wrangler
-# Local secrets for `wrangler dev`
-.dev.vars*
