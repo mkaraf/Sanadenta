@@ -112,10 +112,6 @@ const {
           </div>
         )
       }
-
-      <div class="mt-14">
-        <HeroTestimonial />
-      </div>
     </div>
 
     <div class="relative mx-auto w-full max-w-140">
@@ -137,6 +133,13 @@ const {
           fetchpriority="high"
           class="h-full w-full object-cover"
         />
+      </div>
+
+      <!-- Testimonial card on top of the image, overlapping its bottom-left corner (next to the CTAs). -->
+      <div
+        class="relative z-10 mr-auto -mt-10 ml-1 w-[78%] max-w-68 min-[400px]:-mt-14 sm:ml-0 lg:absolute lg:-bottom-24 lg:-left-6 lg:mt-0 lg:w-68 xl:-bottom-16 xl:-left-12"
+      >
+        <HeroTestimonial />
       </div>
     </div>
   </div>
