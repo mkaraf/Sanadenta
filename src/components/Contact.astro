@@ -1,32 +1,18 @@
 ---
 import SectionHeading from '~/components/widgets/SectionHeading.astro';
 import { Icon } from 'astro-icon/components';
-
-const CONTACT = {
-  phone: '+420 705 233 083',
-  phoneHref: 'tel:+420705233083',
-  email: 'info@sanadenta.cz',
-  building: 'Zdravotní středisko POLIMAL',
-  address: 'Zahradní 973, 763 02 Zlín-Malenovice',
-  mapsQuery: 'Zdravotní středisko POLIMAL, Zahradní 973, 763 02 Zlín 4',
-  bookingUrl: 'https://hygessa.cz/booking/sanadenta',
-};
-
-const HOURS = [
-  { day: 'Pondělí – Čtvrtek', time: '7:30 – 15:00' },
-  { day: 'Pátek', time: '7:30 – 14:00' },
-  { day: 'Sobota – Neděle', time: 'Zavřeno' },
-];
+import { CONTACT, HOURS } from '~/data/contact';
 ---
 
-<section id="contact" class="relative py-16 md:py-20">
+<section id="contact" class="relative scroll-mt-24 py-16 md:py-20">
   <div
-    class="mx-auto max-w-7xl px-6 intersect-once intersect-quarter intersect-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+    class="mx-auto max-w-7xl px-6 intersect-once intersect-quarter intersect-no-queue motion-safe:md:intersect:animate-fade"
   >
     <SectionHeading
       eyebrow="Kontakt"
-      title="Objednejte se na <em class='font-serif italic text-gradient-gold'>vyšetření</em>"
-      intro="Zavolejte nebo nám napište a rezervujte si svůj termín."
+      title={'Objednejte se na <span class="italic text-gradient-gold">dentální hygienu</span>'}
+      wide
+      intro="Rezervujte si svůj termín online prostřednictvím našeho rezervačního systému. Případně nám můžete zavolat nebo napsat."
     />
 
     <div class="mt-16 grid gap-10 lg:grid-cols-2">
@@ -34,14 +20,14 @@ const HOURS = [
         <div class="rounded-2xl border border-border bg-card p-6">
           <div class="flex items-center gap-3">
             <Icon name="tabler:clock" aria-hidden="true" class="h-5 w-5 text-primary-deep" />
-            <h3 class="font-serif text-xl text-foreground">Otevírací doba</h3>
+            <h3 class="font-display text-xl text-foreground">Ordinační doba</h3>
           </div>
           <ul class="mt-4 divide-y divide-border">
             {
-              HOURS.map(({ day, time }) => (
+              HOURS.map(({ label, opens, closes }) => (
                 <li class="flex items-center justify-between py-3 text-sm">
-                  <span class="text-foreground">{day}</span>
-                  <span class="font-medium text-muted-foreground">{time}</span>
+                  <span class="text-foreground">{label}</span>
+                  <span class="font-medium text-muted-foreground">{opens ? `${opens} – ${closes}` : 'Zavřeno'}</span>
                 </li>
               ))
             }
@@ -50,7 +36,7 @@ const HOURS = [
             href={CONTACT.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-deep"
+            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
           >
             Rezervovat termín online
             <Icon name="tabler:calendar-time" class="h-4 w-4" />
@@ -93,7 +79,7 @@ const HOURS = [
           </a>
 
           <a
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTACT.mapsQuery)}`}
+            href={CONTACT.mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             class="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-primary/40 hover:shadow-md"
@@ -105,7 +91,7 @@ const HOURS = [
               <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">Adresa</span>
               <span class="block text-lg font-medium text-foreground">
                 {CONTACT.building}<br />
-                {CONTACT.address}
+                {`${CONTACT.street}, ${CONTACT.postalCode} ${CONTACT.cityDistrict}`}
               </span>
             </span>
             <Icon

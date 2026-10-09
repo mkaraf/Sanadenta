@@ -4,7 +4,7 @@ description: 'Zásady ochrany osobních údajů SanaDenta — jak zpracováváme
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-_Poslední aktualizace_: 11. srpna 2026
+_Poslední aktualizace_: 25. září 2026
 
 V těchto zásadách se dozvíte, jakým způsobem zpracováváme vaše osobní údaje v souvislosti s provozem webových stránek a poskytováním služeb dentální hygieny. Zpracování probíhá v souladu s nařízením Evropského parlamentu a Rady (EU) 2016/679 (GDPR) a zákonem č. 110/2019 Sb., o zpracování osobních údajů.
 
@@ -14,7 +14,7 @@ Správcem vašich osobních údajů je:
 
 Ing. Zuzana Saňáková, DiS., poskytovatel zdravotních služeb v oboru dentální hygieny na základě oprávnění k poskytování zdravotních služeb vydaného Krajským úřadem Zlínského kraje, č. j. 73559/2026, provozující činnost pod obchodním označením SanaDenta.
 
-IČO: 298 77 083
+IČO: 29877083
 
 Sídlo: Zahradní 973, 763 02 Zlín
 
@@ -44,7 +44,7 @@ Pokud nám v rámci komunikace sami sdělíte údaje o svém zdravotním stavu, 
 
 **Právní základ:**
 
-- čl. 6 odst. 1 písm. c) GDPR — plnění právní povinnosti, která se na nás vztahuje. Konkrétně jde o povinnost vést zdravotnickou dokumentaci podle zákona č. 372/2011 Sb., o zdravotních službách, a vyhlášky č. 98/2012 Sb., o zdravotnické dokumentaci.
+- čl. 6 odst. 1 písm. c) GDPR — plnění právní povinnosti, která se na nás vztahuje. Konkrétně jde o povinnost vést zdravotnickou dokumentaci podle zákona č. 372/2011 Sb., o zdravotních službách, a vyhlášky č. 444/2024 Sb., o zdravotnické dokumentaci.
 - čl. 9 odst. 2 písm. h) GDPR — zpracování je nezbytné pro účely preventivního lékařství, lékařské diagnostiky a poskytování zdravotní péče. Údaje o zdravotním stavu patří do zvláštní kategorie osobních údajů a věnujeme jim odpovídající ochranu.
 
 Poskytnutí těchto údajů je zákonným požadavkem. Bez nich vám bohužel nemůžeme zdravotní službu poskytnout.
@@ -61,12 +61,12 @@ Na osoby, které se podílejí na zpracování těchto údajů, se vedle GDPR vz
 
 ## 3. Jak dlouho údaje uchováváme
 
-| Kategorie údajů                       | Doba uchování                                                                        |
-| ------------------------------------- | ------------------------------------------------------------------------------------ |
-| Zdravotnická dokumentace              | Po dobu stanovenou přílohou č. 3 vyhlášky č. 444/2024 Sb., o zdravotnické dokumentaci — minimálně 5 let od posledního poskytnutí zdravotních služeb|
-| E-mailová a telefonická komunikace    | 1 rok od vyřízení dotazu, pokud nedojde k zahájení poskytování zdravotní služby      |
-| Kontaktní údaje v rezervačním systému | Po dobu trvání péče, poté v souladu s lhůtou pro zdravotnickou dokumentaci           |
-| Účetní doklady                        | 5 let podle zákona o účetnictví, resp. 10 let u dokladů podléhajících zákonu o DPH   |
+| Kategorie údajů                       | Doba uchování                                                                                                                                       |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Zdravotnická dokumentace              | Po dobu stanovenou přílohou č. 3 vyhlášky č. 444/2024 Sb., o zdravotnické dokumentaci — minimálně 5 let od posledního poskytnutí zdravotních služeb |
+| E-mailová a telefonická komunikace    | 1 rok od vyřízení dotazu, pokud nedojde k zahájení poskytování zdravotní služby                                                                     |
+| Kontaktní údaje v rezervačním systému | Po dobu trvání péče, poté v souladu s lhůtou pro zdravotnickou dokumentaci                                                                          |
+| Účetní doklady                        | 5 let podle zákona o účetnictví, resp. 10 let u dokladů podléhajících zákonu o DPH                                                                  |
 
 Po uplynutí uvedených lhůt jsou údaje bezpečně zlikvidovány, není-li dán jiný zákonný důvod pro jejich další uchování.
 
@@ -86,11 +86,11 @@ Vaše osobní údaje neprodáváme ani nepředáváme třetím stranám k jejich
 
 Pro zajištění chodu ordinace a webových stránek využíváme prověřené zpracovatele, se kterými máme uzavřenou smlouvu o zpracování osobních údajů podle čl. 28 GDPR:
 
-| Zpracovatel                                | Účel                                                            |
-| ------------------------------------------ | --------------------------------------------------------------- |
-| Cloudflare, Inc.                           | Provoz a zabezpečení webové infrastruktury, měření návštěvnosti |
-| Seznam.cz, a.s.                            | Poskytovatel e-mailové schránky                                 |
-| ILICO Europe s.r.o.                        | Provoz online rezervačního systému                              |
+| Zpracovatel         | Účel                                                            |
+| ------------------- | --------------------------------------------------------------- |
+| Cloudflare, Inc.    | Provoz a zabezpečení webové infrastruktury, měření návštěvnosti |
+| Seznam.cz, a.s.     | Poskytovatel e-mailové schránky                                 |
+| ILICO Europe s.r.o. | Provoz online rezervačního systému                              |
 
 Vaše údaje dále předáváme orgánům veřejné moci, pokud nám to ukládá zákon — zejména zdravotním pojišťovnám v souvislosti s vykazováním hrazených služeb, Krajskému úřadu Zlínského kraje jako správnímu orgánu a orgánům ochrany veřejného zdraví.
 

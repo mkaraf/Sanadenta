@@ -19,9 +19,6 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# Affinity Designer editor lock files
-*.af~lock~
-
 pnpm-lock.yaml
 
 .astro

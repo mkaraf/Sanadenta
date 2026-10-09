@@ -3,55 +3,27 @@ import { fileURLToPath } from 'url';
 
 import { defineConfig } from 'astro/config';
 
-import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import icon from 'astro-icon';
-import compress from 'astro-compress';
-import astrowind from './vendor/integration';
 
-import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
+import astrowind from './vendor/integration';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   site: 'https://www.sanadenta.cz',
   output: 'static',
-
-  build: {
-    inlineStylesheets: 'auto',
-  },
+  trailingSlash: 'always',
 
   integrations: [
-    sitemap(),
+    sitemap({
+      filter: (page) => new URL(page).pathname !== '/404/',
+    }),
     icon({
       include: {
         tabler: ['*'],
-        'flat-color-icons': [
-          'template',
-          'gallery',
-          'approval',
-          'document',
-          'advertising',
-          'currency-exchange',
-          'voice-presentation',
-          'business-contact',
-          'database',
-        ],
       },
-    }),
-
-    compress({
-      CSS: true,
-      HTML: {
-        'html-minifier-terser': {
-          removeAttributeQuotes: false,
-        },
-      },
-      Image: false,
-      JavaScript: true,
-      SVG: false,
-      Logger: 1,
     }),
 
     astrowind({
@@ -61,21 +33,6 @@ export default defineConfig({
 
   image: {
     domains: [],
-    // trailingSlash: true (below) makes Astro require a trailing slash on every
-    // route. <Image>/<Picture> build their src from this route value, so giving
-    // it a trailing slash keeps the generated URLs matching that policy —
-    // otherwise the dev-only image endpoint 404s on every request.
-    endpoint: {
-      route: '/_image/',
-      entrypoint: undefined,
-    },
-  },
-
-  markdown: {
-    processor: unified({
-      remarkPlugins: [readingTimeRemarkPlugin],
-      rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
-    }),
   },
 
   vite: {

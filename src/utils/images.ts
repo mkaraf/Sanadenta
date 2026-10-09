@@ -1,6 +1,6 @@
 import { isUnpicCompatible, unpicOptimizer, astroAssetsOptimizer } from './images-optimization';
 import type { ImageMetadata } from 'astro';
-import type { OpenGraph } from '@astrolib/seo';
+import type { MetaDataOpenGraph } from '~/types';
 import type { ImagesOptimizer } from './images-optimization';
 /** The optimized image shape returned by our ImagesOptimizer */
 type OptimizedImage = Awaited<ReturnType<ImagesOptimizer>>[0];
@@ -53,9 +53,9 @@ export const findImage = async (
 
 /** */
 export const adaptOpenGraphImages = async (
-  openGraph: OpenGraph = {},
-  astroSite: URL | undefined = new URL('')
-): Promise<OpenGraph> => {
+  openGraph: MetaDataOpenGraph = {},
+  astroSite?: URL
+): Promise<MetaDataOpenGraph> => {
   if (!openGraph?.images?.length) {
     return openGraph;
   }
@@ -66,44 +66,48 @@ export const adaptOpenGraphImages = async (
 
   const adaptedImages = await Promise.all(
     images.map(async (image) => {
-      if (image?.url) {
-        const resolvedImage = (await findImage(image.url)) as ImageMetadata | string | undefined;
-        if (!resolvedImage) {
-          return {
-            url: '',
-          };
-        }
+      const emptyImage = { url: '', alt: image.alt };
 
-        let _image: OptimizedImage | undefined;
+      if (!image?.url) {
+        return emptyImage;
+      }
 
-        if (
-          typeof resolvedImage === 'string' &&
-          (resolvedImage.startsWith('http://') || resolvedImage.startsWith('https://')) &&
-          isUnpicCompatible(resolvedImage)
-        ) {
-          _image = (await unpicOptimizer(resolvedImage, [defaultWidth], defaultWidth, defaultHeight, 'jpg'))[0];
-        } else if (resolvedImage) {
-          const dimensions =
-            typeof resolvedImage !== 'string' && resolvedImage?.width <= defaultWidth
-              ? [resolvedImage?.width, resolvedImage?.height]
-              : [defaultWidth, defaultHeight];
-          _image = (await astroAssetsOptimizer(resolvedImage, [dimensions[0]], dimensions[0], dimensions[1], 'jpg'))[0];
-        }
+      const resolvedImage = (await findImage(image.url)) as ImageMetadata | string | undefined;
+      if (!resolvedImage) {
+        return emptyImage;
+      }
 
-        if (typeof _image === 'object') {
-          return {
-            url: 'src' in _image && typeof _image.src === 'string' ? String(new URL(_image.src, astroSite)) : '',
-            width: 'width' in _image && typeof _image.width === 'number' ? _image.width : undefined,
-            height: 'height' in _image && typeof _image.height === 'number' ? _image.height : undefined,
-          };
-        }
-        return {
-          url: '',
-        };
+      let _image: OptimizedImage | undefined;
+
+      if (
+        typeof resolvedImage === 'string' &&
+        (resolvedImage.startsWith('http://') || resolvedImage.startsWith('https://')) &&
+        isUnpicCompatible(resolvedImage)
+      ) {
+        _image = (await unpicOptimizer(resolvedImage, [defaultWidth], defaultWidth, defaultHeight, 'jpg'))[0];
+      } else if (resolvedImage) {
+        const dimensions =
+          typeof resolvedImage !== 'string' && resolvedImage?.width <= defaultWidth
+            ? [resolvedImage?.width, resolvedImage?.height]
+            : [defaultWidth, defaultHeight];
+        _image = (await astroAssetsOptimizer(resolvedImage, [dimensions[0]], dimensions[0], dimensions[1], 'jpg'))[0];
+      }
+
+      if (typeof _image !== 'object') {
+        return emptyImage;
       }
 
       return {
-        url: '',
+        // Absolute URL when the site URL is known (required for og:image); otherwise the path as-is.
+        url:
+          'src' in _image && typeof _image.src === 'string'
+            ? astroSite
+              ? String(new URL(_image.src, astroSite))
+              : _image.src
+            : '',
+        width: 'width' in _image && typeof _image.width === 'number' ? _image.width : undefined,
+        height: 'height' in _image && typeof _image.height === 'number' ? _image.height : undefined,
+        alt: image.alt,
       };
     })
   );

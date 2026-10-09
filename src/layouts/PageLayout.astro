@@ -4,7 +4,7 @@ import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import AnnouncementBanner from '~/components/AnnouncementBanner.astro';
 
-import { headerData, footerData } from '~/navigation';
+import { headerData } from '~/navigation';
 
 import type { MetaData } from '~/types';
 
@@ -16,16 +16,22 @@ const { metadata } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-primary focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-primary-foreground"
+  >
+    Přejít na obsah
+  </a>
   <AnnouncementBanner
     message="Připravujeme pro Vás novou ordinaci dentální hygieny ve Zlíně-Malenovicích — otevíráme v říjnu 2026"
   />
   <slot name="header">
     <Header {...headerData} isSticky />
   </slot>
-  <main>
+  <main id="main">
     <slot />
   </main>
   <slot name="footer">
-    <Footer {...footerData} />
+    <Footer />
   </slot>
 </Layout>

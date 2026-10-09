@@ -19,6 +19,9 @@
         },
         "googleSiteVerificationId": {
           "type": "string"
+        },
+        "seznamSiteVerificationId": {
+          "type": "string"
         }
       },
       "required": ["name", "site", "base", "trailingSlash"],
@@ -115,161 +118,7 @@
         }
       },
       "required": ["language", "textDirection"]
-    },
-    "apps": {
-      "type": "object",
-      "properties": {
-        "blog": {
-          "type": "object",
-          "properties": {
-            "isEnabled": {
-              "type": "boolean"
-            },
-            "postsPerPage": {
-              "type": "integer"
-            },
-            "isRelatedPostsEnabled": {
-              "type": "boolean"
-            },
-            "relatedPostsCount": {
-              "type": "integer"
-            },
-            "post": {
-              "type": "object",
-              "properties": {
-                "isEnabled": {
-                  "type": "boolean"
-                },
-                "permalink": {
-                  "type": "string"
-                },
-                "robots": {
-                  "type": "object",
-                  "properties": {
-                    "index": {
-                      "type": "boolean"
-                    },
-                    "follow": {
-                      "type": "boolean"
-                    }
-                  },
-                  "required": ["index"]
-                }
-              },
-              "required": ["isEnabled", "permalink", "robots"]
-            },
-            "list": {
-              "type": "object",
-              "properties": {
-                "isEnabled": {
-                  "type": "boolean"
-                },
-                "pathname": {
-                  "type": "string"
-                },
-                "robots": {
-                  "type": "object",
-                  "properties": {
-                    "index": {
-                      "type": "boolean"
-                    },
-                    "follow": {
-                      "type": "boolean"
-                    }
-                  },
-                  "required": ["index"]
-                }
-              },
-              "required": ["isEnabled", "pathname", "robots"]
-            },
-            "category": {
-              "type": "object",
-              "properties": {
-                "isEnabled": {
-                  "type": "boolean"
-                },
-                "pathname": {
-                  "type": "string"
-                },
-                "robots": {
-                  "type": "object",
-                  "properties": {
-                    "index": {
-                      "type": "boolean"
-                    },
-                    "follow": {
-                      "type": "boolean"
-                    }
-                  },
-                  "required": ["index"]
-                }
-              },
-              "required": ["isEnabled", "pathname", "robots"]
-            },
-            "tag": {
-              "type": "object",
-              "properties": {
-                "isEnabled": {
-                  "type": "boolean"
-                },
-                "pathname": {
-                  "type": "string"
-                },
-                "robots": {
-                  "type": "object",
-                  "properties": {
-                    "index": {
-                      "type": "boolean"
-                    },
-                    "follow": {
-                      "type": "boolean"
-                    }
-                  },
-                  "required": ["index"]
-                }
-              },
-              "required": ["isEnabled", "pathname", "robots"]
-            }
-          },
-          "required": ["isEnabled", "postsPerPage", "post", "list", "category", "tag"]
-        }
-      },
-      "required": ["blog"]
-    },
-    "analytics": {
-      "type": "object",
-      "properties": {
-        "vendors": {
-          "type": "object",
-          "properties": {
-            "googleAnalytics": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": ["string", "null"]
-                },
-                "partytown": {
-                  "type": "boolean",
-                  "default": true
-                }
-              },
-              "required": ["id"]
-            }
-          },
-          "required": ["googleAnalytics"]
-        }
-      },
-      "required": ["vendors"]
-    },
-    "ui": {
-      "type": "object",
-      "properties": {
-        "theme": {
-          "type": "string"
-        }
-      },
-      "required": ["theme"]
     }
   },
-  "required": ["site", "metadata", "i18n", "apps", "analytics", "ui"]
+  "required": ["site", "metadata", "i18n"]
 }

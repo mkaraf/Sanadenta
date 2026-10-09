@@ -2,6 +2,8 @@
 import { METADATA } from 'astrowind:config';
 import { getCanonical } from '~/utils/permalinks';
 import { adaptOpenGraphImages } from '~/utils/images';
+import { PRICES } from '~/data/pricing';
+import { CONTACT, HOURS, PROVIDER } from '~/data/contact';
 
 const BASE = getCanonical('/');
 const ID = `${BASE}#ordinace`;
@@ -19,14 +21,18 @@ const schema = {
   url: BASE,
   description: METADATA?.description,
   image: ogImageUrl,
-  telephone: '+420705233083',
-  email: 'info@sanadenta.cz',
+  logo: getCanonical('/web-app-manifest-512x512.png').toString().replace(/\/$/, ''),
+  telephone: CONTACT.phoneHref.replace('tel:', ''),
+  email: CONTACT.email,
   priceRange: '$$',
+  isAcceptingNewPatients: true,
+  hasMap: CONTACT.mapsUrl,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Zahradní 973',
-    addressLocality: 'Zlín',
-    postalCode: '763 02',
+    streetAddress: CONTACT.street,
+    addressLocality: CONTACT.city,
+    addressRegion: CONTACT.region,
+    postalCode: CONTACT.postalCode,
     addressCountry: 'CZ',
   },
   geo: {
@@ -34,37 +40,60 @@ const schema = {
     latitude: 49.2074,
     longitude: 17.5932,
   },
-  openingHoursSpecification: [
+  areaServed: [
     {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'],
-      opens: '07:30',
-      closes: '15:00',
-      validFrom: '2026-10-01',
+      '@type': 'City',
+      name: 'Zlín',
     },
     {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Friday'],
-      opens: '07:30',
-      closes: '14:00',
-      validFrom: '2026-10-01',
+      '@type': 'City',
+      name: 'Zlín-Malenovice',
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: CONTACT.region,
     },
   ],
+  openingHoursSpecification: HOURS.filter((h) => h.opens).map((h) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.dayOfWeek,
+    opens: h.opens,
+    closes: h.closes,
+  })),
   currenciesAccepted: 'CZK',
-  areaServed: {
-    '@type': 'City',
-    name: 'Zlín',
+  paymentAccepted: 'Hotovost, QR platba',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Ceník dentální hygieny',
+    itemListElement: PRICES.map((p) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: p.name,
+        description: p.specification,
+      },
+      price: p.price,
+      priceCurrency: 'CZK',
+    })),
   },
-    founder: {
+  containedInPlace: {
+    '@type': 'MedicalClinic',
+    name: CONTACT.building,
+    url: CONTACT.buildingUrl,
+  },
+  founder: {
     '@type': 'Person',
-    name: 'Ing. Zuzana Saňáková, DiS.',
+    name: PROVIDER.name,
     jobTitle: 'Dentální hygienistka',
     worksFor: { '@id': ID },
+    sameAs: ['https://nrpzs.uzis.cz/detail-182791-ing-zuzana-sanakova-dis.html'],
   },
-  // sameAs: [
-  //   'https://www.google.com/maps/place/...',   // Google Business Profile
-  //   'https://www.firmy.cz/detail/...',
-  // ],
+  sameAs: [
+    CONTACT.instagramUrl,
+    CONTACT.facebookUrl,
+    'https://www.firmy.cz/detail/14063186-dentalni-hygiena-sanadenta-zlin-malenovice.html',
+    // 'https://www.google.com/maps/place/...',   // Google Business Profile
+  ],
 };
 ---
 
