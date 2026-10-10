@@ -59,4 +59,11 @@ export const PRICES: PriceItem[] = [
     duration: 'Do 30 min',
     price: 1050,
   },
+  {
+    category: 'Specializovaná péče',
+    name: 'Hloubkové (subgingivální) čištění',
+    specification: 'Šetrné ošetření parodontálních kapes při zánětech dásní a parodontitidě.',
+    duration: 'Do 60 min',
+    price: 2200,
+  },
 ];

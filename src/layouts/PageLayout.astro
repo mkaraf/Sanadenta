@@ -2,7 +2,6 @@
 import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
-import AnnouncementBanner from '~/components/AnnouncementBanner.astro';
 
 import { headerData } from '~/navigation';
 
@@ -22,9 +21,6 @@ const { metadata } = Astro.props;
   >
     Přejít na obsah
   </a>
-  <AnnouncementBanner
-    message="Připravujeme pro Vás novou ordinaci dentální hygieny ve Zlíně-Malenovicích — otevíráme v říjnu 2026"
-  />
   <slot name="header">
     <Header {...headerData} isSticky />
   </slot>
