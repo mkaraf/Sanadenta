@@ -60,52 +60,35 @@
         "openGraph": {
           "type": "object",
           "properties": {
-            "site_name": {
-              "type": "string"
-            },
             "images": {
               "type": "array",
-              "items": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "url": {
-                      "type": "string"
-                    },
-                    "width": {
-                      "type": "integer"
-                    },
-                    "height": {
-                      "type": "integer"
-                    }
+              "items": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
                   },
-                  "required": ["url", "width", "height"]
-                }
-              ]
+                  "width": {
+                    "type": "integer"
+                  },
+                  "height": {
+                    "type": "integer"
+                  },
+                  "alt": {
+                    "type": "string"
+                  }
+                },
+                "required": ["url", "width", "height"]
+              }
             },
             "type": {
               "type": "string"
             }
           },
-          "required": ["site_name", "images", "type"]
-        },
-        "twitter": {
-          "type": "object",
-          "properties": {
-            "handle": {
-              "type": "string"
-            },
-            "site": {
-              "type": "string"
-            },
-            "cardType": {
-              "type": "string"
-            }
-          },
-          "required": ["handle", "site", "cardType"]
+          "required": ["images", "type"]
         }
       },
-      "required": ["title", "description", "robots", "openGraph", "twitter"]
+      "required": ["title", "description", "robots", "openGraph"]
     },
     "i18n": {
       "type": "object",

@@ -31,10 +31,6 @@ export default defineConfig({
     }),
   ],
 
-  image: {
-    domains: [],
-  },
-
   vite: {
     plugins: [tailwindcss()],
     resolve: {
