@@ -2,7 +2,7 @@
 
 Website for **SanaDenta**, a dental hygiene clinic in Zlín-Malenovice, Czech Republic — [sanadenta.cz](https://www.sanadenta.cz/).
 
-Built with [Astro 6](https://astro.build/) + [Tailwind CSS 4](https://tailwindcss.com/) on the [AstroWind](https://github.com/arthelokyo/astrowind) template, deployed as a static site on Cloudflare.
+Built with [Astro 7](https://astro.build/) + [Tailwind CSS 4](https://tailwindcss.com/) on the [AstroWind](https://github.com/arthelokyo/astrowind) template, deployed as a static site on Cloudflare.
 
 ## Getting started
 
