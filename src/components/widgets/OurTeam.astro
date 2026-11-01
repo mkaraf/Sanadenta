@@ -22,6 +22,20 @@ const BIO = [
     <div
       class="mt-12 grid items-center gap-10 rounded-3xl border border-border/70 bg-card p-6 sm:p-8 md:mt-16 md:grid-cols-[13rem_1fr] md:gap-10 md:p-10 lg:grid-cols-[18rem_1fr] lg:gap-16 lg:p-14"
     >
+      <!-- Placeholder icon until the real profile photo is available; then swap it for the blob below. -->
+      <div
+        class="mx-auto aspect-square w-full max-w-64 overflow-hidden rounded-full bg-linear-to-br from-primary/30 to-accent/40 ring-8 ring-background"
+      >
+        <div class="flex h-full w-full items-center justify-center text-primary-deep">
+          <Icon name="tabler:mood-smile" class="h-24 w-24 opacity-60" />
+        </div>
+      </div>
+
+      {
+        /*
+        Portrait blob, hidden until the real profile photo is available. Put the photo in place of
+        the icon, then use this block instead of the placeholder icon above.
+
       <!-- Portrait reuses the organic hero-blob outline, so the clinic's people share the hero's frame. -->
       <div data-reveal class="relative mx-auto w-full max-w-64 p-3 md:max-w-none md:p-2">
         <div
@@ -30,13 +44,14 @@ const BIO = [
           style="border-radius: 58% 42% 60% 40% / 52% 48% 52% 48%;"
         >
         </div>
-        <!-- Placeholder: replace the icon with the hygienist's portrait once a good photo is available. -->
         <div
           class="hero-blob relative flex aspect-square items-center justify-center overflow-hidden bg-secondary text-primary-deep"
         >
           <Icon name="tabler:mood-smile" class="h-24 w-24 opacity-60" />
         </div>
       </div>
+      */
+      }
 
       <div>
         <p class="text-[12px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Vaše hygienistka</p>
