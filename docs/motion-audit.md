@@ -20,6 +20,14 @@ What breaks the calm: the same 56 px / 1000 ms entrance on all six sections, two
 
 Also resolved: #8 and #9 by the #3 rework (booking button no longer moves after the jump; old reveal script replaced). #10 kept as is by design. #11: the contact-row arrow also nudges on tap, and no longer moves at all with reduced motion. #12: every transition now uses the spec's ease-out curve `cubic-bezier(0.2, 0, 0, 1)` (theme tokens in `tailwind.css`); links and rows 150 ms, filled buttons 200 ms. #13–#15 kept as is (focus ring, sticky header, smooth scrolling).
 
+## Additions after the audit
+
+Three small interaction refinements, all feedback on what the visitor is doing:
+
+- **Header on scroll** (`Header.astro`): once the page moves, `data-scrolled` adds a soft shadow and a slightly more solid background (250 ms). Height never changes, so nothing shifts.
+- **Navigation underline and current section** (desktop nav): a 1 px `primary-deep` line grows from the centre on hover and keyboard focus (200 ms), and marks the section being read via `aria-current` (last section whose top passed 40% of the viewport). One passive scroll listener, one update per frame.
+- **Booking arrival cue** (`Contact.astro`, `tailwind.css`): after a jump to `#contact`, the hours + booking card gets one soft gold ring (`:target`, 1.6 s, no movement). Delayed 900 ms so it peaks as the smooth scroll lands; starts at once with reduced motion. Plays once per jump; works without JavaScript.
+
 ## Findings
 
 **D** = functional defect or accessibility issue. **P** = design preference.
