@@ -1,7 +1,6 @@
 ---
-import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
-import profileImg from '~/assets/images/profil.png';
 ---
 
 <section id="ourTeam" class="relative scroll-mt-24 py-14 md:py-20">
@@ -20,15 +19,9 @@ import profileImg from '~/assets/images/profil.png';
       <div
         class="mx-auto h-64 w-64 overflow-hidden rounded-full bg-linear-to-br from-primary/30 to-accent/40 ring-8 ring-background lg:mx-0"
       >
-        <Image
-          src={profileImg}
-          alt="Portrét dentální hygienistky Ing. Zuzany Saňákové, DiS."
-          width={256}
-          height={256}
-          widths={[256, 512]}
-          sizes="256px"
-          class="h-full w-full object-cover"
-        />
+        <div class="flex h-full w-full items-center justify-center text-primary-deep">
+          <Icon name="tabler:mood-smile" class="h-24 w-24 opacity-60" />
+        </div>
       </div>
       <div class="lg:pl-6">
         <span class="text-xs uppercase tracking-[0.22em] text-muted-foreground">Vaše hygienistka</span>
