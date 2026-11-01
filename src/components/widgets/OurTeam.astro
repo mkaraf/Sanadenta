@@ -1,7 +1,6 @@
 ---
-import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
-import profileImg from '~/assets/images/profil.png';
 import { czNbsp } from '~/utils/typography';
 
 const BIO = [
@@ -31,14 +30,11 @@ const BIO = [
           style="border-radius: 58% 42% 60% 40% / 52% 48% 52% 48%;"
         >
         </div>
-        <div class="hero-blob relative aspect-square overflow-hidden bg-secondary">
-          <Image
-            src={profileImg}
-            alt="Portrét dentální hygienistky Ing. Zuzany Saňákové, DiS."
-            widths={[320, 480, 640, 960]}
-            sizes="(min-width: 1024px) 272px, (min-width: 768px) 192px, 232px"
-            class="h-full w-full object-cover"
-          />
+        <!-- Placeholder: replace the icon with the hygienist's portrait once a good photo is available. -->
+        <div
+          class="hero-blob relative flex aspect-square items-center justify-center overflow-hidden bg-secondary text-primary-deep"
+        >
+          <Icon name="tabler:mood-smile" class="h-24 w-24 opacity-60" />
         </div>
       </div>
 
