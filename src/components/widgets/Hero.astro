@@ -10,7 +10,15 @@ const {
   id,
 } = Astro.props;
 
-const VALUES = ['Profesionální péče', 'Moderní prostředí', 'Citlivý přístup'];
+// Generic for now; to be replaced with more authentic points later (docs/design-review.md, 2.1).
+const VALUES = [
+  { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', label: 'Profesionální péče' },
+  { icon: 'M13 10V3L4 14h7v7l9-11h-7z', label: 'Moderní prostředí' },
+  {
+    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+    label: 'Citlivý přístup',
+  },
+];
 
 // Temporary, informational announcement above the headline (the clinic is new and taking
 // patients). Not a link: the booking buttons below already lead to Kontakt.
@@ -112,14 +120,26 @@ const ANNOUNCEMENT: string | null = 'Přijímáme nové pacienty';
         )
       }
 
-      <!-- Secondary points as one quiet line, a small gold dot before each, so the list still
-           reads evenly when it wraps on narrow screens. -->
+      <!-- Secondary points as one quiet line with a small deep-gold icon before each. -->
       <ul class="mt-10 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm font-medium text-foreground/75">
         {
-          VALUES.map((label) => (
+          VALUES.map((v) => (
             <li class="flex items-center gap-2">
-              <span aria-hidden="true" class="h-1 w-1 shrink-0 rounded-full bg-primary-deep/60" />
-              {label}
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="shrink-0 text-primary-deep"
+              >
+                <path d={v.icon} />
+              </svg>
+              {v.label}
             </li>
           ))
         }
