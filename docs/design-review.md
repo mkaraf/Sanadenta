@@ -1,0 +1,85 @@
+# Homepage design review — open findings
+
+Review of the rendered homepage after the section-by-section refinement (November 2026). Nothing below has been implemented yet; tick items off as they land.
+
+**How it was checked:** full-page renders at 375, 768, 1024 and 1440 px, plus live-browser checks of the booking path, contrast, keyboard focus, reduced motion and markup.
+**Not verified:** the Google map (it did not load in either test browser), real phones, Safari, screen readers.
+
+## Recommended order
+
+1. [ ] Book directly from every "Objednat se" button (1.1), with the sticky-header fix (1.3).
+2. [ ] Put the concrete facts in the hero instead of the generic badges (2.1).
+3. [ ] Fill the missing prices for whitening and the home-care lesson (2.2).
+4. [ ] Fix the gold heading contrast (1.2).
+5. [ ] Use real clinic photos in the hero and the second O nás block (2.3, 2.4) — needs photos.
+
+## 1. Critical usability and accessibility
+
+### 1.1 Booking takes two steps — header, hero, mobile menu (observable)
+
+Every "Objednat se" button links to `#contact`. The only link that actually books is "Rezervovat termín online" (Hygessa, `CONTACT.bookingUrl`) inside the opening-hours card. A patient who clicks "Objednat se" expects a booking form and lands on a section they must read and click again; on mobile that is a long scroll and a second tap.
+
+**Fix:** point the hero and header "Objednat se" buttons straight to `CONTACT.bookingUrl` (new tab, calendar icon, like the contact button). Keep "Naše služby" as the secondary hero button; Kontakt keeps phone and e-mail for people who prefer to call.
+
+### 1.2 Gold heading words fall below contrast requirements — all section headings (observable)
+
+`.text-gradient-gold` runs from `--color-gold-deep` (4.0:1 on the background) to `--color-gold-bright` (2.0:1). Large text needs 3:1, so the light end of the key words ("Váš komfort", "Zlín-Malenovice", …) fails.
+
+**Fix:** keep the gradient, but darken its light stop so the whole word stays above 3:1. Barely visible change.
+
+### 1.3 Sticky header may hide keyboard focus — whole page (likely; not confirmed by automated check)
+
+The sticky header is 105 px tall (desktop) and `html` has no `scroll-padding-top`. Tabbing backwards can scroll a focused link under the header (WCAG 2.4.11). Section anchors use `scroll-mt-24` (96 px), so jumps land 9 px under the header.
+
+**Fix:** add `scroll-padding-top` of about 112 px on `html` (one line in `tailwind.css`).
+
+## 2. High-impact visual improvements
+
+### 2.1 The hero hides the clinic's best facts (observable)
+
+The subtitle "Profesionální péče pro Váš krásný úsměv." and the three badges (Profesionální péče, Moderní prostředí, Citlivý přístup) could belong to any clinic. The page's meta description already lists the concrete reasons to choose this clinic — POLIMAL Malenovice, online booking, free parking, step-free access, prices from 1 050 Kč — but on the page they appear only at the bottom.
+
+**Fix:** replace the `VALUES` badges in `Hero.astro` with those facts, same row and icon style. Text change, not a layout change.
+
+### 2.2 Two services have no price — Služby / Ceník (observable)
+
+"Bělení zubů" and "Instruktáž domácí péče" are listed in Služby but missing from `src/data/pricing.ts`. Whitening is the service patients most often want priced before booking.
+
+**Fix:** add both to the price list (prices must come from the clinic), or label them "cena po konzultaci". Optional: show "od … Kč" on each service card next to the duration.
+
+### 2.3 The hero photo is the least clinic-specific image (subjective, high impact)
+
+`landing_page.png` (family with toothbrushes) is polished but looks like a stock photo; every other image shows the real room or the real hygienist.
+
+**Fix:** a real clinic photo inside the blob frame — the hygienist in the room, or a calm detail of the treatment chair. Needs new photography.
+
+### 2.4 The hygienist appears twice in a row — O nás → Náš tým (observable)
+
+The second O nás block ends with her selfie (`person_new.png`), and Náš tým opens with her portrait (`profil.png`) in the same outfit. It reads as a repeat. `person_new2.png` is the same selfie, so it is not a substitute.
+
+**Fix:** a different photo in that O nás block (treatment room, instruments, waiting area); if none is available, drop the image and center the card at a reading width.
+
+### 2.5 O nás has a lot of text before practical information (content preference)
+
+Seven points, about 200 words; "Šetrný přístup bez stresu", "Přátelská a uvolněná atmosféra" and "Individuální péče přesně na míru" overlap. On mobile it is about two screens of text before the team, services or prices.
+
+**Fix:** merge into four or five points, one or two sentences each. Content only; layout stays.
+
+## 3. Optional finishing touches
+
+- [ ] **Gap below the hero (1440 px):** about 180 px between the hero and "O nás", more than between other sections. Reduce to match.
+- [ ] **Short FAQ near Kontakt (content):** what happens at the first visit, how to cancel, whether health insurance contributes (often via bonus programs).
+- [ ] **Google map and privacy:** the iframe loads content from Google. Mention it in the privacy policy, or replace it with a static map image and an "Otevřít v Mapách" link (lighter, consent-free).
+- [ ] **Footer brand:** plain "SanaDenta" text where the header uses the logo; a light logo variant would tie them together (needs the asset).
+- [ ] **Active section in navigation:** nice to have on a one-page site, not necessary.
+- Repeated section-heading pattern (label, centered H2, intro) — consistent and fine; leave as is.
+
+## Keep as is
+
+- Warm cream and gold palette, Playfair Display + Inter, gold italic key phrase in headings.
+- Hero blob frame and gold line-and-star ornament; blob portrait in Náš tým.
+- Real photography of the treatment room (SanaDenta cup) and of the hygienist.
+- Whiter `bg-card` panels across sections (see Design rules in `README.md`).
+- Ceník: three category cards, lining numerals, duration on every item.
+- Kontakt: hours with the booking button, one card for phone/e-mail/address, access note.
+- Accessibility baseline: `lang="cs"`, alt text on all images, ordered headings, skip link, 2 px deep-gold focus ring (5.4:1), `motion-safe` animations, body text 7:1, button text 10:1, 44 px main touch targets.
