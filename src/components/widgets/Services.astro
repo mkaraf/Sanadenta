@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import SectionHeading from './SectionHeading.astro';
+import { czNbsp } from '~/utils/typography';
 
 const SERVICES = [
   {
@@ -42,31 +43,32 @@ const SERVICES = [
 ];
 ---
 
-<section id="services" class="relative scroll-mt-24 py-14 md:py-20">
+<section id="services" class="relative scroll-mt-24">
   <div
-    class="mx-auto max-w-7xl px-5 md:px-8 intersect-once intersect-quarter intersect-no-queue motion-safe:md:intersect:animate-fade"
+    class="section-container section-spacing intersect-once intersect-quarter intersect-no-queue motion-safe:md:intersect:animate-fade"
   >
     <SectionHeading
       eyebrow="Naše služby"
       title={'Péče pro Váš <span class="italic text-gradient-gold">zdravý úsměv</span>'}
       intro="Od vstupního vyšetření po profesionální bělení — kompletní spektrum dentální hygieny na jednom místě."
     />
-    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- Lighter cards like O nás / Náš tým. Not links, so no hover lift that would suggest a click. -->
+    <ul class="mt-12 grid gap-5 sm:grid-cols-2 md:mt-16 lg:grid-cols-3">
       {
         SERVICES.map((s) => (
-          <article class="group flex flex-col rounded-3xl border border-border/70 bg-card p-7 transition hover:-translate-y-1 hover:border-primary/40">
-            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-primary/15 text-primary-deep transition group-hover:bg-primary/25">
-              <Icon name={s.icon} class="h-5 w-5" />
-            </div>
-            <h3 class="mt-5 font-display text-2xl text-foreground">{s.title}</h3>
-            <p class="mt-3 flex-1 text-[15px] leading-relaxed text-muted-foreground">{s.text}</p>
-            <div class="mt-5 flex items-center gap-2 text-xs uppercase tracking-wider text-foreground">
-              <Icon name="tabler:clock" class="h-3.5 w-3.5" />
+          <li class="flex flex-col rounded-3xl border border-border/70 bg-card p-7 lg:p-8">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl bg-primary/15 text-primary-deep">
+              <Icon name={s.icon} aria-hidden="true" class="h-6 w-6" />
+            </span>
+            <h3 class="mt-6 font-display text-2xl leading-snug text-balance text-foreground">{s.title}</h3>
+            <p class="mt-3 flex-1 leading-relaxed text-pretty text-muted-foreground">{czNbsp(s.text)}</p>
+            <p class="nums mt-6 flex items-center gap-2 border-t border-border/70 pt-5 text-sm font-medium text-foreground/80">
+              <Icon name="tabler:clock" aria-hidden="true" class="h-4 w-4 text-primary-deep" />
               {s.duration}
-            </div>
-          </article>
+            </p>
+          </li>
         ))
       }
-    </div>
+    </ul>
   </div>
 </section>

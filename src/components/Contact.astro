@@ -2,11 +2,23 @@
 import SectionHeading from '~/components/widgets/SectionHeading.astro';
 import { Icon } from 'astro-icon/components';
 import { CONTACT, HOURS } from '~/data/contact';
+
+const CHANNELS = [
+  { href: CONTACT.phoneHref, icon: 'tabler:phone', label: 'Telefon', lines: [CONTACT.phone] },
+  { href: `mailto:${CONTACT.email}`, icon: 'tabler:mail', label: 'E-mail', lines: [CONTACT.email] },
+  {
+    href: CONTACT.mapsUrl,
+    icon: 'tabler:map-pin',
+    label: 'Adresa',
+    lines: [CONTACT.building, `${CONTACT.street}, ${CONTACT.postalCode} ${CONTACT.cityDistrict}`],
+    external: true,
+  },
+];
 ---
 
-<section id="contact" class="relative scroll-mt-24 py-16 md:py-20">
+<section id="contact" class="relative scroll-mt-24">
   <div
-    class="mx-auto max-w-7xl px-6 intersect-once intersect-quarter intersect-no-queue motion-safe:md:intersect:animate-fade"
+    class="section-container section-spacing intersect-once intersect-quarter intersect-no-queue motion-safe:md:intersect:animate-fade"
   >
     <SectionHeading
       eyebrow="Kontakt"
@@ -15,9 +27,9 @@ import { CONTACT, HOURS } from '~/data/contact';
       intro="Rezervujte si svůj termín online prostřednictvím našeho rezervačního systému. Případně nám můžete zavolat nebo napsat."
     />
 
-    <div class="mt-16 grid gap-10 lg:grid-cols-2">
-      <div class="space-y-8">
-        <div class="rounded-2xl border border-border bg-card p-6">
+    <div class="mt-12 grid gap-8 md:mt-16 lg:grid-cols-2 lg:gap-10">
+      <div class="space-y-6">
+        <div class="rounded-3xl border border-border bg-card p-6 md:p-8">
           <div class="flex items-center gap-3">
             <Icon name="tabler:clock" aria-hidden="true" class="h-5 w-5 text-primary-deep" />
             <h3 class="font-display text-xl text-foreground">Ordinační doba</h3>
@@ -25,9 +37,11 @@ import { CONTACT, HOURS } from '~/data/contact';
           <ul class="mt-4 divide-y divide-border">
             {
               HOURS.map(({ label, opens, closes }) => (
-                <li class="flex items-center justify-between py-3 text-sm">
+                <li class="flex items-center justify-between gap-4 py-3">
                   <span class="text-foreground">{label}</span>
-                  <span class="font-medium text-muted-foreground">{opens ? `${opens} – ${closes}` : 'Zavřeno'}</span>
+                  <span class="nums font-medium text-muted-foreground">
+                    {opens ? `${opens} – ${closes}` : 'Zavřeno'}
+                  </span>
                 </li>
               ))
             }
@@ -36,84 +50,57 @@ import { CONTACT, HOURS } from '~/data/contact';
             href={CONTACT.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition hover:bg-primary-hover"
+            class="btn-primary btn-glow mt-6 w-full py-3.5 text-base"
           >
             Rezervovat termín online
-            <Icon name="tabler:calendar-time" class="h-4 w-4" />
+            <Icon name="tabler:calendar-time" aria-hidden="true" class="h-5 w-5" />
           </a>
         </div>
 
-        <div class="space-y-4">
-          <a
-            href={CONTACT.phoneHref}
-            class="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-primary/40 hover:shadow-md"
-          >
-            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-deep">
-              <Icon name="tabler:phone" class="h-5 w-5" />
-            </span>
-            <span class="flex-1">
-              <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">Telefon</span>
-              <span class="block text-lg font-medium text-foreground">{CONTACT.phone}</span>
-            </span>
-            <Icon
-              name="tabler:arrow-right"
-              class="h-4 w-4 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary-deep"
-            />
-          </a>
+        <ul class="divide-y divide-border overflow-hidden rounded-3xl border border-border bg-card">
+          {
+            CHANNELS.map(({ href, icon, label, lines, external }) => (
+              <li>
+                <a
+                  href={href}
+                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  class="group flex items-center gap-4 px-6 py-5 transition-colors hover:bg-secondary/60 focus-visible:-outline-offset-2"
+                >
+                  <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/12 text-primary-deep">
+                    <Icon name={icon} aria-hidden="true" class="h-5 w-5" />
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block text-[12px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                      {label}
+                    </span>
+                    {lines.map((line) => (
+                      <span class="block text-lg font-medium wrap-anywhere text-foreground">{line}</span>
+                    ))}
+                  </span>
+                  <Icon
+                    name="tabler:arrow-right"
+                    aria-hidden="true"
+                    class="h-4 w-4 shrink-0 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary-deep motion-reduce:transition-none"
+                  />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
 
-          <a
-            href={`mailto:${CONTACT.email}`}
-            class="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-primary/40 hover:shadow-md"
-          >
-            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-deep">
-              <Icon name="tabler:mail" class="h-5 w-5" />
-            </span>
-            <span class="flex-1">
-              <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">E-mail</span>
-              <span class="block text-lg font-medium text-foreground">{CONTACT.email}</span>
-            </span>
-            <Icon
-              name="tabler:arrow-right"
-              class="h-4 w-4 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary-deep"
-            />
-          </a>
-
-          <a
-            href={CONTACT.mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-primary/40 hover:shadow-md"
-          >
-            <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary-deep">
-              <Icon name="tabler:map-pin" class="h-5 w-5" />
-            </span>
-            <span class="flex-1">
-              <span class="block text-xs uppercase tracking-[0.18em] text-muted-foreground">Adresa</span>
-              <span class="block text-lg font-medium text-foreground">
-                {CONTACT.building}<br />
-                {`${CONTACT.street}, ${CONTACT.postalCode} ${CONTACT.cityDistrict}`}
-              </span>
-            </span>
-            <Icon
-              name="tabler:arrow-right"
-              class="h-4 w-4 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary-deep"
-            />
-          </a>
-        </div>
-
-        <p class="text-center text-sm text-muted-foreground">
+        <p class="text-center text-sm text-pretty text-muted-foreground">
           Bezbariérový přístup · Parkování zdarma · MHD 5 minut pěšky
         </p>
       </div>
 
-      <div class="overflow-hidden rounded-3xl border border-border bg-card shadow-sm min-h-120">
+      <div class="min-h-100 overflow-hidden rounded-3xl border border-border bg-secondary lg:min-h-0">
         <iframe
           title="Mapa SanaDenta"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7372.862011777183!2d17.592249233921855!3d49.20624351067441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47130cfc0fa07aa9%3A0x5aa3be5e69f618a7!2zWmRyYXZvdG7DrSBaYcWZw616ZW7DrSBQb2xpbWFs!5e0!3m2!1scs!2scz!4v1780695250267!5m2!1scs!2scz"
           loading="lazy"
           allowfullscreen
           class="h-full w-full"
-          style="border:0; min-height:480px;"
+          style="border:0; min-height:400px;"
           referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>

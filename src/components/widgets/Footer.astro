@@ -9,7 +9,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="bg-primary-deep text-white">
-  <div class="mx-auto max-w-7xl px-6 py-16">
+  <div class="section-container py-16">
     <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
       <div>
         <span class="font-display text-2xl font-semibold tracking-tight text-white">SanaDenta</span>
@@ -42,7 +42,10 @@ const year = new Date().getFullYear();
           {
             links.map(({ text, href }) => (
               <li>
-                <a href={href} class="text-sm text-white transition hover:underline underline-offset-4">
+                <a
+                  href={href}
+                  class="inline-flex min-h-6 items-center text-sm text-white transition hover:underline underline-offset-4"
+                >
                   {text}
                 </a>
               </li>
@@ -56,7 +59,10 @@ const year = new Date().getFullYear();
         <ul class="mt-5 space-y-3 text-sm text-white">
           <li class="flex items-start gap-3">
             <Icon name="tabler:phone" class="mt-0.5 h-4 w-4 text-white" />
-            <a href={CONTACT.phoneHref} class="transition hover:underline underline-offset-4">{CONTACT.phone}</a>
+            <a
+              href={CONTACT.phoneHref}
+              class="inline-flex min-h-6 items-center transition hover:underline underline-offset-4">{CONTACT.phone}</a
+            >
           </li>
           <li class="flex items-start gap-3">
             <Icon name="tabler:mail" class="mt-0.5 h-4 w-4 text-white" />
