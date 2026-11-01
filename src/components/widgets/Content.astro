@@ -10,7 +10,7 @@ const { eyebrow, title, subtitle, items = [], image, isReversed = false, isAfter
 const hasHeading = Boolean(title || eyebrow || subtitle);
 ---
 
-<section class="relative not-prose scroll-mt-24" {...id ? { id } : {}}>
+<section class="relative not-prose" {...id ? { id } : {}}>
   <div class:list={['section-container section-spacing', { 'pt-0 md:pt-0': isAfterContent }]}>
     {hasHeading && <SectionHeading eyebrow={eyebrow ?? ''} title={title ?? ''} intro={subtitle} />}
 

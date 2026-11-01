@@ -19,10 +19,12 @@ export interface Props {
 
 const { metadata = {} } = Astro.props;
 const { language, textDirection } = I18N;
+// <html> scroll-pt: room for the sticky header (81 px on phones, 105 px from md), so anchor
+// jumps and keyboard focus never land under it.
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={language} dir={textDirection} class="scroll-pt-24 md:scroll-pt-28 2xl:text-[20px]">
   <head>
     <CommonMeta />
     <Favicons />
