@@ -30,7 +30,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
         links.map((link) => (
           <a
             href={link.href}
-            class="rounded-full px-3.5 py-2 text-base font-medium text-foreground/80 transition-colors hover:text-primary-deep"
+            class="rounded-full px-3.5 py-2 text-base font-medium text-foreground/80 transition-colors hover:text-primary-deep active:text-primary-deep"
           >
             {link.text}
           </a>
@@ -48,7 +48,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
                 aria-label={ariaLabel}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep"
+                class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep active:bg-secondary active:text-primary-deep"
               >
                 <Icon name={icon as string} class="w-4.5 h-4.5" />
               </a>
@@ -63,11 +63,12 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
 
       <button
         id="menu-toggle"
-        class="lg:hidden grid h-11 w-11 place-items-center rounded-full text-foreground/80 transition hover:bg-secondary"
+        class="group lg:hidden grid h-11 w-11 place-items-center rounded-full text-foreground/80 transition hover:bg-secondary active:bg-secondary"
         aria-label="Menu"
         aria-controls="mobile-nav"
         aria-expanded="false"
       >
+        <!-- Hamburger and close icons stacked in one grid cell; aria-expanded crossfades them. -->
         <svg
           aria-hidden="true"
           width="20"
@@ -78,10 +79,26 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          class="col-start-1 row-start-1 transition-opacity duration-150 group-aria-expanded:opacity-0 motion-reduce:transition-none"
         >
           <line x1="4" y1="6" x2="20" y2="6"></line>
           <line x1="4" y1="12" x2="20" y2="12"></line>
           <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+        <svg
+          aria-hidden="true"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="col-start-1 row-start-1 opacity-0 transition-opacity duration-150 group-aria-expanded:opacity-100 motion-reduce:transition-none"
+        >
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
         </svg>
       </button>
     </div>
@@ -93,7 +110,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
         links.map((link) => (
           <a
             href={link.href}
-            class="flex min-h-12 items-center border-b border-border/60 text-base font-medium text-foreground/85 transition-colors last:border-b-0 hover:text-primary-deep"
+            class="flex min-h-12 items-center border-b border-border/60 text-base font-medium text-foreground/85 transition-colors last:border-b-0 hover:text-primary-deep active:text-primary-deep"
           >
             {link.text}
           </a>
@@ -114,7 +131,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
               aria-label={ariaLabel}
               target="_blank"
               rel="noopener noreferrer"
-              class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep"
+              class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep active:bg-secondary active:text-primary-deep"
             >
               <Icon name={icon as string} class="w-4.5 h-4.5" />
             </a>
@@ -131,16 +148,41 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
     const nav = document.getElementById('mobile-nav');
     if (!btn || !nav) return;
 
-    const close = () => {
-      nav.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
+    // Opening plays a CSS animation as the panel appears; closing plays 'menu-out' via
+    // [data-closing] and hides the panel afterwards (styles in tailwind.css). Reopening
+    // mid-close cancels the pending hide, so rapid toggling always ends in the right state.
+    const CLOSE_MS = 140;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let hideTimer;
+
+    const isOpen = () => btn.getAttribute('aria-expanded') === 'true';
+
+    const open = () => {
+      clearTimeout(hideTimer);
+      nav.removeAttribute('data-closing');
+      nav.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
     };
 
-    btn.addEventListener('click', () => {
-      const isHidden = nav.classList.toggle('hidden');
-      btn.setAttribute('aria-expanded', String(!isHidden));
-    });
-    nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+    // `instant` skips the animation: link taps must collapse the panel before the browser
+    // scrolls to the anchor, or the jump would land off by the panel's height.
+    const close = (instant = false) => {
+      btn.setAttribute('aria-expanded', 'false');
+      clearTimeout(hideTimer);
+      if (instant || reducedMotion.matches || nav.classList.contains('hidden')) {
+        nav.removeAttribute('data-closing');
+        nav.classList.add('hidden');
+        return;
+      }
+      nav.setAttribute('data-closing', '');
+      hideTimer = setTimeout(() => {
+        nav.classList.add('hidden');
+        nav.removeAttribute('data-closing');
+      }, CLOSE_MS);
+    };
+
+    btn.addEventListener('click', () => (isOpen() ? close() : open()));
+    nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => close(true)));
     nav.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         close();
@@ -149,6 +191,17 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
     });
     btn.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') close();
+    });
+
+    // A tap anywhere outside the header closes the menu.
+    const header = btn.closest('header');
+    document.addEventListener('click', (e) => {
+      if (isOpen() && header && !header.contains(e.target)) close();
+    });
+
+    // At the desktop breakpoint the panel is hidden by CSS; reset the state to match.
+    window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => {
+      if (e.matches) close(true);
     });
   })();
 </script>

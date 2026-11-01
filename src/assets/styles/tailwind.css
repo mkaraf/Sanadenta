@@ -1,7 +1,10 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
-@custom-variant intersect (&:not([no-intersect]));
+/* Claude Code skills (.claude/) contain unrelated HTML/CSS templates, and docs/ mentions class
+   names in prose; keep both out of the site's stylesheet. */
+@source not "../../../.claude";
+@source not "../../../docs";
 
 /* Single source of truth for design tokens. `static` emits every variable, including
    ones only referenced via var() in inline styles (e.g. --shadow-soft, --shadow-blob). */
@@ -33,27 +36,56 @@
   --font-heading: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
   --font-display: 'Playfair Display Variable', Georgia, serif;
 
-  /* Animations */
-  --animate-fade: fadeInUp 1000ms both;
-  --animate-shimmer: shimmer 4s ease-in-out infinite;
+  /* Motion (docs/motion-audit.md): one calm ease-out curve for every transition. The default
+     150ms suits links and rows; filled buttons set 200ms themselves. */
+  --default-transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
 }
 
-@keyframes fadeInUp {
+/* Photo entrance: elements marked [data-reveal] rise 20px once as they enter the viewport
+   (BasicScripts sets 'pending' below the fold, then 'in'). Text never animates, nothing visible
+   on load moves, and without JS or with reduced motion nothing moves at all. Tablet and up only. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 48rem) {
+  [data-reveal='pending'] {
+    transform: translateY(20px);
+  }
+  [data-reveal='in'] {
+    animation: reveal 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes reveal {
   from {
-    transform: translateY(3.5rem);
+    transform: translateY(20px);
   }
   to {
-    transform: translateY(0);
+    transform: none;
   }
 }
 
-@keyframes shimmer {
-  0%,
-  100% {
-    opacity: 0.4;
+/* Mobile menu panel (Header.astro): fades in sliding 8px down when shown (200ms ease-out),
+   and out the same way, faster (140ms ease-in), while [data-closing] is set. Instant with
+   reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  #mobile-nav:not(.hidden) {
+    animation: menu-in 200ms cubic-bezier(0.2, 0, 0, 1);
   }
-  50% {
-    opacity: 0.8;
+  #mobile-nav[data-closing] {
+    animation: menu-out 140ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes menu-out {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
   }
 }
 
@@ -70,19 +102,21 @@
   }
 }
 
-/* Buttons — one shape (pill), one weight, one hover per variant. Size via px/py/text utilities. */
+/* Buttons — one shape (pill), one weight, one hover per variant. Size via px/py/text utilities.
+   Pressed state (`active:`) is the tap feedback on touch, where hover never applies: the hover
+   colour plus a 1 px press, in quickly (75 ms) and released at the normal 200 ms. */
 @utility btn {
-  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold transition-colors duration-200;
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold transition-[color,background-color,border-color,translate] duration-200 ease-out active:duration-75 motion-safe:active:translate-y-px;
 }
 @utility btn-primary {
-  @apply btn bg-primary text-primary-foreground hover:bg-primary-hover;
+  @apply btn bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-hover;
 }
 /* Soft gold glow under the one main call to action per screen (hero). */
 @utility btn-glow {
   box-shadow: 0 18px 40px -18px oklch(0.52 0.13 70 / 0.55);
 }
 @utility btn-secondary {
-  @apply btn border border-foreground/15 bg-background/60 text-foreground hover:border-foreground/30 hover:bg-secondary;
+  @apply btn border border-foreground/15 bg-background/60 text-foreground hover:border-foreground/30 hover:bg-secondary active:border-foreground/30 active:bg-secondary;
 }
 
 /* Section rhythm — every homepage section shares the same gutters and vertical spacing. */

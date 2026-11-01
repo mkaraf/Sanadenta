@@ -11,18 +11,13 @@ const hasHeading = Boolean(title || eyebrow || subtitle);
 ---
 
 <section class="relative not-prose scroll-mt-24" {...id ? { id } : {}}>
-  <div
-    class:list={[
-      'section-container section-spacing intersect-once intersect-quarter intersect-no-queue motion-safe:md:intersect:animate-fade',
-      { 'pt-0 md:pt-0': isAfterContent },
-    ]}
-  >
+  <div class:list={['section-container section-spacing', { 'pt-0 md:pt-0': isAfterContent }]}>
     {hasHeading && <SectionHeading eyebrow={eyebrow ?? ''} title={title ?? ''} intro={subtitle} />}
 
     <div class:list={['grid items-center gap-10 lg:grid-cols-2 lg:gap-16', { 'mt-12 md:mt-16': hasHeading }]}>
       {
         image && (
-          <div class:list={[isReversed ? 'lg:order-first' : 'lg:order-last']}>
+          <div data-reveal class:list={[isReversed ? 'lg:order-first' : 'lg:order-last']}>
             <div
               class="relative mx-auto aspect-4/3 max-w-2xl overflow-hidden rounded-3xl bg-secondary lg:aspect-square lg:max-w-none"
               style="box-shadow: var(--shadow-soft);"

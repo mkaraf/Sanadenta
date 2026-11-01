@@ -17,9 +17,7 @@ const CHANNELS = [
 ---
 
 <section id="contact" class="relative scroll-mt-24">
-  <div
-    class="section-container section-spacing intersect-once intersect-quarter intersect-no-queue motion-safe:md:intersect:animate-fade"
-  >
+  <div class="section-container section-spacing">
     <SectionHeading
       eyebrow="Kontakt"
       title={'Objednejte se na <span class="italic text-gradient-gold">dentální hygienu</span>'}
@@ -64,7 +62,7 @@ const CHANNELS = [
                 <a
                   href={href}
                   {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  class="group flex items-center gap-4 px-6 py-5 transition-colors hover:bg-secondary/60 focus-visible:-outline-offset-2"
+                  class="group flex items-center gap-4 px-6 py-5 transition-colors hover:bg-secondary/60 active:bg-secondary focus-visible:-outline-offset-2"
                 >
                   <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-primary/12 text-primary-deep">
                     <Icon name={icon} aria-hidden="true" class="h-5 w-5" />
@@ -80,7 +78,7 @@ const CHANNELS = [
                   <Icon
                     name="tabler:arrow-right"
                     aria-hidden="true"
-                    class="h-4 w-4 shrink-0 text-muted-foreground transition group-hover:translate-x-1 group-hover:text-primary-deep motion-reduce:transition-none"
+                    class="h-4 w-4 shrink-0 text-muted-foreground transition group-hover:text-primary-deep group-active:text-primary-deep motion-safe:group-hover:translate-x-1 motion-safe:group-active:translate-x-1"
                   />
                 </a>
               </li>

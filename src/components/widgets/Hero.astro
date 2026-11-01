@@ -41,12 +41,7 @@ const VALUES = [
       <div
         class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-white px-4 py-1.5 text-[12px] font-medium uppercase tracking-[0.18em] text-primary-deep"
       >
-        <span class="relative flex h-2 w-2">
-          <span
-            class="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-gold-bright opacity-75"
-          ></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-gold-bright"></span>
-        </span>
+        <span aria-hidden="true" class="h-2 w-2 shrink-0 rounded-full bg-gold-bright"></span>
         Přijímáme nové pacienty
       </div>
 
@@ -66,7 +61,7 @@ const VALUES = [
         ></span>
         <div class="relative flex shrink-0 items-center justify-center">
           <span
-            class="absolute h-6 w-6 opacity-60 motion-safe:animate-shimmer rounded-full blur-sm"
+            class="absolute h-6 w-6 rounded-full opacity-60 blur-sm"
             style="background: radial-gradient(circle, var(--color-gold-bright), transparent 70%);"></span>
           <svg
             width="18"

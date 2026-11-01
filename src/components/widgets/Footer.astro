@@ -27,7 +27,7 @@ const year = new Date().getFullYear();
                 aria-label={ariaLabel}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:bg-white/10"
+                class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition hover:border-white hover:bg-white/10 active:border-white active:bg-white/10"
               >
                 <Icon name={icon} class="h-4 w-4" />
               </a>
@@ -44,7 +44,7 @@ const year = new Date().getFullYear();
               <li>
                 <a
                   href={href}
-                  class="inline-flex min-h-6 items-center text-sm text-white transition hover:underline underline-offset-4"
+                  class="inline-flex min-h-6 items-center text-sm text-white transition hover:underline active:underline underline-offset-4"
                 >
                   {text}
                 </a>
@@ -61,12 +61,14 @@ const year = new Date().getFullYear();
             <Icon name="tabler:phone" class="mt-0.5 h-4 w-4 text-white" />
             <a
               href={CONTACT.phoneHref}
-              class="inline-flex min-h-6 items-center transition hover:underline underline-offset-4">{CONTACT.phone}</a
+              class="inline-flex min-h-6 items-center transition hover:underline active:underline underline-offset-4"
+              >{CONTACT.phone}</a
             >
           </li>
           <li class="flex items-start gap-3">
             <Icon name="tabler:mail" class="mt-0.5 h-4 w-4 text-white" />
-            <a href={`mailto:${CONTACT.email}`} class="transition hover:underline underline-offset-4">{CONTACT.email}</a
+            <a href={`mailto:${CONTACT.email}`} class="transition hover:underline active:underline underline-offset-4"
+              >{CONTACT.email}</a
             >
           </li>
           <li class="flex items-start gap-3">
@@ -76,7 +78,7 @@ const year = new Date().getFullYear();
                 href={CONTACT.buildingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="transition hover:underline underline-offset-4"
+                class="transition hover:underline active:underline underline-offset-4"
               >
                 {CONTACT.building}
               </a><br />{CONTACT.street}<br />{`${CONTACT.postalCode} ${CONTACT.cityDistrict}`}
@@ -105,7 +107,7 @@ const year = new Date().getFullYear();
     >
       <p>© <span id="copyright-year">{year}</span> SanaDenta. Všechna práva vyhrazena.</p>
       <div class="flex items-center gap-6">
-        <a href="/ochrana-osobnich-udaju/" class="transition hover:underline underline-offset-4"
+        <a href="/ochrana-osobnich-udaju/" class="transition hover:underline active:underline underline-offset-4"
           >Ochrana osobních údajů</a
         >
       </div>

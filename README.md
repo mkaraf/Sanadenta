@@ -66,7 +66,7 @@ Keep new work consistent with these; all tokens and shared utilities live in `sr
 - **Composition** — content sits on lighter `bg-card` panels (`rounded-3xl border border-border/70`) that set it apart from the page background; what goes inside varies by purpose: check-marked points beside a photo (O nás), blob-framed portrait (Náš tým), service cards with the duration as a ruled footer (Služby), tabular rows (Ceník, contact details). Hover effects only on things that are clickable.
 - **Shapes** — organic blob outline (`hero-blob`) for people/hero photos; `rounded-3xl` for cards and photos; pills (`rounded-full`) for buttons and small badges only.
 - **Buttons** — `btn-primary` (gold fill) for booking actions, `btn-secondary` (outline) for everything else; add `btn-glow` only to the main CTA of a screen. Minimum 44 px tall.
-- **Motion** — only subtle transform/colour transitions; every looping or reveal animation is `motion-safe:`. Focus is a 2 px `primary-deep` outline (global `:focus-visible`).
+- **Motion** — calm and short; see `docs/motion-audit.md` for the full spec. Hover colours 150–200 ms; every control also gets a pressed (`active:`) state, since hover never fires on touch. Photos marked `data-reveal` rise 20 px once (500 ms) as they enter the viewport; text and booking actions never animate. No loops. Anything that moves is `motion-safe` only. Focus is an instant 2 px `primary-deep` outline (global `:focus-visible`).
 
 ## Deploy
 
