@@ -166,6 +166,8 @@
   display: inline-block;
   padding-right: 0.25em;
   line-height: 1.3;
+  /* Deliberate: the bright end (2.0:1) is kept for the visible shimmer, although it is below the
+     3:1 large-text contrast guideline. See docs/design-review.md, finding 1.2. */
   background: linear-gradient(to top right, var(--color-gold-deep), var(--color-gold-bright));
   -webkit-background-clip: text;
   background-clip: text;
