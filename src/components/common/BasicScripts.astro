@@ -11,9 +11,10 @@
 </script>
 
 <script is:inline>
-  // Photo entrance (styles in tailwind.css): elements marked [data-reveal] that start below
-  // the fold are parked 20px low ('pending') and rise once ('in') as they enter the viewport.
-  // Anything visible on load is left alone; without JS or with reduced motion nothing moves.
+  // Photo settle (styles in tailwind.css): photo frames marked [data-reveal] that start below the
+  // fold are marked 'pending' (photo slightly zoomed and softened inside its still frame) and
+  // settle once ('in') as they come into view. Anything visible on load is left alone; without
+  // JS or with reduced motion nothing moves.
   (() => {
     const elements = [...document.querySelectorAll('[data-reveal]')];
     if (
@@ -32,8 +33,8 @@
           observer.unobserve(entry.target);
         });
       },
-      // Start once the photo is a little way into view, so the rise is actually seen.
-      { rootMargin: '0px 0px -8% 0px' }
+      // Start once the photo is a little way into view, so the settle is actually seen.
+      { rootMargin: '0px 0px -15% 0px' }
     );
 
     elements.forEach((el) => {
