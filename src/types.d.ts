@@ -58,13 +58,6 @@ export interface CallToAction {
   target?: string;
 }
 
-// COMPONENTS
-export interface ItemGrid {
-  items?: Array<Item>;
-  defaultIcon?: string;
-  classes?: Record<string, string>;
-}
-
 // WIDGETS
 export interface Hero extends Widget {
   title?: string;

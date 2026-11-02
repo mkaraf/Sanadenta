@@ -1,4 +1,6 @@
 ---
+import { czNbsp } from '~/utils/typography';
+
 interface Props {
   eyebrow: string;
   title: string;
@@ -7,16 +9,38 @@ interface Props {
   wide?: boolean;
 }
 const { eyebrow, title, intro, wide = false } = Astro.props;
+
+// Same gold hairline as the hero ornament under the H1, so section labels echo it.
+const rule = 'h-px w-8 sm:w-10';
 ---
 
 <div class:list={['mx-auto text-center', wide ? 'max-w-3xl' : 'max-w-2xl']}>
   {
     eyebrow && (
-      <span class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-[12px] font-medium uppercase tracking-[0.18em] text-primary-deep">
+      <p class="flex items-center justify-center gap-3 text-[12px] font-semibold uppercase tracking-[0.2em] text-primary-deep">
+        <span
+          aria-hidden="true"
+          class={rule}
+          style="background: linear-gradient(to right, transparent, var(--color-gold-deep));"
+        />
         {eyebrow}
-      </span>
+        <span
+          aria-hidden="true"
+          class={rule}
+          style="background: linear-gradient(to left, transparent, var(--color-gold-deep));"
+        />
+      </p>
     )
   }
-  <h2 class="mt-5 font-display text-4xl leading-[1.05] tracking-tight text-foreground md:text-5xl" set:html={title} />
-  {intro && <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">{intro}</p>}
+  <h2
+    class="mt-4 font-display text-4xl leading-[1.08] tracking-tight text-balance text-foreground md:text-5xl"
+    set:html={czNbsp(title)}
+  />
+  {
+    intro && (
+      <p class="mx-auto mt-5 max-w-[60ch] text-base leading-relaxed text-pretty text-muted-foreground md:text-lg">
+        {czNbsp(intro)}
+      </p>
+    )
+  }
 </div>

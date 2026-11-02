@@ -19,7 +19,14 @@ export interface Props {
 const { links = [], socialLinks = [], isSticky = false } = Astro.props;
 ---
 
-<header class:list={[{ sticky: isSticky }, 'top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md']}>
+<header
+  class:list={[
+    { sticky: isSticky },
+    // data-scrolled (set by the script below once the page moves) adds a soft shadow and a
+    // more solid background, so the header separates from content passing beneath it.
+    'top-0 z-40 border-b border-border/60 bg-background/90 backdrop-blur-md transition-[background-color,box-shadow] duration-250 data-scrolled:bg-background/95 data-scrolled:shadow-[0_10px_30px_-20px_oklch(0.45_0.08_75/0.35)] motion-reduce:transition-none',
+  ]}
+>
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 md:px-8 md:py-5">
     <a href={getHomePermalink()}>
       <Logo />
@@ -30,7 +37,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
         links.map((link) => (
           <a
             href={link.href}
-            class="whitespace-nowrap px-2.5 py-2 text-[17px] font-medium text-foreground/80 transition-colors hover:text-primary-deep xl:px-3.5"
+            class="relative whitespace-nowrap rounded-full px-2.5 py-2 text-base font-medium text-foreground/80 transition-colors after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:origin-center after:scale-x-0 after:bg-primary-deep after:transition-transform after:duration-200 hover:text-primary-deep hover:after:scale-x-100 focus-visible:after:scale-x-100 active:text-primary-deep aria-[current=true]:text-foreground aria-[current=true]:after:scale-x-100 motion-reduce:after:transition-none xl:px-3.5 xl:after:inset-x-3.5"
           >
             {link.text}
           </a>
@@ -48,7 +55,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
                 aria-label={ariaLabel}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep"
+                class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep active:bg-secondary active:text-primary-deep"
               >
                 <Icon name={icon as string} class="w-4.5 h-4.5" />
               </a>
@@ -59,18 +66,19 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
 
       <a
         href={`${getHomePermalink()}#contact`}
-        class="hidden md:inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary-hover"
+        class="btn-primary hidden whitespace-nowrap px-5 py-2.5 text-sm md:inline-flex"
       >
         Objednat se
       </a>
 
       <button
         id="menu-toggle"
-        class="lg:hidden grid h-10 w-10 place-items-center rounded-full text-foreground/80 transition hover:bg-secondary"
+        class="group lg:hidden grid h-11 w-11 place-items-center rounded-full text-foreground/80 transition hover:bg-secondary active:bg-secondary"
         aria-label="Menu"
         aria-controls="mobile-nav"
         aria-expanded="false"
       >
+        <!-- Hamburger and close icons stacked in one grid cell; aria-expanded crossfades them. -->
         <svg
           aria-hidden="true"
           width="20"
@@ -81,10 +89,26 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
+          class="col-start-1 row-start-1 transition-opacity duration-150 group-aria-expanded:opacity-0 motion-reduce:transition-none"
         >
           <line x1="4" y1="6" x2="20" y2="6"></line>
           <line x1="4" y1="12" x2="20" y2="12"></line>
           <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+        <svg
+          aria-hidden="true"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="col-start-1 row-start-1 opacity-0 transition-opacity duration-150 group-aria-expanded:opacity-100 motion-reduce:transition-none"
+        >
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
         </svg>
       </button>
     </div>
@@ -96,13 +120,17 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
         links.map((link) => (
           <a
             href={link.href}
-            class="py-3 text-base font-medium text-foreground/85 transition-colors hover:text-primary-deep"
+            class="flex min-h-12 items-center border-b border-border/60 text-base font-medium text-foreground/85 transition-colors last:border-b-0 hover:text-primary-deep active:text-primary-deep"
           >
             {link.text}
           </a>
         ))
       }
     </nav>
+
+    <div class="mx-auto max-w-7xl px-5 pb-5 md:hidden">
+      <a href={`${getHomePermalink()}#contact`} class="btn-primary w-full">Objednat se</a>
+    </div>
 
     {
       socialLinks?.length ? (
@@ -113,7 +141,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
               aria-label={ariaLabel}
               target="_blank"
               rel="noopener noreferrer"
-              class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep"
+              class="grid h-10 w-10 place-items-center rounded-full text-foreground/70 transition hover:bg-secondary hover:text-primary-deep active:bg-secondary active:text-primary-deep"
             >
               <Icon name={icon as string} class="w-4.5 h-4.5" />
             </a>
@@ -130,16 +158,41 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
     const nav = document.getElementById('mobile-nav');
     if (!btn || !nav) return;
 
-    const close = () => {
-      nav.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
+    // Opening plays a CSS animation as the panel appears; closing plays 'menu-out' via
+    // [data-closing] and hides the panel afterwards (styles in tailwind.css). Reopening
+    // mid-close cancels the pending hide, so rapid toggling always ends in the right state.
+    const CLOSE_MS = 140;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let hideTimer;
+
+    const isOpen = () => btn.getAttribute('aria-expanded') === 'true';
+
+    const open = () => {
+      clearTimeout(hideTimer);
+      nav.removeAttribute('data-closing');
+      nav.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
     };
 
-    btn.addEventListener('click', () => {
-      const isHidden = nav.classList.toggle('hidden');
-      btn.setAttribute('aria-expanded', String(!isHidden));
-    });
-    nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+    // `instant` skips the animation: link taps must collapse the panel before the browser
+    // scrolls to the anchor, or the jump would land off by the panel's height.
+    const close = (instant = false) => {
+      btn.setAttribute('aria-expanded', 'false');
+      clearTimeout(hideTimer);
+      if (instant || reducedMotion.matches || nav.classList.contains('hidden')) {
+        nav.removeAttribute('data-closing');
+        nav.classList.add('hidden');
+        return;
+      }
+      nav.setAttribute('data-closing', '');
+      hideTimer = setTimeout(() => {
+        nav.classList.add('hidden');
+        nav.removeAttribute('data-closing');
+      }, CLOSE_MS);
+    };
+
+    btn.addEventListener('click', () => (isOpen() ? close() : open()));
+    nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => close(true)));
     nav.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         close();
@@ -149,5 +202,54 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
     btn.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') close();
     });
+
+    // A tap anywhere outside the header closes the menu.
+    const header = btn.closest('header');
+    document.addEventListener('click', (e) => {
+      if (isOpen() && header && !header.contains(e.target)) close();
+    });
+
+    // At the desktop breakpoint the panel is hidden by CSS; reset the state to match.
+    window.matchMedia('(min-width: 64rem)').addEventListener('change', (e) => {
+      if (e.matches) close(true);
+    });
+  })();
+
+  // Scroll state: marks the header once the page has moved (soft shadow), and marks the desktop
+  // nav link of the section being read with aria-current (gold underline). One passive listener,
+  // at most one update per frame; without JS the header and nav simply stay in their base state.
+  (() => {
+    const header = document.querySelector('header');
+    const links = [...document.querySelectorAll('header nav[aria-label] a[href*="#"]')];
+    if (!header) return;
+
+    // This script runs before <main> is parsed, so the sections are looked up on first update.
+    let sections = [];
+    const findSections = () =>
+      [...new Set(links.map((a) => a.hash.slice(1)))].map((id) => document.getElementById(id)).filter(Boolean);
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      header.toggleAttribute('data-scrolled', window.scrollY > 8);
+
+      // The current section is the last one whose top has passed 40% of the viewport height.
+      if (!sections.length) sections = findSections();
+      const line = window.innerHeight * 0.4;
+      const current = sections.filter((s) => s.getBoundingClientRect().top <= line).pop();
+      links.forEach((a) => {
+        if (current && a.hash === `#${current.id}`) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    };
+
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    // Initial state once the page is parsed (e.g. when opened mid-page via a #hash or reload).
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', update, { once: true });
+    else update();
   })();
 </script>
