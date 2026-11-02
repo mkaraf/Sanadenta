@@ -9,38 +9,3 @@
   // listens for touches. A passive no-op listener is enough and never delays scrolling.
   document.addEventListener('touchstart', () => {}, { passive: true });
 </script>
-
-<script is:inline>
-  // Photo settle (styles in tailwind.css): photo frames marked [data-reveal] that start below the
-  // fold are marked 'pending' (photo slightly zoomed and softened inside its still frame) and
-  // settle once ('in') as they come into view. Anything visible on load is left alone; without
-  // JS or with reduced motion nothing moves.
-  (() => {
-    const elements = [...document.querySelectorAll('[data-reveal]')];
-    if (
-      !elements.length ||
-      !('IntersectionObserver' in window) ||
-      matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.dataset.reveal = 'in';
-          observer.unobserve(entry.target);
-        });
-      },
-      // Start once the photo is a little way into view, so the settle is actually seen.
-      { rootMargin: '0px 0px -15% 0px' }
-    );
-
-    elements.forEach((el) => {
-      if (el.getBoundingClientRect().top < window.innerHeight) return;
-      el.dataset.reveal = 'pending';
-      observer.observe(el);
-    });
-  })();
-</script>

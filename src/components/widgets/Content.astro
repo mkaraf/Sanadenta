@@ -17,7 +17,7 @@ const hasHeading = Boolean(title || eyebrow || subtitle);
     <div class:list={['grid items-center gap-10 lg:grid-cols-2 lg:gap-16', { 'mt-12 md:mt-16': hasHeading }]}>
       {
         image && (
-          <div data-reveal class:list={[isReversed ? 'lg:order-first' : 'lg:order-last']}>
+          <div class:list={[isReversed ? 'lg:order-first' : 'lg:order-last']}>
             <div
               class="relative mx-auto aspect-4/3 max-w-2xl overflow-hidden rounded-3xl bg-secondary lg:aspect-square lg:max-w-none"
               style="box-shadow: var(--shadow-soft);"
