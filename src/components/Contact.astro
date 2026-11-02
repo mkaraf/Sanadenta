@@ -2,6 +2,7 @@
 import SectionHeading from '~/components/widgets/SectionHeading.astro';
 import { Icon } from 'astro-icon/components';
 import { CONTACT, HOURS } from '~/data/contact';
+import { getHomePermalink } from '~/utils/permalinks';
 
 const CHANNELS = [
   { href: CONTACT.phoneHref, icon: 'tabler:phone', label: 'Telefon', lines: [CONTACT.phone] },
@@ -101,6 +102,32 @@ const CHANNELS = [
           style="border:0; min-height:400px;"
           referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
+    </div>
+
+    <div
+      class="mt-8 flex flex-col items-center gap-6 rounded-3xl border border-border bg-card px-6 py-8 text-center md:mt-10 md:flex-row md:px-10 md:text-left"
+      style="box-shadow: var(--shadow-soft);"
+    >
+      <span class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-primary/12 text-primary-deep">
+        <Icon name="tabler:message-question" aria-hidden="true" class="h-6 w-6" />
+      </span>
+      <div class="min-w-0 flex-1">
+        <h3 class="font-display text-2xl text-balance text-foreground md:text-[1.75rem]">
+          Nenašli jste, co jste hledali?
+        </h3>
+        <p class="mt-2 max-w-[62ch] text-pretty text-muted-foreground">
+          Odpovědi na časté dotazy k ceně, průběhu ošetření i péči o děti najdete na jednom místě. A pokud ne, můžete
+          nám tam rovnou napsat.
+        </p>
+      </div>
+      <a href={`${getHomePermalink()}faq/`} class="group btn-secondary shrink-0 px-7">
+        Časté dotazy
+        <Icon
+          name="tabler:arrow-right"
+          aria-hidden="true"
+          class="h-4 w-4 transition-transform motion-safe:group-hover:translate-x-1 motion-safe:group-active:translate-x-1"
+        />
+      </a>
     </div>
   </div>
 </section>

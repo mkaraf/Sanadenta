@@ -7,8 +7,10 @@ interface Props {
   intro?: string;
   /** Wider box for longer titles that should stay on one line on tablet/desktop. */
   wide?: boolean;
+  /** Heading level; h1 when the heading opens its own page. */
+  as?: 'h1' | 'h2';
 }
-const { eyebrow, title, intro, wide = false } = Astro.props;
+const { eyebrow, title, intro, wide = false, as: Heading = 'h2' } = Astro.props;
 
 // Same gold hairline as the hero ornament under the H1, so section labels echo it.
 const rule = 'h-px w-8 sm:w-10';
@@ -32,7 +34,7 @@ const rule = 'h-px w-8 sm:w-10';
       </p>
     )
   }
-  <h2
+  <Heading
     class="mt-4 font-display text-4xl leading-[1.08] tracking-tight text-balance text-foreground md:text-5xl"
     set:html={czNbsp(title)}
   />
