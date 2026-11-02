@@ -1,7 +1,7 @@
 ---
 import SectionHeading from '~/components/widgets/SectionHeading.astro';
 import { Icon } from 'astro-icon/components';
-import { CONTACT, HOURS, TRANSPORT } from '~/data/contact';
+import { CONTACT, HOURS } from '~/data/contact';
 ---
 
 <section id="contact" class="relative scroll-mt-24 py-16 md:py-20">
@@ -101,33 +101,9 @@ import { CONTACT, HOURS, TRANSPORT } from '~/data/contact';
           </a>
         </div>
 
-        <div class="rounded-2xl border border-border bg-card p-6">
-          <div class="flex items-center gap-3">
-            <Icon name="tabler:route" aria-hidden="true" class="h-5 w-5 text-primary-deep" />
-            <h3 class="font-display text-xl text-foreground">Jak se k nám dostanete</h3>
-          </div>
-          <p class="mt-3 text-sm text-muted-foreground">
-            Ordinace leží v Malenovicích, na půl cesty mezi Zlínem a Otrokovicemi.
-          </p>
-          <ul class="mt-4 space-y-3 text-sm text-foreground">
-            <li class="flex items-start gap-3">
-              <Icon name="tabler:bus" aria-hidden="true" class="mt-0.5 h-4 w-4 shrink-0 text-primary-deep" />
-              <span>
-                {
-                  `Trolejbusem na zastávku ${TRANSPORT.stop}, odtud ${TRANSPORT.walkMinutes} minut pěšky. Z Otrokovic cca ${TRANSPORT.fromOtrokoviceMinutes} minut.`
-                }
-              </span>
-            </li>
-            <li class="flex items-start gap-3">
-              <Icon name="tabler:parking" aria-hidden="true" class="mt-0.5 h-4 w-4 shrink-0 text-primary-deep" />
-              <span>Autem — parkování zdarma.</span>
-            </li>
-            <li class="flex items-start gap-3">
-              <Icon name="tabler:wheelchair" aria-hidden="true" class="mt-0.5 h-4 w-4 shrink-0 text-primary-deep" />
-              <span>Bezbariérový přístup.</span>
-            </li>
-          </ul>
-        </div>
+        <p class="text-center text-sm text-muted-foreground">
+          Bezbariérový přístup · Parkování zdarma · MHD 5 minut pěšky
+        </p>
       </div>
 
       <div class="overflow-hidden rounded-3xl border border-border bg-card shadow-sm min-h-120">

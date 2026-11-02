@@ -34,10 +34,6 @@ export const headerData = {
       icon: 'tabler:brand-instagram',
       href: CONTACT.instagramUrl,
     },
-    {
-      ariaLabel: 'Facebook',
-      icon: 'tabler:brand-facebook',
-      href: CONTACT.facebookUrl,
-    },
+    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
   ],
 };

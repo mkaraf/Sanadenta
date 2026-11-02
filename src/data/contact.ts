@@ -13,14 +13,6 @@ export const CONTACT = {
   mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Zdravotní středisko POLIMAL, Zahradní 973, 763 02 Zlín 4')}`,
   bookingUrl: 'https://hygessa.cz/booking/sanadenta',
   instagramUrl: 'https://www.instagram.com/sanadenta_zlin/',
-  facebookUrl: 'https://www.facebook.com/profile.php?id=61594589955837',
-};
-
-/** How to get to the clinic (contact section, FAQ). */
-export const TRANSPORT = {
-  stop: 'Malenovice, sídliště',
-  walkMinutes: 5,
-  fromOtrokoviceMinutes: 15,
 };
 
 /** Contact form on /faq/ (handled by worker/index.ts). */
