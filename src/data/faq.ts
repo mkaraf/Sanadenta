@@ -1,4 +1,4 @@
-import { CONTACT, HOURS } from '~/data/contact';
+import { CONTACT, HOURS, TRANSPORT } from '~/data/contact';
 import { PRICES, formatPrice } from '~/data/pricing';
 
 export interface FaqItem {
@@ -65,6 +65,10 @@ export const FAQ: FaqItem[] = [
   },
   {
     question: 'Kde ordinaci najdu a mohu u vás zaparkovat?',
-    answer: `Najdete nás ve ${CONTACT.building}, ${CONTACT.street}, ${CONTACT.postalCode} ${CONTACT.cityDistrict}. Parkování je zdarma, přístup je bezbariérový a zastávka MHD je 5 minut pěšky. Ordinační doba: ${openDays}.`,
+    answer: `Najdete nás ve ${CONTACT.building}, ${CONTACT.street}, ${CONTACT.postalCode} ${CONTACT.cityDistrict}. Parkování je zdarma, přístup je bezbariérový a trolejbusová zastávka ${TRANSPORT.stop} je ${TRANSPORT.walkMinutes} minut pěšky. Ordinační doba: ${openDays}.`,
+  },
+  {
+    question: 'Jak se k vám dostanu ze Zlína nebo z Otrokovic?',
+    answer: `Ordinace leží v Malenovicích, na půl cesty mezi Zlínem a Otrokovicemi. Trolejbusem dojedete na zastávku ${TRANSPORT.stop}, odkud je to k nám ${TRANSPORT.walkMinutes} minut pěšky — z Otrokovic trvá cesta trolejbusem zhruba ${TRANSPORT.fromOtrokoviceMinutes} minut. Pokud přijedete autem, parkování je zdarma.`,
   },
 ];

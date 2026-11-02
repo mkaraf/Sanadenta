@@ -16,6 +16,13 @@ export const CONTACT = {
   facebookUrl: 'https://www.facebook.com/profile.php?id=61594589955837',
 };
 
+/** How to get to the clinic (FAQ). */
+export const TRANSPORT = {
+  stop: 'Malenovice, sídliště',
+  walkMinutes: 5,
+  fromOtrokoviceMinutes: 15,
+};
+
 /** Contact form on /faq/ (handled by worker/index.ts). */
 export const CONTACT_FORM = {
   endpoint: '/api/contact',
