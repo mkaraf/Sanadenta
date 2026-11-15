@@ -23,6 +23,10 @@ export const headerData = {
       text: 'Kontakt',
       href: `${getHomePermalink()}#contact`,
     },
+    {
+      text: 'Dotazy',
+      href: `${getHomePermalink()}faq/`,
+    },
   ],
   socialLinks: [
     {

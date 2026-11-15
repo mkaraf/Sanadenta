@@ -1,12 +1,31 @@
 {
   "name": "sanadenta",
   "compatibility_date": "2026-08-02",
+  // Needed by worker-mailer (SMTP over Cloudflare TCP sockets).
+  "compatibility_flags": ["nodejs_compat"],
+  // Only /api/* runs the Worker (contact form); everything else is served straight from ./dist.
+  "main": "./worker/index.ts",
   // Serve only on the custom domain (www.sanadenta.cz, configured in the Cloudflare dashboard):
   // no duplicate public copy on *.workers.dev and no public preview URLs.
   "workers_dev": false,
   "preview_urls": false,
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"],
+  },
+  // Contact form: sent through the clinic's Seznam mailbox. Secrets SMTP_PASSWORD and
+  // TURNSTILE_SECRET_KEY are set in the Cloudflare dashboard (Settings → Variables and secrets),
+  // never in this file.
+  "vars": {
+    "CONTACT_TO": "info@sanadenta.cz",
+    "SMTP_HOST": "smtp.seznam.cz",
+    "SMTP_PORT": "465",
+    "SMTP_USER": "info@sanadenta.cz",
+    "SITE_ORIGIN": "https://www.sanadenta.cz",
+  },
+  "observability": {
+    "enabled": true,
   },
 }

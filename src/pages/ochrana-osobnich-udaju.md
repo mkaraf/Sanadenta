@@ -4,7 +4,7 @@ description: 'Zásady ochrany osobních údajů SanaDenta — jak zpracováváme
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-_Poslední aktualizace_: 25. září 2026
+_Poslední aktualizace_: 28. září 2026
 
 V těchto zásadách se dozvíte, jakým způsobem zpracováváme vaše osobní údaje v souvislosti s provozem webových stránek a poskytováním služeb dentální hygieny. Zpracování probíhá v souladu s nařízením Evropského parlamentu a Rady (EU) 2016/679 (GDPR) a zákonem č. 110/2019 Sb., o zpracování osobních údajů.
 
@@ -26,7 +26,7 @@ Nejmenovali jsme pověřence pro ochranu osobních údajů. Zpracování osobní
 
 ## 2. Jaké osobní údaje zpracováváme a proč
 
-### 2.1 Komunikace přes e-mail a telefon
+### 2.1 Komunikace přes e-mail, telefon a kontaktní formulář
 
 **Jaké údaje:** jméno a příjmení, e-mailová adresa, telefonní číslo a obsah vaší zprávy.
 

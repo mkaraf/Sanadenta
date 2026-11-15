@@ -37,7 +37,7 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
         links.map((link) => (
           <a
             href={link.href}
-            class="relative rounded-full px-3.5 py-2 text-base font-medium text-foreground/80 transition-colors after:absolute after:inset-x-3.5 after:bottom-1 after:h-px after:origin-center after:scale-x-0 after:bg-primary-deep after:transition-transform after:duration-200 hover:text-primary-deep hover:after:scale-x-100 focus-visible:after:scale-x-100 active:text-primary-deep aria-[current=true]:text-foreground aria-[current=true]:after:scale-x-100 motion-reduce:after:transition-none 2xl:text-sm"
+            class="relative whitespace-nowrap rounded-full px-2.5 py-2 text-base font-medium text-foreground/80 transition-colors after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:origin-center after:scale-x-0 after:bg-primary-deep after:transition-transform after:duration-200 hover:text-primary-deep hover:after:scale-x-100 focus-visible:after:scale-x-100 active:text-primary-deep aria-[current=true]:text-foreground aria-[current=true]:after:scale-x-100 motion-reduce:after:transition-none xl:px-3.5 xl:after:inset-x-3.5 2xl:text-sm"
           >
             {link.text}
           </a>
@@ -64,7 +64,10 @@ const { links = [], socialLinks = [], isSticky = false } = Astro.props;
         ) : null
       }
 
-      <a href={`${getHomePermalink()}#contact`} class="btn-primary hidden px-5 py-2.5 text-sm md:inline-flex">
+      <a
+        href={`${getHomePermalink()}#contact`}
+        class="btn-primary hidden whitespace-nowrap px-5 py-2.5 text-sm md:inline-flex"
+      >
         Objednat se
       </a>
 
