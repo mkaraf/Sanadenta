@@ -17,7 +17,7 @@ export const FAQ: FaqItem[] = [
   {
     question: 'Co je dentální hygiena a proč ji podstoupit?',
     answer:
-      'Dentální hygiena je profesionální péče o zuby a dásně: odstranění zubního kamene a plaku, leštění, fluoridace a instruktáž, jak o chrup správně pečovat doma. Pravidelná hygiena pomáhá předcházet zubnímu kazu, zánětům dásní a parodontitidě.',
+      'Dentální hygiena je profesionální péče o zuby a dásně: odstranění zubního kamene a plaku, které běžným čištěním doma neodstraníte, leštění, fluoridace a instruktáž, jak o chrup správně pečovat doma. Pravidelná hygiena pomáhá předcházet zubnímu kazu, zánětům dásní a parodontitidě.',
   },
   {
     question: 'Jak často bych měl/a na dentální hygienu chodit?',
@@ -27,7 +27,7 @@ export const FAQ: FaqItem[] = [
   {
     question: 'Bolí dentální hygiena?',
     answer:
-      'Zakládáme si na šetrném přístupu bez stresu. Ošetření přizpůsobíme Vaší citlivosti a tempu, a pokud je Vám cokoli nepříjemné, stačí říct — domluvíme se, jak postupovat.',
+      'Zakládáme si na šetrném přístupu bez stresu a pracujeme s moderními, šetrnými přístroji. Ošetření přizpůsobíme Vaší citlivosti a tempu, a pokud je Vám cokoli nepříjemné, stačí říct — domluvíme se, jak postupovat.',
   },
   {
     question: 'Jak dlouho ošetření trvá?',
@@ -53,7 +53,7 @@ export const FAQ: FaqItem[] = [
   },
   {
     question: 'Ošetřujete i děti?',
-    answer: `Ano. Nabízíme šetrné čištění a nácvik péče pro děti do 12 let (${priceOf('Dentální hygiena pro mladší děti')}) a dentální hygienu pro mládež od 12 do 18 let (${priceOf('Dentální hygiena pro mládež')}).`,
+    answer: `Ano. Děti se u nás naučí správnou techniku čištění a odstraníme jim plak. Nabízíme šetrné čištění a nácvik péče pro děti do 12 let (${priceOf('Dentální hygiena pro mladší děti')}) a dentální hygienu pro mládež od 12 do 18 let (${priceOf('Dentální hygiena pro mládež')}).`,
   },
   {
     question: 'Mám rovnátka. Mohu přijít na dentální hygienu?',

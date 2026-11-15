@@ -20,7 +20,7 @@ export const PRICES: PriceItem[] = [
   {
     category: 'Vstupní ošetření',
     name: 'Vstupní dentální hygiena',
-    specification: 'Pro nové pacienty a po době delší než 2 roky od poslední návštěvy.',
+    specification: 'Pokud u nás absolvujete hygienu poprvé, nebo po více než 2 letech od poslední návštěvy.',
     duration: 'Do 60 min',
     price: 1950,
   },
